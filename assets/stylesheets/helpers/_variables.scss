@@ -1,0 +1,129 @@
+// COLORS - CONTENT
+$color-text: #22394F;
+$color-text-second: #928879;
+$color-heading-text: #35495e;
+
+$color-accent: #89A658;
+$color-accent-second: #85B534;
+
+$color-background: #ffffff;
+
+// COLORS - LINKS
+$color-link: #39a275;
+$color-link-active: $color-text;
+
+// COLORS - INPUTS
+$color-input-border: lighten($color-heading-text, 50%);
+
+// COLORS -
+$color-button-bg: $color-link;
+$color-button-bg-hover: darken($color-link, 10%);
+$color-button-disabled-bg: darken(desaturate($color-button-bg, 20%), 10%);
+$color-button-text: white;
+
+// FONTS
+$font-text: 'Manrope';
+$font-open-semibold: 'Manrope-SemiBold';
+$font-open-bold: 'Manrope-Bold';
+$font-open-extrabold: 'Manrope-ExtraBold';
+$font-manrope: 'Manrope';
+$font-manrope-semibold: 'Manrope-SemiBold';
+$font-manrope-bold: 'Manrope-Bold';
+$font-manrope-extrabold: 'Manrope-ExtraBold';
+
+// DURATIONS
+$duration-animation-base: 300ms;
+
+// RADIUS
+$radius-default: 4px;
+$radius-circle: 50%;
+
+// Resolution
+$desktop-max: 3840px;
+$desktop-fullhd: 2560px;
+$desktop-big: 1920px;
+$desktop: 1440px;
+$laptop: 1280px;
+$desktop-min: 1024px;
+$tablet: 768px;
+$mobile-big: 414px;
+$mobile: 320px;
+
+// Alpha colors
+$cl-black-025: rgba(0, 0, 0, 0.25);
+$cl-elf-green-01: rgba(31, 138, 112, 0.1);
+$cl-elf-green-02: rgba(31, 138, 112, 0.2);
+$cl-grey-03: rgba(106, 106, 106, 0.30);
+$cl-silver-03: rgba(194, 194, 194, 0.30);
+$cl-dim-gray-01: rgba(106, 106, 106, 0.1);
+$cl-dim-gray-03: rgba(106, 106, 106, 0.3);
+$cl-dim-gray-05: rgba(106, 106, 106, 0.5);
+$cl-red-01: rgba(255, 63, 63, 0.1);
+$cl-silver-07: rgba(194, 194, 194, 0.70);
+$cl-black-012: rgba(0, 0, 0, 0.12);
+$cl-green-02: rgba(0, 98, 72, 0.2);
+$cl-silver-08: rgba(194, 194, 194, 0.80);
+$cl-nero-03: rgba(40, 40, 40, 0.3);
+
+
+// Основные цвета
+$cl-white: #fff;
+$cl-black: #000;
+$cl-red: #DE3435;
+$cl-black-pearl: #11202D;
+$cl-regal-blue: #22394F;
+$cl-royal-blue: #3C80F6;
+$cl-maya-blue: #73BFF9;
+$cl-pattens-blue: #C6E6FF;
+$cl-lavender: #E8E8FF;
+$cl-moccasin: #FBE2B4;
+$cl-nepal: #A0B0C1;
+$cl-waikawa-grey: #647389;
+$cl-cello:  #445364;
+$cl-catalina-blue: #19386D;
+$cl-elf-green: #1f8a70;
+$cl-niagara: #2EA286;
+$cl-atlantis: #93C54B;
+$cl-torch-red: #FF0A4B;
+$cl-brink-pink: #FF5985;
+$cl-dim-gray: #6a6a6a;
+$cl-white-smoke: #F5F5F5;
+$cl-las-palmas: #BFDB38;
+$cl-sherpa-blue: #00425A;
+$cl-cosmic-latte: #DDF5E3;
+$cl-geraldine: #e57171;
+$cl-nero: #282828;
+$cl-philippine-orange: #FC7300;
+$cl-ripe-mango: #FFCB1D;
+$cl-mountain-meadow: #21BF74;
+$cl-gainsboro: #D9D9D9;
+$cl-generic-viridian: #007A65;
+$cl-bright-gray: #EDEDED;
+$cl-dim-gray-2: #666666;
+$cl-solitude: #EEEFF2;
+$cl-bright-gray-2: #E5E7EB;
+$cl-dutch-white: #EFDFBB;
+$cl-ue-red: #BE0000;
+$cl-gray: #F7F7F7;
+$cl-blue: #5562D6;
+$cl-red2: #FF5C88;
+$cl-red3: #EC003F;
+$cl-ghost-white: #F4F4F5;
+$cl-link-water: #D3D4D8;
+$cl-east-bay: #4F5162;
+$cl-whisper: #E6E6E6;
+$cl-nobel: #949494;
+$cl-silver: #C4C4C4;
+$cl-torch-red2: #F41839;
+$cl-neon-carrot: #FF8934;
+$cl-eucalyptus: #20A868;
+$cl-tahiti-gold: #EA7521;
+$cl-wild-watermelon: #FB5C74;
+$cl-amaranth: #EB3651;
+$cl-arapawa: #184F63;
+$cl-sea-buckthorn: #ED9555;
+$cl-fuego: #B8D71F;
+$cl-bubbles: #EBF9EF;
+$cl-summer-sky: #34AADF;
+$cl-malachite: #00D95F;
+$cl-dodger-blue: #2787F5;

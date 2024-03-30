@@ -1,0 +1,45 @@
+# Nuxt dev/build outputs
+.output
+.nuxt
+.nitro
+.cache
+/dist
+
+# Node dependencies
+node_modules
+
+# Logs
+/logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Misc
+.DS_Store
+.fleet
+.idea
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+.vscode
+
+
+# Large media files
+*.tiff
+*.avi
+*.flv
+*.mov
+*.wmv
+
+/yarn.lock
+/package-lock.json
+/.htaccess
+/.htpasswd
+/ecosystem.config.js
+
+
+
