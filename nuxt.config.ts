@@ -20,28 +20,28 @@ export default defineNuxtConfig({
           rel: 'preload',
           as: 'font',
           type: 'font/woff2',
-          href: 'assets/fonts/Manrope/Manrope-Regular.woff2',
+          href: '/fonts/Manrope/Manrope-Regular.woff2',
           crossorigin: '',
         },
         {
           rel: 'preload',
           as: 'font',
           type: 'font/woff2',
-          href: 'assets/fonts/Manrope/Manrope-Light.woff2',
+          href: '/fonts/Manrope/Manrope-Light.woff2',
           crossorigin: '',
         },
         {
           rel: 'preload',
           as: 'font',
           type: 'font/woff',
-          href: 'assets/fonts/PlayfairDisplay/PlayfairDisplay-Regular.woff',
+          href: '/fonts/PlayfairDisplay/PlayfairDisplay-Regular.woff',
           crossorigin: '',
         },
         {
           rel: 'preload',
           as: 'font',
           type: 'font/woff',
-          href: 'assets/fonts/PlayfairDisplay/PlayfairDisplay-Bold.woff',
+          href: '/fonts/PlayfairDisplay/PlayfairDisplay-Bold.woff',
           crossorigin: '',
         },
 
@@ -91,7 +91,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['nuxt-schema-org'],
+  modules: ['nuxt-schema-org', 'nuxt-swiper'],
 
   runtimeConfig: {
     public: {
@@ -108,7 +108,6 @@ export default defineNuxtConfig({
     '~/assets/stylesheets/helpers/_normalize.scss',
     '~/assets/stylesheets/global.scss',
   ],
-
   vite: {
     css: {
       preprocessorOptions: {
