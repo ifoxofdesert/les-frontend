@@ -2,14 +2,7 @@
   <NuxtLink :to="src" v-if="type === 'internal'" class="button">
     <slot />
   </NuxtLink>
-  <a
-    :href="src"
-    :target="target"
-    v-else-if="type === 'external'"
-    :title="title ? title : text"
-    @click.stop="clickHandler"
-    class="button"
-  >
+  <a :href="src" :target="target" v-else-if="type === 'external'" class="button">
     <slot />
   </a>
 

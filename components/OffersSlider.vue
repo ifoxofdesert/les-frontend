@@ -28,7 +28,7 @@
             </div>
             <div class="offersSlider__container__sliderContainer__slider">
               <Swiper :loop="false" slidesPerView="auto">
-                <SwiperSlide v-for="(item, index) in slids" :key="item">
+                <SwiperSlide v-for="(item, index) in slids" :key="index">
                   <div class="offersSlider__container__sliderContainer__slider__slide">
                     <div class="offersSlider__container__sliderContainer__slider__slide__imageBlock">
                       <span class="offersSlider__container__sliderContainer__slider__slide__imageBlock__number">

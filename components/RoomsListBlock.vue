@@ -15,7 +15,7 @@
               <span class="roomsListBlock__container__roomsBlock__labelBlock__name">Стоимость</span>
               <span class="roomsListBlock__container__roomsBlock__labelBlock__name">Вместимость</span>
             </div>
-            <div class="roomsListBlock__container__roomsBlock__roomBlock" v-for="item in rooms" :key="item">
+            <div class="roomsListBlock__container__roomsBlock__roomBlock" v-for="(item, index) in rooms" :key="index">
               <span class="roomsListBlock__container__roomsBlock__roomBlock__title">{{ item.title }}</span>
               <span class="roomsListBlock__container__roomsBlock__roomBlock__text">{{ item.price }}</span>
               <span class="roomsListBlock__container__roomsBlock__roomBlock__text">{{ item.persons }}</span>
