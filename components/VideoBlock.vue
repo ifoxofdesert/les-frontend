@@ -1,23 +1,26 @@
 <template>
   <div class="videoBlock">
-    <button class="videoBlock__playButton">
-      <IconComponent name="play" />
-    </button>
-    <video
-      class="videoBlock__video"
-      autoplay="false"
-      loop="false"
-      muted="false"
-      playsinline
-      preload="metadata"
-      :poster="video.poster"
-    >
-      <source v-for="item in video.sources" :src="item.src" :type="item.type" />
-    </video>
+    <Container>
+      <button class="videoBlock__playButton">
+        <IconComponent name="play" />
+      </button>
+      <video
+        class="videoBlock__video"
+        autoplay="false"
+        loop="false"
+        muted="false"
+        playsinline
+        preload="metadata"
+        :poster="video.poster"
+      >
+        <source v-for="item in video.sources" :src="item.src" :type="item.type" />
+      </video>
+    </Container>
   </div>
 </template>
 
 <script setup lang="ts">
+  import Container from './Container.vue';
   import IconComponent from './IconComponent.vue';
 
   const video = {
