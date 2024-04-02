@@ -162,6 +162,7 @@
     display: flex;
     flex-direction: column;
     padding: 0 0 75px 0;
+    margin: 0 0 75px 0;
     &__container {
       display: flex;
       flex-direction: column;
