@@ -51,6 +51,13 @@
     font-family: 'Manrope';
     &__white {
       background-color: $whitesmoke;
+      color: $black;
+    }
+
+    &__green {
+      background-color: $green;
+      color: $whitesmoke;
+      font-size: 20px;
     }
   }
 </style>

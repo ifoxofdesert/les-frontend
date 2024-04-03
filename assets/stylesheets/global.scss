@@ -10,6 +10,10 @@ button {
     padding: 0;
 }
 
+h2 {
+    margin: 0;
+}
+
 
 .v-enter-active,
 .v-leave-active {
@@ -18,5 +22,21 @@ button {
 
 .v-enter-from,
 .v-leave-to {
+    opacity: 0;
+}
+
+
+.accordion-enter-active,
+.accordion-leave-active {
+    will-change: height, opacity;
+    transition:
+        height 0.5s ease,
+        opacity 0.5s ease;
+    overflow: hidden;
+}
+
+.accordion-enter,
+.accordion-leave-to {
+    height: 0 !important;
     opacity: 0;
 }
