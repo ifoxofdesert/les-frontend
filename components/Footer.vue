@@ -11,8 +11,9 @@
                   v-for="item in phones"
                   :href="`tel:${item.url}`"
                   class="footer__container__navigationBlock__column__button"
-                  >{{ item.text }}</a
                 >
+                  {{ item.text }}
+                </a>
               </div>
               <div class="footer__container__navigationBlock__column menuColumn">
                 <span class="footer__container__navigationBlock__column__title">Меню</span>
@@ -20,8 +21,9 @@
                   v-for="item in menu"
                   :to="item.url"
                   class="footer__container__navigationBlock__column__button"
-                  >{{ item.text }}</NuxtLink
                 >
+                  {{ item.text }}
+                </NuxtLink>
               </div>
 
               <div class="footer__container__navigationBlock__column navigationColumn">
@@ -30,8 +32,9 @@
                   v-for="item in navigation"
                   :to="item.url"
                   class="footer__container__navigationBlock__column__button"
-                  >{{ item.text }}</NuxtLink
                 >
+                  {{ item.text }}
+                </NuxtLink>
               </div>
 
               <div class="footer__container__navigationBlock__column socialColumn">
@@ -41,8 +44,9 @@
                   :href="item.url"
                   target="_blank"
                   class="footer__container__navigationBlock__column__button"
-                  >{{ item.text }}</a
                 >
+                  {{ item.text }}
+                </a>
               </div>
 
               <div class="footer__container__navigationBlock__column addressColumn">
