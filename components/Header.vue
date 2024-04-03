@@ -6,8 +6,8 @@
           <div class="header__container">
             <button class="header__container__menu">Меню</button>
             <NuxtLink to="/index.vue" class="header__container__logoButton">
-              <img src="assets/images/logo.png" alt="Санаторий ЛЕС" class="header__container__logoButton__logo"
-            /></NuxtLink>
+              <img src="assets/images/logo.png" alt="Санаторий ЛЕС" class="header__container__logoButton__logo" />
+            </NuxtLink>
             <a href="tel:+78007000906" class="header__container__phoneButton">+7 800 700-09-06</a>
           </div>
         </ContainerBlock>
