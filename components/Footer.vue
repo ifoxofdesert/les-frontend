@@ -7,21 +7,42 @@
             <div class="footer__container__navigationBlock">
               <div class="footer__container__navigationBlock__column phonesColumn">
                 <span class="footer__container__navigationBlock__column__title">Телефон</span>
-                <a href="tel:" class="footer__container__navigationBlock__column__button"></a>
+                <a
+                  v-for="item in phones"
+                  :href="`tel:${item.url}`"
+                  class="footer__container__navigationBlock__column__button"
+                  >{{ item.text }}</a
+                >
               </div>
               <div class="footer__container__navigationBlock__column menuColumn">
                 <span class="footer__container__navigationBlock__column__title">Меню</span>
-                <NuxtLink to="/" class="footer__container__navigationBlock__column__button"></NuxtLink>
+                <NuxtLink
+                  v-for="item in menu"
+                  :to="item.url"
+                  class="footer__container__navigationBlock__column__button"
+                  >{{ item.text }}</NuxtLink
+                >
               </div>
 
               <div class="footer__container__navigationBlock__column navigationColumn">
                 <span class="footer__container__navigationBlock__column__title">Навигация</span>
-                <NuxtLink to="/" class="footer__container__navigationBlock__column__button"></NuxtLink>
+                <NuxtLink
+                  v-for="item in navigation"
+                  :to="item.url"
+                  class="footer__container__navigationBlock__column__button"
+                  >{{ item.text }}</NuxtLink
+                >
               </div>
 
               <div class="footer__container__navigationBlock__column socialColumn">
                 <span class="footer__container__navigationBlock__column__title">Соц.Сети</span>
-                <a href="tel:" class="footer__container__navigationBlock__column__button"></a>
+                <a
+                  v-for="item in socials"
+                  :href="item.url"
+                  target="_blank"
+                  class="footer__container__navigationBlock__column__button"
+                  >{{ item.text }}</a
+                >
               </div>
 
               <div class="footer__container__navigationBlock__column addressColumn">
@@ -40,9 +61,17 @@
 
             <div class="footer__container__bottomBlock">
               <div class="footer__container__bottomBlock__paymentBlock">
-                <NuxtLink to="/" class="footer__container__bottomBlock__paymentBlock__imageButton">
-                  <img src="" alt="Оплата" class="footer__container__bottomBlock__paymentBlock__imageButton__image" />
-                </NuxtLink>
+                <a
+                  v-for="item in payments"
+                  :href="item.url"
+                  class="footer__container__bottomBlock__paymentBlock__imageButton"
+                >
+                  <img
+                    :src="item.image"
+                    :alt="item.alt"
+                    class="footer__container__bottomBlock__paymentBlock__imageButton__image"
+                  />
+                </a>
               </div>
 
               <button class="footer__container__bottomBlock__goTopButton">
@@ -65,4 +94,101 @@
   import Container from './Container.vue';
   import ContainerBlock from './ContainerBlock.vue';
   import IconComponent from './IconComponent.vue';
+
+  const phones = [
+    {
+      text: '+7 978 50-872-50',
+      url: '+79785087250',
+    },
+    {
+      text: '+7(36560) 777-50',
+      url: '+73656077750',
+    },
+    {
+      text: '+7 800 700-09-06',
+      url: '+78007000906',
+    },
+  ];
+
+  const menu = [
+    {
+      text: 'Номера',
+      url: '/',
+    },
+    {
+      text: 'Афиша',
+      url: '/',
+    },
+    {
+      text: 'Спецпредложения',
+      url: '/',
+    },
+    {
+      text: 'Новости',
+      url: '/',
+    },
+  ];
+
+  const navigation = [
+    {
+      text: 'Вакансии',
+      url: '/',
+    },
+    {
+      text: 'Имущество отеля',
+      url: '/',
+    },
+    {
+      text: 'Правила проживания',
+      url: '/',
+    },
+    {
+      text: 'Правила размещения',
+      url: '/',
+    },
+    {
+      text: 'Юридическая информация',
+      url: '/',
+    },
+  ];
+
+  const socials = [
+    {
+      text: 'VKontakte',
+      url: '/',
+    },
+    {
+      text: 'Telegram',
+      url: '/',
+    },
+    {
+      text: 'Tripadvisor',
+      url: '/',
+    },
+  ];
+
+  const address = 'Крым, г. Алушта, Профессорский уголок, ул. Глазкрицкого, 17';
+
+  const payments = [
+    {
+      image: '/_nuxt/assets/images/visa.png',
+      alt: 'Виза',
+      url: '/',
+    },
+    {
+      image: '/_nuxt/assets/images/master.png',
+      alt: 'мир',
+      url: '/',
+    },
+    {
+      image: '/_nuxt/assets/images/master.png',
+      alt: 'мастер',
+      url: '/',
+    },
+    {
+      image: '/_nuxt/assets/images/logo-yookassa.png',
+      alt: 'ю касса',
+      url: '/',
+    },
+  ];
 </script>
