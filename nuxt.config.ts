@@ -33,6 +33,13 @@ export default defineNuxtConfig({
         {
           rel: 'preload',
           as: 'font',
+          type: 'font/woff2',
+          href: '/fonts/Manrope/Manrope-Semibold.woff2',
+          crossorigin: '',
+        },
+        {
+          rel: 'preload',
+          as: 'font',
           type: 'font/woff',
           href: '/fonts/PlayfairDisplay/PlayfairDisplay-Medium.woff',
           crossorigin: '',

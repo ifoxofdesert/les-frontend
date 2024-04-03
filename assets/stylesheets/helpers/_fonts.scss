@@ -26,6 +26,19 @@
 
 
 @font-face {
+    font-family: 'Manrope';
+    src: url('/fonts/Manrope/Manrope-Semibold.eot');
+    src: local('Manrope Semibold'), local('Manrope-Semibold'),
+        url('/fonts/Manrope/Manrope-Semibold.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/Manrope/Manrope-Semibold.woff2') format('woff2'),
+        url('/fonts/Manrope/Manrope-Semibold.woff') format('woff'),
+        url('/fonts/Manrope/Manrope-Semibold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+
+@font-face {
     font-family: 'Playfair Display';
     src: url('/fonts/PlayfairDisplay/PlayfairDisplay-Medium.woff2');
     font-weight: 500;

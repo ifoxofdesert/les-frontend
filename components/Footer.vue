@@ -180,7 +180,7 @@
       url: '/',
     },
     {
-      image: '/_nuxt/assets/images/master.png',
+      image: '/_nuxt/assets/images/mir.png',
       alt: 'мир',
       url: '/',
     },
@@ -196,3 +196,145 @@
     },
   ];
 </script>
+
+<style lang="scss" scoped>
+  footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: $milk;
+    padding: 40px 0 20px 0;
+    .footer {
+      width: 100%;
+      &__container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        &__navigationBlock {
+          width: 100%;
+          margin: 0 0 212px 0;
+          display: flex;
+          justify-content: space-between;
+
+          &__column {
+            display: flex;
+            flex-direction: column;
+            max-width: 290px;
+            width: 100%;
+            gap: 15px;
+
+            &__title {
+              margin: 0 0 11px 0;
+              color: $green;
+              font-family: 'Manrope';
+              font-size: 16px;
+              font-weight: 600;
+            }
+
+            &__button {
+              font-family: 'Manrope';
+              font-size: 18px;
+              font-weight: 400;
+              color: $black;
+              line-height: 30px;
+              letter-spacing: -0.02em;
+              text-decoration: none;
+            }
+
+            &__text {
+              font-family: 'Manrope';
+              font-size: 18px;
+              font-weight: 400;
+              color: $black;
+              line-height: 30px;
+              letter-spacing: -0.02em;
+            }
+
+            &__mapButton {
+              margin: 5px 0 0 0;
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              font-family: 'Manrope';
+              font-size: 18px;
+              font-weight: 400;
+              color: $green;
+            }
+
+            &.phonesColumn {
+              .footer__container__navigationBlock__column__button {
+                font-size: 20px;
+              }
+            }
+            &.menuColumn {
+            }
+            &.navigationColumn {
+            }
+            &.socialColumn {
+            }
+            &.addressColumn {
+            }
+          }
+        }
+
+        &__contactTitle {
+          font-size: 20.375em;
+          font-weight: 500;
+          font-family: 'Playfair Display';
+          text-transform: uppercase;
+          color: $green;
+          margin: 0 0 80px 0;
+        }
+
+        &__bottomBlock {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          position: relative;
+          padding: 36px 0 0 0;
+          border-top: 1px solid $gray;
+          &__paymentBlock {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            &__imageButton {
+              &__image {
+                object-fit: cover;
+              }
+            }
+          }
+
+          &__goTopButton {
+            position: absolute;
+            right: 50%;
+            transform: translate(50%, 0);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-family: 'Manrope';
+            font-size: 30px;
+            font-weight: 400;
+            line-height: 51px;
+            letter-spacing: -2%;
+            color: $black;
+            text-transform: uppercase;
+
+            &__icon {
+            }
+          }
+
+          &__policyButton {
+            margin: 0 0 0 auto;
+            text-decoration: none;
+            font-family: Manrope;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 34px;
+            letter-spacing: -2%;
+            color: $gray;
+          }
+        }
+      }
+    }
+  }
+</style>

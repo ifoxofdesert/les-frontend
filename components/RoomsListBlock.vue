@@ -195,12 +195,12 @@
             transition: all ease 0.2s;
 
             &.first {
-              max-width: 165px;
+              max-width: 170px;
               margin: 0 145px 0 0;
             }
 
             &.second {
-              max-width: 161px;
+              max-width: 165px;
               margin: 0 149px 0 0;
             }
           }
