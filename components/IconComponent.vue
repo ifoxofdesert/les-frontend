@@ -17,6 +17,8 @@
     },
   });
 
+  const config = useRuntimeConfig();
+
   const iconCache = useState('iconCache', () => ({}));
 
   const nameRef = ref(name);
@@ -24,7 +26,7 @@
   async function load() {
     if (!iconCache.value[name]) {
       try {
-        const { data: iconData } = await useFetch(`http://localhost:3023/_nuxt/assets/images/icons/${name}.svg`, {
+        const { data: iconData } = await useFetch(`${config.public.SITE_URL}/_nuxt/assets/images/icons/${name}.svg`, {
           responseType: 'json',
           cache: 'no-cache',
           method: 'GET',

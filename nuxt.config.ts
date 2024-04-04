@@ -117,6 +117,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       APIurl: process.env.API,
+      SITE_URL: process.env.SITE_URL,
     },
   },
 
