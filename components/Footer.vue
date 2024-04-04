@@ -78,7 +78,7 @@
                 </a>
               </div>
 
-              <button class="footer__container__bottomBlock__goTopButton">
+              <button class="footer__container__bottomBlock__goTopButton" @click="scrollTop()">
                 Вернутся в начало
                 <IconComponent name="circleUpArrow" class="footer__container__bottomBlock__goTopButton__icon" />
               </button>
@@ -195,6 +195,10 @@
       url: '/',
     },
   ];
+
+  function scrollTop() {
+    window.scrollTo(0, 0);
+  }
 </script>
 
 <style lang="scss" scoped>
