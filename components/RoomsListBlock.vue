@@ -160,6 +160,7 @@
           padding: 25px 20px 25px 0;
           position: relative;
           cursor: pointer;
+          border-bottom: 1px solid $black;
 
           &::before {
             position: absolute;
@@ -220,6 +221,7 @@
           }
 
           &.active {
+            border-bottom: 0px solid $black;
             &::before {
               background-color: $green;
             }
