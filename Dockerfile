@@ -9,8 +9,8 @@ COPY package.json /usr/src/nuxt-app
 COPY . /usr/src/nuxt-app/
 
 
-RUN npm install 
-RUN npm run build
+RUN yarn 
+RUN yarn build
 
 EXPOSE 3000 
 
