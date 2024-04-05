@@ -25,12 +25,11 @@
                 <div class="offersSlider__container__sliderContainer__infoBlock__navigationBlock__numberBlock">
                   {{ activeIndex }}
                   <span class="delimiter">/</span>
-                  <span class="all">{{ allIndex }}</span>
+                  <span class="all">{{ formatingNumber(allIndex) }}</span>
                 </div>
                 <button
                   class="offersSlider__container__sliderContainer__infoBlock__navigationBlock__button right"
                   ref="swiperNext"
-                  :class="{ disable: !allowSlideNext }"
                 >
                   <IconComponent
                     name="arrow_right"
@@ -46,10 +45,10 @@
                 :modules="[SwiperNavigation]"
                 :navigation="{ prevEl: swiperPrev, nextEl: swiperNext, disabledClass: 'disable' }"
                 @activeIndexChange="changeIndexSlide"
-                :allowSlideNext="allowSlideNext"
+                @swiper="onSwiper"
               >
                 <SwiperSlide
-                  v-for="(item, index) in slidesSwiper"
+                  v-for="(item, index) in slids"
                   :key="index"
                   class="offersSlider__container__sliderContainer__slider__slideBlock"
                 >
@@ -102,7 +101,11 @@
 
   const activeIndex = ref<number | string>('01');
 
-  const emptySlides: number = 3;
+  const swiperRef = ref<Swiper>();
+
+  function onSwiper(swiper: Swiper) {
+    swiperRef.value = swiper;
+  }
 
   const { slids } = defineProps({
     slids: {
@@ -128,26 +131,57 @@
           img: '/_nuxt/assets/images/DSC_3527.jpeg',
           markText: 'Экскурсия и подарки',
         },
+        {
+          title: 'Дарим подарки!',
+          img: '/_nuxt/assets/images/DSC_3527.jpeg',
+          markText: 'Экскурсия и подарки',
+        },
+        {
+          title: 'Дарим подарки!',
+          img: '/_nuxt/assets/images/DSC_3527.jpeg',
+          markText: 'Экскурсия и подарки',
+        },
+        {
+          title: 'Дарим подарки!',
+          img: '/_nuxt/assets/images/DSC_3527.jpeg',
+          markText: 'Экскурсия и подарки',
+        },
+        {
+          title: 'Дарим подарки!',
+          img: '/_nuxt/assets/images/DSC_3527.jpeg',
+          markText: 'Экскурсия и подарки',
+        },
+        {
+          title: 'Дарим подарки!',
+          img: '/_nuxt/assets/images/DSC_3527.jpeg',
+          markText: 'Экскурсия и подарки',
+        },
+        {
+          title: 'Дарим подарки!',
+          img: '/_nuxt/assets/images/DSC_3527.jpeg',
+          markText: 'Экскурсия и подарки',
+        },
+        {
+          title: 'Дарим подарки!',
+          img: '/_nuxt/assets/images/DSC_3527.jpeg',
+          markText: 'Экскурсия и подарки',
+        },
+        {
+          title: 'Дарим подарки!',
+          img: '/_nuxt/assets/images/DSC_3527.jpeg',
+          markText: 'Экскурсия и подарки',
+        },
       ],
     },
   });
 
-  const allIndex = computed(() => formatingNumber(slids.length));
-
-  const slidesSwiper = ref<Array<IoffersSlide | any>>(JSON.parse(JSON.stringify(slids)));
-
-  for (const x of Array(emptySlides).keys()) {
-    slidesSwiper.value.push({});
-  }
-
-  const allowSlideNext = ref<boolean>(true);
+  const allIndex = computed(() => Math.round(slids.length - 2.5));
 
   function changeIndexSlide(data: Swiper) {
-    if (data.activeIndex + 1 == 4) {
-      allowSlideNext.value = false;
-    } else {
-      allowSlideNext.value = true;
+    if (data.activeIndex + 1 == allIndex.value) {
+      swiperRef.value?.slideNext();
     }
+
     activeIndex.value = formatingNumber(data.activeIndex + 1);
   }
 
