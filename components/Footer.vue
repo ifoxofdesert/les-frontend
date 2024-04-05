@@ -262,6 +262,7 @@
               font-family: 'Manrope';
               font-size: 18px;
               font-weight: 400;
+              text-decoration: none;
               color: $green;
             }
 
