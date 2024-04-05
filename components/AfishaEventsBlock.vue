@@ -304,8 +304,6 @@
   }
 </style>
 
-afishaEventsBlock__container__button
-
 <style lang="scss">
   .afishaEventsBlock {
     .afishaEventsBlock__container {
@@ -313,6 +311,14 @@ afishaEventsBlock__container__button
         svg {
           path {
             fill: $whitesmoke;
+          }
+        }
+
+        &:hover {
+          svg {
+            path {
+              fill: $black;
+            }
           }
         }
       }

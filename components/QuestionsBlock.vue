@@ -199,6 +199,14 @@
             fill: $whitesmoke;
           }
         }
+
+        &:hover {
+          svg {
+            path {
+              fill: $black;
+            }
+          }
+        }
       }
     }
   }
