@@ -78,6 +78,12 @@
   ]);
 
   function toogleAccordion(index: number) {
+    accordion.value.forEach((item, i) => {
+      if (index !== i) {
+        item.active = false;
+      }
+    });
+
     accordion.value[index].active = !accordion.value[index].active;
   }
 
