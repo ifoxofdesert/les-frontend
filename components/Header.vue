@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="header">
+    <div class="header" ref="headerRef">
       <Container>
         <ContainerBlock>
           <div class="header__container">
@@ -20,6 +20,33 @@
   import Container from './Container.vue';
   import ContainerBlock from './ContainerBlock.vue';
   //   import IconComponent from './IconComponent.vue';
+
+  const headerRef = ref<HTMLElement>();
+
+  let oldScrollY = 0;
+
+  function wathScrollDocument() {
+    const noFixedBlock = document.querySelector('.noFixed') as HTMLElement;
+
+    const positionElementOnPage = noFixedBlock?.offsetTop || 0;
+
+    const positionWindow = window.scrollY;
+
+    const heightElement = noFixedBlock?.clientHeight || 0;
+
+    if (oldScrollY > positionWindow && heightElement + positionElementOnPage + 100 < positionWindow) {
+      headerRef.value?.classList.add('fixed');
+    } else if (oldScrollY < positionWindow || heightElement + positionElementOnPage > positionWindow) {
+      headerRef.value?.classList.remove('fixed');
+    }
+
+    oldScrollY = positionWindow;
+  }
+
+  onMounted(() => {
+    oldScrollY = window.scrollY;
+    document.addEventListener('scroll', wathScrollDocument);
+  });
 </script>
 
 <style lang="scss" scoped>
@@ -30,6 +57,8 @@
     z-index: 5;
     .header {
       width: 100%;
+      transition: all ease 0.2s;
+      top: -80px;
       &__container {
         width: calc(100% - 80px);
         height: 80px;
@@ -67,6 +96,11 @@
           color: $black;
           text-transform: uppercase;
         }
+      }
+
+      &.fixed {
+        position: fixed;
+        top: 0;
       }
     }
   }

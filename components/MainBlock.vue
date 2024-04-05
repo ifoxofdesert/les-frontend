@@ -1,5 +1,5 @@
 <template>
-  <div class="mainBlock">
+  <div class="mainBlock noFixed">
     <Container>
       <img src="assets/images/DSC_3610.jpg" alt="Обложка" class="mainBlock__backgroundImage" />
       <ContainerBlock>
