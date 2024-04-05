@@ -86,11 +86,6 @@
 </template>
 
 <script setup lang="ts">
-  import Container from './Container.vue';
-  import ContainerBlock from './ContainerBlock.vue';
-  import IconComponent from './IconComponent.vue';
-  import Button from './Button.vue';
-
   const content = [
     {
       img: '/_nuxt/assets/images/1.jpeg',

@@ -89,9 +89,6 @@
 </template>
 
 <script setup lang="ts">
-  import Container from './Container.vue';
-  import ContainerBlock from './ContainerBlock.vue';
-  import IconComponent from './IconComponent.vue';
   import { SwiperNavigation } from '#imports';
   import type { Swiper } from '../node_modules/swiper/types/index.d.ts';
   import type { IoffersSlide } from '~/types/OffersSlider';

@@ -4,11 +4,14 @@
       <Container>
         <ContainerBlock>
           <div class="header__container">
-            <button class="header__container__menu">Меню</button>
+            <Button class="header__container__menu" mod="text" type="button">Меню</Button>
             <NuxtLink to="/" class="header__container__logoButton">
               <img src="assets/images/logo.png" alt="Санаторий ЛЕС" class="header__container__logoButton__logo" />
             </NuxtLink>
-            <a href="tel:+78007000906" class="header__container__phoneButton">+7 800 700-09-06</a>
+
+            <Button src="tel:+78007000906" class="header__container__phoneButton" mod="text" type="external">
+              +7 800 700-09-06
+            </Button>
           </div>
         </ContainerBlock>
       </Container>
@@ -17,10 +20,6 @@
 </template>
 
 <script setup lang="ts">
-  import Container from './Container.vue';
-  import ContainerBlock from './ContainerBlock.vue';
-  //   import IconComponent from './IconComponent.vue';
-
   const headerRef = ref<HTMLElement>();
 
   let oldScrollY = 0;

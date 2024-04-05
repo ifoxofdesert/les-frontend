@@ -18,9 +18,6 @@
 </template>
 
 <script setup lang="ts">
-  import Container from './Container.vue';
-  import IconComponent from './IconComponent.vue';
-
   const video = {
     poster: '/_nuxt/assets/images/Rectangle 1.jpeg',
     sources: [

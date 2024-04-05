@@ -22,12 +22,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-  import Container from './Container.vue';
-  import ContainerBlock from './ContainerBlock.vue';
-  import IconComponent from './IconComponent.vue';
-  import Button from './Button.vue';
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped>
   .mainBlock {

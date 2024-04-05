@@ -7,57 +7,68 @@
             <div class="footer__container__navigationBlock">
               <div class="footer__container__navigationBlock__column phonesColumn">
                 <span class="footer__container__navigationBlock__column__title">Телефон</span>
-                <a
+
+                <Button
                   v-for="item in phones"
-                  :href="`tel:${item.url}`"
+                  :src="`tel:${item.url}`"
                   class="footer__container__navigationBlock__column__button"
+                  mod="text"
+                  type="external"
                 >
                   {{ item.text }}
-                </a>
+                </Button>
               </div>
               <div class="footer__container__navigationBlock__column menuColumn">
                 <span class="footer__container__navigationBlock__column__title">Меню</span>
-                <NuxtLink
+
+                <Button
                   v-for="item in menu"
-                  :to="item.url"
+                  :src="item.url"
                   class="footer__container__navigationBlock__column__button"
+                  mod="text"
+                  type="internal"
                 >
                   {{ item.text }}
-                </NuxtLink>
+                </Button>
               </div>
 
               <div class="footer__container__navigationBlock__column navigationColumn">
                 <span class="footer__container__navigationBlock__column__title">Навигация</span>
-                <NuxtLink
+                <Button
                   v-for="item in navigation"
-                  :to="item.url"
+                  :src="item.url"
                   class="footer__container__navigationBlock__column__button"
+                  mod="text"
+                  type="internal"
                 >
                   {{ item.text }}
-                </NuxtLink>
+                </Button>
               </div>
 
               <div class="footer__container__navigationBlock__column socialColumn">
                 <span class="footer__container__navigationBlock__column__title">Соц.Сети</span>
-                <a
+
+                <Button
                   v-for="item in socials"
-                  :href="item.url"
-                  target="_blank"
+                  :src="item.url"
                   class="footer__container__navigationBlock__column__button"
+                  target="_blank"
+                  mod="text"
+                  type="external"
                 >
                   {{ item.text }}
-                </a>
+                </Button>
               </div>
 
               <div class="footer__container__navigationBlock__column addressColumn">
                 <span class="footer__container__navigationBlock__column__title">Адрес</span>
                 <span class="footer__container__navigationBlock__column__text">
-                  Крым, г. Алушта, Профессорский уголок, ул. Глазкрицкого, 17
+                  {{ address }}
                 </span>
 
                 <NuxtLink to="/" class="footer__container__navigationBlock__column__mapButton">
                   <IconComponent name="point" class="footer__container__navigationBlock__column__mapButton__icon" />
-                  Посмотреть на карте
+                  <span class="footer__container__navigationBlock__column__mapButton__text"> Посмотреть на карте </span>
                 </NuxtLink>
               </div>
             </div>
@@ -95,10 +106,6 @@
 </template>
 
 <script setup lang="ts">
-  import Container from './Container.vue';
-  import ContainerBlock from './ContainerBlock.vue';
-  import IconComponent from './IconComponent.vue';
-
   const phones = [
     {
       text: '+7 978 50-872-50',
@@ -264,6 +271,20 @@
               font-weight: 400;
               text-decoration: none;
               color: $green;
+
+              &__text {
+                position: relative;
+
+                &::before {
+                  bottom: 1px;
+                  content: '';
+                  width: 100%;
+                  height: 1px;
+                  background-color: $green;
+                  position: absolute;
+                  transform: scaleY(0.5);
+                }
+              }
             }
 
             &.phonesColumn {

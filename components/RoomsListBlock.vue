@@ -43,10 +43,6 @@
 </template>
 
 <script setup lang="ts">
-  import Container from './Container.vue';
-  import ContainerBlock from './ContainerBlock.vue';
-  import IconComponent from './IconComponent.vue';
-
   const rooms = ref([
     {
       title: 'Базовый',
