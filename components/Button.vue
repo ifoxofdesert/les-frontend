@@ -14,7 +14,7 @@
 <script setup lang="ts">
   const { mod, src, target, type } = defineProps({
     mod: {
-      type: String,
+      type: String as () => 'green' | 'white' | 'text',
       default: '',
     },
 
@@ -29,7 +29,7 @@
     },
 
     type: {
-      type: String,
+      type: String as () => 'internal' | 'external' | 'button',
       default: 'internal',
     },
   });
