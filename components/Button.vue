@@ -1,8 +1,8 @@
 <template>
-  <NuxtLink :to="src" v-if="type === 'internal'" class="button" :class="`button__${mod || ''}`">
+  <NuxtLink :to="url" v-if="type === 'internal'" class="button" :class="`button__${mod || ''}`">
     <slot />
   </NuxtLink>
-  <a :href="src" :target="target" v-else-if="type === 'external'" class="button" :class="`button__${mod || ''}`">
+  <a :href="url" :target="target" v-else-if="type === 'external'" class="button" :class="`button__${mod || ''}`">
     <slot />
   </a>
 
@@ -12,13 +12,13 @@
 </template>
 
 <script setup lang="ts">
-  const { mod, src, target, type } = defineProps({
+  const { mod, url, target, type } = defineProps({
     mod: {
-      type: String as () => 'green' | 'white' | 'text',
+      type: String as () => 'green' | 'white' | 'text' | 'text_green',
       default: '',
     },
 
-    src: {
+    url: {
       type: String,
       default: '',
     },
@@ -97,6 +97,15 @@
 
       &:hover {
         color: $green;
+      }
+
+      &_green {
+        padding: 0;
+        border-radius: 0px;
+        color: $green;
+        background-color: transparent;
+        justify-content: flex-start;
+        transition: all ease 0.2s;
       }
     }
   }

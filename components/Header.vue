@@ -4,23 +4,28 @@
       <Container>
         <ContainerBlock>
           <div class="header__container">
-            <Button class="header__container__menu" mod="text" type="button">Меню</Button>
+            <Button class="header__container__menu" mod="text" type="button" @click="openMenu">Меню</Button>
             <NuxtLink to="/" class="header__container__logoButton">
               <img src="assets/images/logo.png" alt="Санаторий ЛЕС" class="header__container__logoButton__logo" />
             </NuxtLink>
 
-            <Button src="tel:+78007000906" class="header__container__phoneButton" mod="text" type="external">
+            <Button url="tel:+78007000906" class="header__container__phoneButton" mod="text" type="external">
               +7 800 700-09-06
             </Button>
           </div>
         </ContainerBlock>
       </Container>
     </div>
+    <Transition name="left_fade">
+      <BurgerMenu @close="closeMenu()" v-if="openedMenu" />
+    </Transition>
   </header>
 </template>
 
 <script setup lang="ts">
   const headerRef = ref<HTMLElement>();
+
+  const openedMenu = ref<boolean>(false);
 
   let oldScrollY = 0;
 
@@ -46,6 +51,14 @@
     oldScrollY = window.scrollY;
     document.addEventListener('scroll', wathScrollDocument);
   });
+
+  function openMenu() {
+    openedMenu.value = true;
+  }
+
+  function closeMenu() {
+    openedMenu.value = false;
+  }
 </script>
 
 <style lang="scss" scoped>

@@ -10,7 +10,7 @@
 
                 <Button
                   v-for="item in phones"
-                  :src="`tel:${item.url}`"
+                  :url="`tel:${item.url}`"
                   class="footer__container__navigationBlock__column__button"
                   mod="text"
                   type="external"
@@ -23,7 +23,7 @@
 
                 <Button
                   v-for="item in menu"
-                  :src="item.url"
+                  :url="item.url"
                   class="footer__container__navigationBlock__column__button"
                   mod="text"
                   type="internal"
@@ -36,7 +36,7 @@
                 <span class="footer__container__navigationBlock__column__title">Навигация</span>
                 <Button
                   v-for="item in navigation"
-                  :src="item.url"
+                  :url="item.url"
                   class="footer__container__navigationBlock__column__button"
                   mod="text"
                   type="internal"
@@ -50,7 +50,7 @@
 
                 <Button
                   v-for="item in socials"
-                  :src="item.url"
+                  :url="item.url"
                   class="footer__container__navigationBlock__column__button"
                   target="_blank"
                   mod="text"

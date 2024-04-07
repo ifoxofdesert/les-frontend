@@ -41,3 +41,17 @@ h2 {
     height: 0 !important;
     opacity: 0;
 }
+
+.left_fade-enter-active,
+.left_fade-leave-active {
+    will-change: left, opacity;
+    transition:
+        left 0.5s ease,
+        opacity 0.3s ease;
+}
+
+.left_fade-enter-from,
+.left_fade-leave-to {
+    left: -100% !important;
+    opacity: 0 !important;
+}
