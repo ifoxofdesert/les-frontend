@@ -51,6 +51,7 @@
                   v-for="(item, index) in slids"
                   :key="index"
                   class="offersSlider__container__sliderContainer__slider__slideBlock"
+                  :class="{ expired: item.expired }"
                 >
                   <div v-if="item.title" class="offersSlider__container__sliderContainer__slider__slideBlock__slide">
                     <div class="offersSlider__container__sliderContainer__slider__slideBlock__slide__imageBlock">
@@ -109,64 +110,28 @@
       type: Array<IoffersSlide>,
       default: () => [
         {
-          title: 'Раннее бронирование',
+          title: 'Открытие Комплекса',
           img: '/_nuxt/assets/images/DSC_3524.jpeg',
-          markText: 'Скидка 20%',
+          markText: 'Дарим подарки',
+          expired: false,
         },
         {
-          title: 'Дарим подарки!',
+          title: 'ОТДЫХ С ДЕТЬМИ!',
           img: '/_nuxt/assets/images/DSC_3527.jpeg',
-          markText: 'Экскурсия и подарки',
+          markText: 'Бесплатное место',
+          expired: false,
         },
         {
           title: 'Ура! Открытие!',
           img: '/_nuxt/assets/images/DSC_3224.jpeg',
           markText: 'Сертификат',
+          expired: true,
         },
         {
-          title: 'Дарим подарки!',
-          img: '/_nuxt/assets/images/DSC_3527.jpeg',
-          markText: 'Экскурсия и подарки',
-        },
-        {
-          title: 'Дарим подарки!',
-          img: '/_nuxt/assets/images/DSC_3527.jpeg',
-          markText: 'Экскурсия и подарки',
-        },
-        {
-          title: 'Дарим подарки!',
-          img: '/_nuxt/assets/images/DSC_3527.jpeg',
-          markText: 'Экскурсия и подарки',
-        },
-        {
-          title: 'Дарим подарки!',
-          img: '/_nuxt/assets/images/DSC_3527.jpeg',
-          markText: 'Экскурсия и подарки',
-        },
-        {
-          title: 'Дарим подарки!',
-          img: '/_nuxt/assets/images/DSC_3527.jpeg',
-          markText: 'Экскурсия и подарки',
-        },
-        {
-          title: 'Дарим подарки!',
-          img: '/_nuxt/assets/images/DSC_3527.jpeg',
-          markText: 'Экскурсия и подарки',
-        },
-        {
-          title: 'Дарим подарки!',
-          img: '/_nuxt/assets/images/DSC_3527.jpeg',
-          markText: 'Экскурсия и подарки',
-        },
-        {
-          title: 'Дарим подарки!',
-          img: '/_nuxt/assets/images/DSC_3527.jpeg',
-          markText: 'Экскурсия и подарки',
-        },
-        {
-          title: 'Дарим подарки!',
-          img: '/_nuxt/assets/images/DSC_3527.jpeg',
-          markText: 'Экскурсия и подарки',
+          title: 'Ура! Открытие!',
+          img: '/_nuxt/assets/images/DSC_3224.jpeg',
+          markText: 'Сертификат',
+          expired: true,
         },
       ],
     },
@@ -307,6 +272,10 @@
                   color: $black;
                 }
               }
+            }
+
+            &.expired {
+              opacity: 0.6;
             }
           }
         }
