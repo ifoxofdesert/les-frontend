@@ -46,28 +46,28 @@
   const rooms = ref([
     {
       title: 'Базовый',
-      price: '6 000₽/ночь',
+      price: '5 200₽/ночь',
       persons: 'До 2х гостей',
       img: '/_nuxt/assets/images/Rectangle 8-1.jpeg',
       active: true,
     },
     {
       title: 'Стандарт',
-      price: '8 000₽/ночь',
-      persons: 'До 2х гостей',
+      price: '6 500₽/ночь',
+      persons: 'До 3х гостей',
       img: '/_nuxt/assets/images/Rectangle 8-2.jpeg',
       active: false,
     },
     {
       title: 'Комфорт',
-      price: '12 000₽/ночь',
+      price: '7 200₽/ночь',
       persons: 'До 3х гостей',
       img: '/_nuxt/assets/images/Rectangle 8.jpeg',
       active: false,
     },
     {
       title: 'Люкс-студио',
-      price: '17 000₽/ночь',
+      price: '9 300₽/ночь',
       persons: 'До 4х гостей',
       img: '/_nuxt/assets/images/Rectangle 8-2.jpeg',
       active: false,
