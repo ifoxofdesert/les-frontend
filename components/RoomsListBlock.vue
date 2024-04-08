@@ -125,7 +125,7 @@
           align-items: center;
           border-bottom: 1px solid $black;
           padding: 13px 0 0 0;
-          margin: 0 0 26px 0;
+          margin: 0;
           &__name {
             font-family: Manrope;
             font-size: 22px;
