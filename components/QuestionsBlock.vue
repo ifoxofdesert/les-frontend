@@ -39,7 +39,13 @@
                 </div>
               </Transition>
             </div>
-            <Button class="questionsBlock__container__accordionContainer__button" mod="green" type="button">
+            <Button
+              class="questionsBlock__container__accordionContainer__button"
+              mod="green"
+              type="external"
+              url="#"
+              data-tl-booking-open="true"
+            >
               Забронировать номер
               <IconComponent name="arrow_right" />
             </Button>

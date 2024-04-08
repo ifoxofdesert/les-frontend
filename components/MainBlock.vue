@@ -12,7 +12,13 @@
             <span>44º65′33″63.N</span>
             <span>34º39′48″30.E</span>
           </span>
-          <Button class="mainBlock__contentBlock__button" mod="white" type="button">
+          <Button
+            class="mainBlock__contentBlock__button"
+            mod="white"
+            type="external"
+            url="#"
+            data-tl-booking-open="true"
+          >
             Забронировать номер
             <IconComponent name="arrow_right" />
           </Button>
@@ -21,8 +27,6 @@
     </Container>
   </div>
 </template>
-
-<script setup lang="ts"></script>
 
 <style lang="scss" scoped>
   .mainBlock {

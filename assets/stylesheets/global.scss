@@ -3,6 +3,10 @@ html {
     scroll-behavior: smooth;
 }
 
+a {
+    box-sizing: border-box;
+}
+
 button {
     border: none;
     outline: none;
@@ -13,6 +17,24 @@ button {
 
 h2 {
     margin: 0;
+}
+
+
+#block-search,
+#block-search * {
+    box-sizing: border-box;
+}
+
+#block-search {
+    background-color: #ECE8E1;
+    border: 1px solid #00000033;
+    width: 100%;
+    max-width: 1270px;
+    margin: 0 auto;
+}
+
+.tl-container {
+    padding: 10px 30px;
 }
 
 
