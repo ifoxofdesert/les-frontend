@@ -12,6 +12,12 @@ export default defineNuxtConfig({
     name: 'Санаторий ЛЕС',
   },
 
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => ['noindex'].includes(tag),
+    },
+  },
+
   app: {
     head: {
       title: 'Санаторий ЛЕС',
