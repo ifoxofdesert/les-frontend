@@ -6,7 +6,7 @@
           <div class="header__container">
             <Button class="header__container__menu" mod="text" type="button" @click="openMenu">Меню</Button>
             <NuxtLink to="/" class="header__container__logoButton">
-              <img src="assets/images/logo.png" alt="Санаторий ЛЕС" class="header__container__logoButton__logo" />
+              <img src="assets/images/logo.svg" alt="Санаторий ЛЕС" class="header__container__logoButton__logo" />
             </NuxtLink>
 
             <Button url="tel:+78007000906" class="header__container__phoneButton" mod="text" type="external">
