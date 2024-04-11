@@ -14,7 +14,7 @@
 <script setup lang="ts">
   const { mod, url, target, type } = defineProps({
     mod: {
-      type: String as () => 'green' | 'white' | 'text' | 'text_green',
+      type: String as () => 'green' | 'white' | 'text' | 'text_green' | 'angles',
       default: '',
     },
 
@@ -107,6 +107,10 @@
         justify-content: flex-start;
         transition: all ease 0.2s;
       }
+    }
+
+    &__angles {
+      border-radius: 0px;
     }
   }
 </style>

@@ -60,7 +60,7 @@
   import type { RendererElement } from 'vue';
   import type { IquestionsAccordion } from '@/types/QuestionsBlock.d';
 
-  const accordion = ref<Array<IquestionsAccordion>>([
+  const accordion = ref<IquestionsAccordion[]>([
     {
       title: 'Краткая информация',
       text: 'Он расположен в одном из самых живописных мест Крымского полуострова – «Профессорском уголке» города Алушта. Тихий район в стороне от дорог, шума и скопления людей, с удобными галечными пляжами и набережной. Уникальный крымский климат, обилие зелени, море и горы создают особые условия для отдыха и оздоровления.',

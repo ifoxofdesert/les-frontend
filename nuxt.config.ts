@@ -118,7 +118,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['nuxt-schema-org', 'nuxt-swiper'],
+  modules: ['nuxt-schema-org', 'nuxt-swiper', '@samk-dev/nuxt-vcalendar'],
 
   runtimeConfig: {
     public: {
