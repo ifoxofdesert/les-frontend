@@ -81,3 +81,97 @@ p {
     left: -100% !important;
     opacity: 0 !important;
 }
+
+
+
+.vc-dark {
+
+
+    &.vc-container {
+        background-color: $black;
+        font-family: Manrope;
+        color: $whitesmoke;
+    }
+
+    &.vc-bordered {
+        border-width: 0px;
+        border-radius: 0px;
+    }
+
+
+    & .vc-header {
+
+        & .vc-title-wrapper .vc-title {
+            font-weight: 400;
+        }
+
+        & .vc-arrow:hover {
+            background-color: $green;
+
+        }
+
+    }
+
+    & .vc-weekday {
+        color: $whitesmoke;
+    }
+
+    & .vc-highlight-bg-solid {
+        background-color: $green;
+        border-radius: 0;
+    }
+
+    & .vc-day-content:hover {
+        border-radius: 0;
+        background-color: rgba(red($gray), green($gray), blue($gray), 0.2);
+    }
+
+    & .vc-focus:focus-within {
+        box-shadow: 0 0 0 2px $gray;
+        border-radius: 0;
+    }
+
+    & .vc-nav-title {
+        font-family: Manrope;
+        color: $whitesmoke;
+        font-weight: 400;
+    }
+
+    &.vc-popover-content {
+        background-color: $black;
+        border-color: $green;
+
+    }
+
+    & .vc-nav {
+
+
+        &-title:hover,
+        &-arrow:hover,
+        &-item:hover {
+            background-color: rgba(red($gray), green($gray), blue($gray), 0.2);
+        }
+
+        &-item {
+            font-family: Manrope;
+            color: $whitesmoke;
+            font-weight: 400;
+
+            &.is-active {
+                background-color: $green;
+            }
+
+            &.is-current {
+                color: $green;
+                font-weight: 600;
+            }
+
+        }
+
+
+    }
+
+
+
+
+}

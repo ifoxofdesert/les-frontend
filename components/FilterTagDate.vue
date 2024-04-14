@@ -29,6 +29,7 @@
               class="filterTagDate__container__dateBlock__datePicker"
               v-model="date"
               :attributes="attrs"
+              :isDark="true"
             />
           </div>
         </div>
@@ -64,6 +65,25 @@
       dates: new Date(),
     },
   ]);
+
+  function checkClickDropDown(e: Event) {
+    const target = e.target as HTMLButtonElement;
+
+    if (
+      !target.closest('.filterTagDate__container__dateBlock__datePicker') &&
+      !target.closest('.filterTagDate__container__dateBlock__button')
+    ) {
+      openDatepicker.value = false;
+    }
+  }
+
+  onMounted(() => {
+    document.addEventListener('click', checkClickDropDown);
+  });
+
+  onUnmounted(() => {
+    document.removeEventListener('click', checkClickDropDown);
+  });
 </script>
 
 <style lang="scss" scoped>
