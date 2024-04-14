@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-  import type { Icard } from '~/types/CardEvent.d.ts';
+  import type { Icard } from '~/types/News.d.ts';
   const { card } = defineProps({
     card: {
       type: Object as () => Icard,

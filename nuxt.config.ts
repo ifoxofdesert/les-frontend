@@ -127,6 +127,13 @@ export default defineNuxtConfig({
     },
   },
 
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
+  ],
+
   devServer: {
     port: Number(process.env.PORT) || 3000,
   },
