@@ -12,7 +12,7 @@
           <div class="roomsListBlock__container__roomsBlock">
             <div class="roomsListBlock__container__roomsBlock__labelBlock">
               <span class="roomsListBlock__container__roomsBlock__labelBlock__name first">Класс номера</span>
-              <span class="roomsListBlock__container__roomsBlock__labelBlock__name second">Стоимость</span>
+              <span class="roomsListBlock__container__roomsBlock__labelBlock__name second">Площадь</span>
               <span class="roomsListBlock__container__roomsBlock__labelBlock__name third">Вместимость</span>
             </div>
             <div
@@ -23,7 +23,7 @@
               @mouseover="selectRoom(index)"
             >
               <span class="roomsListBlock__container__roomsBlock__roomBlock__title">{{ item.title }}</span>
-              <span class="roomsListBlock__container__roomsBlock__roomBlock__text first">{{ item.price }}</span>
+              <span class="roomsListBlock__container__roomsBlock__roomBlock__text first">{{ item.area }}</span>
               <span class="roomsListBlock__container__roomsBlock__roomBlock__text second">{{ item.persons }}</span>
               <Transition>
                 <img
@@ -46,30 +46,30 @@
   const rooms = ref([
     {
       title: 'Базовый',
-      price: '5 200₽/ночь',
+      area: 'от 30м2',
       persons: 'До 2х гостей',
-      img: '/_nuxt/assets/images/Rectangle 8-1.jpeg',
+      img: '/_nuxt/assets/images/Rectangle 8-3.jpg',
       active: true,
     },
     {
       title: 'Стандарт',
-      price: '6 500₽/ночь',
+      area: 'от 34м2',
       persons: 'До 3х гостей',
-      img: '/_nuxt/assets/images/Rectangle 8-2.jpeg',
+      img: '/_nuxt/assets/images/Rectangle 8-2.jpg',
       active: false,
     },
     {
       title: 'Комфорт',
-      price: '7 200₽/ночь',
+      area: 'от 45м2',
       persons: 'До 3х гостей',
-      img: '/_nuxt/assets/images/Rectangle 8.jpeg',
+      img: '/_nuxt/assets/images/Rectangle 8-1.jpg',
       active: false,
     },
     {
       title: 'Люкс-студио',
-      price: '9 300₽/ночь',
+      area: 'от 60м2',
       persons: 'До 4х гостей',
-      img: '/_nuxt/assets/images/Rectangle 8-2.jpeg',
+      img: '/_nuxt/assets/images/Rectangle 8.jpg',
       active: false,
     },
   ]);

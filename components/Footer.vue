@@ -90,7 +90,7 @@
               </div>
 
               <button class="footer__container__bottomBlock__goTopButton" @click="scrollTop()">
-                Вернутся в начало
+                в начало
                 <IconComponent name="circleUpArrow" class="footer__container__bottomBlock__goTopButton__icon" />
               </button>
 

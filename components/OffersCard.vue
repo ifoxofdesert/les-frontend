@@ -61,6 +61,7 @@
     &__infoBlock {
       display: flex;
       flex-direction: column;
+      margin: auto 0 0 0;
 
       &__markText {
         font-family: Manrope;

@@ -34,26 +34,20 @@
   const slids = [
     {
       title: 'Открытие Комплекса',
-      img: '/_nuxt/assets/images/DSC_3524.jpeg',
+      img: '/_nuxt/assets/images/DSC_3524.jpg',
       markText: 'Дарим подарки',
       expired: false,
     },
     {
       title: 'ОТДЫХ С ДЕТЬМИ!',
-      img: '/_nuxt/assets/images/DSC_3527.jpeg',
+      img: '/_nuxt/assets/images/DSC_3524-1.jpg',
       markText: 'Бесплатное место',
       expired: false,
     },
     {
-      title: 'Ура! Открытие!',
+      title: 'Скоро появится',
       img: '/_nuxt/assets/images/DSC_3224.jpeg',
-      markText: 'Сертификат',
-      expired: true,
-    },
-    {
-      title: 'Ура! Открытие!',
-      img: '/_nuxt/assets/images/DSC_3224.jpeg',
-      markText: 'Сертификат',
+      markText: '',
       expired: true,
     },
   ];
@@ -70,7 +64,7 @@
       display: flex;
 
       &.expired {
-        opacity: 0.6;
+        opacity: 0.5;
       }
     }
   }

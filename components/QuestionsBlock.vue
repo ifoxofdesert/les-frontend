@@ -142,7 +142,7 @@
         opacity: 0.9;
         display: flex;
         flex-direction: column;
-        padding: 70px 70px 100px 70px;
+        padding: 70px;
         max-width: 407px;
         width: 100%;
         align-self: center;
@@ -154,7 +154,7 @@
           display: flex;
           flex-direction: column;
           overflow: hidden;
-          margin: 0 0 9px 0;
+          margin: 0 0 35px 0;
           &__title {
             cursor: pointer;
             font-family: 'Playfair Display';
