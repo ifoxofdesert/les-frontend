@@ -1,3 +1,4 @@
+import type { Iaccordion } from './Accordion';
 import type { Iimage } from './General';
 
 export interface Icard {
@@ -7,10 +8,11 @@ export interface Icard {
   title?: string;
   description?: string;
   type?: string;
-  url?: string;
+  slug?: string;
 }
 
 export interface Inews {
+  slug: string;
   id: string;
   type: string;
   pagetitle?: string;
@@ -19,7 +21,11 @@ export interface Inews {
   image?: Iimage;
   markText?: string;
   introText?: string;
-  text?: string;
+  textBefore?: string;
+  buttonBeforeActive: boolean;
+  accordion?: Iaccordion[];
+  textAfter?: string;
+  buttonAfterActive: boolean;
   slideTitle?: string;
   slideText?: string;
   slideItem?: Icard[];

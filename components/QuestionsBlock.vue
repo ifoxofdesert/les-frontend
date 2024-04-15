@@ -9,36 +9,7 @@
             <span>берега Крыма</span>
           </h2>
           <div class="questionsBlock__container__accordionContainer">
-            <div
-              class="questionsBlock__container__accordionContainer__accordion"
-              :class="{ active: item.active }"
-              v-for="(item, index) in accordion"
-            >
-              <span
-                class="questionsBlock__container__accordionContainer__accordion__title"
-                @click="toogleAccordion(index)"
-              >
-                {{ item.title }}
-                <IconComponent
-                  name="union"
-                  class="questionsBlock__container__accordionContainer__accordion__title__icon"
-                />
-              </span>
-              <Transition
-                name="accordion"
-                @before-enter="beforeEnter"
-                @enter="enter"
-                @after-enter="afterEnter"
-                @before-leave="beforeLeave"
-                @leave="leave"
-              >
-                <div class="questionsBlock__container__accordionContainer__accordion__content" v-if="item.active">
-                  <span class="questionsBlock__container__accordionContainer__accordion__content__text">
-                    {{ item.text }}
-                  </span>
-                </div>
-              </Transition>
-            </div>
+            <Accordion v-if="accordion.length" :content="accordion" type="titleDot" />
             <Button
               class="questionsBlock__container__accordionContainer__button"
               mod="green"
@@ -57,10 +28,9 @@
 </template>
 
 <script setup lang="ts">
-  import type { RendererElement } from 'vue';
-  import type { IquestionsAccordion } from '@/types/QuestionsBlock.d';
+  import type { Iaccordion } from '~/types/Accordion';
 
-  const accordion = ref<IquestionsAccordion[]>([
+  const accordion = ref<Iaccordion[]>([
     {
       title: 'Краткая информация',
       text: 'Он расположен в одном из самых живописных мест Крымского полуострова – «Профессорском уголке» города Алушта. Тихий район в стороне от дорог, шума и скопления людей, с удобными галечными пляжами и набережной. Уникальный крымский климат, обилие зелени, море и горы создают особые условия для отдыха и оздоровления.',
@@ -82,32 +52,6 @@
       active: false,
     },
   ]);
-
-  function toogleAccordion(index: number) {
-    accordion.value.forEach((item, i) => {
-      if (index !== i) {
-        item.active = false;
-      }
-    });
-
-    accordion.value[index].active = !accordion.value[index].active;
-  }
-
-  function beforeEnter(el: RendererElement | HTMLElement) {
-    el.style.height = '0';
-  }
-  function enter(el: RendererElement | HTMLElement) {
-    el.style.height = el.scrollHeight + 'px';
-  }
-  function afterEnter(el: RendererElement | HTMLElement) {
-    el.style.height = 'auto';
-  }
-  function beforeLeave(el: RendererElement | HTMLElement) {
-    el.style.height = el.scrollHeight + 'px';
-  }
-  function leave(el: RendererElement | HTMLElement) {
-    el.style.height = '0';
-  }
 </script>
 
 <style lang="scss" scoped>
@@ -149,82 +93,22 @@
         position: relative;
         top: -30px;
 
-        &__accordion {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          overflow: hidden;
-          margin: 0 0 35px 0;
-          &__title {
-            cursor: pointer;
-            font-family: 'Playfair Display';
-            font-size: 30px;
-            font-weight: 400;
-            line-height: 40px;
-            color: $black;
-            padding: 0 0 14px 0;
-            display: flex;
-            border-bottom: 1px solid $gray;
-            margin: 0 0 20px 0;
-            position: relative;
-
-            &:before {
-              content: '';
-              width: 12px;
-              height: 12px;
-              display: flex;
-              flex-direction: column;
-              border-radius: 360px;
-              background-color: $black;
-              position: relative;
-              margin: 0 10px 0 0;
-              top: 15px;
-            }
-            &__icon {
-              transition: all ease 0.5s;
-              transform: scale(-1) scaleX(-1);
-              margin: 7px 0 0 auto;
+        &__button {
+          &:deep() {
+            svg {
+              path {
+                fill: $whitesmoke;
+              }
             }
           }
 
-          &__content {
-            display: flex;
-            flex-direction: column;
-            &__text {
-              font-family: Manrope;
-              font-size: 22px;
-              font-weight: 300;
-              line-height: 110%;
-              color: $black;
-            }
-          }
-
-          &.active {
-            .questionsBlock__container__accordionContainer__accordion__title__icon {
-              transform: scale(1) scaleX(1);
-              align-items: flex-end;
-            }
-          }
-        }
-      }
-    }
-  }
-</style>
-
-<style lang="scss">
-  .questionsBlock {
-    .questionsBlock__container {
-      &__accordionContainer__button {
-        svg {
-          path {
-            fill: $whitesmoke;
-          }
-        }
-
-        &:hover {
-          svg {
-            path {
-              fill: $black;
+          &:hover {
+            &:deep() {
+              svg {
+                path {
+                  fill: $black;
+                }
+              }
             }
           }
         }

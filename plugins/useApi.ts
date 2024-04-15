@@ -6,8 +6,8 @@ export default defineNuxtPlugin(async () => {
     return news.listingNews;
   }
 
-  async function searchNews(): Promise<Inews> {
-    return news.news;
+  async function searchNews(slug: string): Promise<Inews | undefined> {
+    return news.news.find((item) => item.slug === slug);
   }
 
   return {

@@ -11,7 +11,13 @@
 <script setup>
   const { $searchNews } = useNuxtApp();
 
-  const content = ref(await $searchNews());
+  const route = useRoute();
+
+  const content = ref(await $searchNews(route.params.slug));
+
+  if (!content.value) {
+    showError({ statusCode: 404, fatal: true });
+  }
 
   useHead({
     title: content.value?.pagetitle || '',
@@ -34,11 +40,5 @@
     display: flex;
     flex-direction: column;
     padding: 200px 0 100px 0;
-
-    &__container {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-    }
   }
 </style>

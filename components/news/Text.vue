@@ -18,7 +18,6 @@
     align-items: center;
     color: $black;
     font-family: Manrope;
-    margin: 0 0 150px 0;
 
     &:deep() {
       h1,
@@ -28,6 +27,7 @@
       strong,
       b,
       ul,
+      ol,
       p {
         max-width: 755px;
         width: 100%;
@@ -47,6 +47,7 @@
       strong,
       b,
       ul,
+      ol,
       p {
         font-family: Manrope;
         font-size: 22px;
@@ -58,6 +59,21 @@
         display: flex;
         flex-direction: column;
         gap: 11px;
+
+        li {
+          &::marker {
+            color: $lightGreen;
+          }
+        }
+      }
+
+      ol {
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+        list-style: decimal-leading-zero;
+        padding: 0;
+        list-style-position: inside;
 
         li {
           &::marker {
