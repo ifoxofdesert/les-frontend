@@ -2,7 +2,7 @@
   <div class="news">
     <Container>
       <ContainerBlock>
-        <PageNews v-if="content" :data="content" />
+        <NewsPageNews v-if="content" :data="content" />
       </ContainerBlock>
     </Container>
   </div>
