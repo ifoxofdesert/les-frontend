@@ -20,7 +20,7 @@
     <RoomsListBlock />
     <QuestionsBlock />
     <div class="videoBlock">
-      <VideoBlock />
+      <VideoBlock :video="video" />
     </div>
     <AfishaEventsBlock />
   </div>
@@ -51,6 +51,15 @@
       expired: true,
     },
   ];
+  const video = {
+    poster: '/_nuxt/assets/images/Rectangle 1.jpeg',
+    sources: [
+      {
+        src: '/_nuxt/assets/videos/video_2024-03-31_17-52-39.mp4',
+        type: 'video/webm',
+      },
+    ],
+  };
 </script>
 
 <style lang="scss" scoped>

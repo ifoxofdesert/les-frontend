@@ -18,22 +18,17 @@
 </template>
 
 <script setup lang="ts">
-  const video = {
-    poster: '/_nuxt/assets/images/Rectangle 1.jpeg',
-    sources: [
-      {
-        src: '/_nuxt/assets/videos/video_2024-03-31_17-52-39.mp4',
-        type: 'video/webm',
-      },
-    ],
-  };
+  import type { Ivideo } from '~/types/General';
+
+  const { video } = defineProps({
+    video: {
+      type: Object as () => Ivideo,
+      default: () => {},
+    },
+  });
 
   const videoElement = ref<HTMLVideoElement | null>(null);
   const plays = ref<boolean>(false);
-
-  onMounted(() => {
-    console.log(videoElement.value);
-  });
 
   function playOrPause() {
     if (videoElement.value) {
