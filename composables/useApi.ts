@@ -1,7 +1,7 @@
 import news from '~/src/news.json';
-import type { Icard, Inews } from '~/types/News.d.ts';
+import type { Icard, Inews } from '~/types/News';
 
-export default defineNuxtPlugin(async () => {
+export default function useApi() {
   async function getNews(): Promise<Icard[]> {
     return news.listingNews;
   }
@@ -11,9 +11,7 @@ export default defineNuxtPlugin(async () => {
   }
 
   return {
-    provide: {
-      getNews,
-      searchNews,
-    },
+    getNews,
+    searchNews,
   };
-});
+}

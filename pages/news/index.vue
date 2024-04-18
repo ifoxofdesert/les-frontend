@@ -18,6 +18,7 @@
 
 <script lang="ts" setup>
   import type { Itags } from '~/types/FilterTagDate';
+  import type { Icard } from '~/types/News';
 
   const filterTags = ref<Itags[]>([
     {
@@ -42,7 +43,7 @@
     date: '',
   });
 
-  const { $getNews } = useNuxtApp();
+  const { getNews } = useApi();
 
   function selectTag(index: number, tag: Itags) {
     filterTags.value.forEach((item) => {
@@ -54,7 +55,7 @@
     filterOptions.value.tag = filterTags.value[index].tag;
   }
 
-  const card = ref(await $getNews());
+  const card = ref(await getNews());
 
   const cardFilterData = computed(() => {
     return card.value.filter((item) => {

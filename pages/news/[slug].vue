@@ -9,11 +9,11 @@
 </template>
 
 <script setup>
-  const { $searchNews } = useNuxtApp();
+  const { searchNews } = useApi();
 
   const route = useRoute();
 
-  const content = ref(await $searchNews(route.params.slug));
+  const content = ref(await searchNews(route.params.slug));
 
   if (!content.value) {
     showError({ statusCode: 404, fatal: true });
