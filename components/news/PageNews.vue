@@ -1,9 +1,9 @@
 <template>
   <div class="pageNews">
-    <Title class="pageNews__title" v-if="data.title">{{ data.title }}</Title>
-    <FullImage v-if="data.image" :image="data.image" />
-    <IntroText :text="data.introText" :markText="data.markText" />
-    <Text v-if="data.textBefore" :text="data.textBefore" />
+    <NewsTitle class="pageNews__title" v-if="data.title">{{ data.title }}</NewsTitle>
+    <NewsFullImage v-if="data.image" :image="data.image" />
+    <NewsIntroText :text="data.introText" :markText="data.markText" />
+    <NewsText v-if="data.textBefore" :text="data.textBefore" />
     <Button
       v-if="data.buttonBeforeActive"
       class="pageNews__button"
@@ -18,7 +18,7 @@
     <div class="pageNews__accordionBlock">
       <Accordion v-if="data?.accordion?.length" :content="data.accordion" />
     </div>
-    <Text v-if="data.textAfter" :text="data.textAfter" />
+    <NewsText v-if="data.textAfter" :text="data.textAfter" />
     <Button
       v-if="data.buttonAfterActive"
       class="pageNews__button"
@@ -47,7 +47,6 @@
 </template>
 
 <script setup lang="ts">
-  import Title from './Title.vue';
   import type { Inews } from '~/types/News';
 
   const slideTitle = 'Посмотрите Другие новости';
