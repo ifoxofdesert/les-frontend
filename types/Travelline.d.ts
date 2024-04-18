@@ -1,4 +1,4 @@
-export interface IwindowTravelline extends Window {
+export interface Itravelline {
   TL: {
     integration: object;
     loader: object;

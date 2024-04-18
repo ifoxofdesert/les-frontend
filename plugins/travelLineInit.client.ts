@@ -1,9 +1,11 @@
-import type { IwindowTravelline } from '~/types/Travelline';
+import type { Itravelline } from '~/types/Travelline';
 
-declare let window: IwindowTravelline;
+declare global {
+  interface Window extends Itravelline {}
+}
 
 export default defineNuxtPlugin(() => {
-  (function (w: IwindowTravelline) {
+  (function (w: Window) {
     var q = [
       ['setContext', 'TL-INT-les_2024-03-29', 'ru'],
       [
