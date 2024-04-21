@@ -1,22 +1,7 @@
 <template>
   <div class="homePage">
     <MainBlock />
-    <SliderAndText
-      :title="slideTitle"
-      :fixNumberSlides="2.5"
-      :secondTitle="slideSecondTitle"
-      :description="slideDescription"
-      :numberSlides="slids.length"
-    >
-      <SwiperSlide
-        v-for="(item, index) in slids"
-        :key="index"
-        class="homePage__slide"
-        :class="{ expired: item.expired }"
-      >
-        <OffersCard :content="item" :index="index" />
-      </SwiperSlide>
-    </SliderAndText>
+    <OffersSlider v-if="content?.offersSlider?.slids?.length" :data="content.offersSlider" />
     <RoomsListBlock />
     <QuestionsBlock />
     <div class="videoBlock">
@@ -27,30 +12,10 @@
 </template>
 
 <script setup lang="ts">
-  const slideTitle = 'Специальные выгоды';
-  const slideSecondTitle = 'для наших гостей';
-  const slideDescription =
-    'Насладитесь неповторимым комфортом и выгодными условиями проживания, созданными специально для вас.';
-  const slids = [
-    {
-      title: 'Открытие Комплекса',
-      img: '/_nuxt/assets/images/DSC_3524.jpg',
-      markText: 'Дарим подарки',
-      expired: false,
-    },
-    {
-      title: 'ОТДЫХ С ДЕТЬМИ!',
-      img: '/_nuxt/assets/images/DSC_3524-1.jpg',
-      markText: 'Бесплатное место',
-      expired: false,
-    },
-    {
-      title: 'Скоро появится',
-      img: '/_nuxt/assets/images/DSC_3224.jpeg',
-      markText: '',
-      expired: true,
-    },
-  ];
+  const { getHome } = useApi();
+
+  const content = ref(await getHome());
+
   const video = {
     poster: '/_nuxt/assets/images/Rectangle 1.jpeg',
     sources: [
@@ -66,15 +31,6 @@
   .homePage {
     .videoBlock {
       margin: -290px 0 100px 0;
-    }
-    &__slide {
-      width: 415px;
-      margin: 0 20px 0 0;
-      display: flex;
-
-      &.expired {
-        opacity: 0.5;
-      }
     }
   }
 </style>

@@ -12,3 +12,8 @@ export interface Ivideo {
   poster: string;
   sources: IvideoSources[];
 }
+
+export interface ItitleCutom {
+  first: string;
+  second: string;
+}

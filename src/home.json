@@ -1,0 +1,36 @@
+{
+  "offersSlider": {
+    "slideTitle": "Специальные выгоды",
+    "slideSecondTitle": "для наших гостей",
+    "slideDescription": "Насладитесь неповторимым комфортом и выгодными условиями проживания, созданными специально для вас.",
+    "slids": [
+      {
+        "title": "Открытие Комплекса",
+        "img": {
+          "src": "/_nuxt/assets/images/DSC_3524.jpg",
+          "alt": "test"
+        },
+        "markText": "Дарим подарки",
+        "expired": false
+      },
+      {
+        "title": "ОТДЫХ С ДЕТЬМИ!",
+        "img": {
+          "src": "/_nuxt/assets/images/DSC_3524-1.jpg",
+          "alt": "test"
+        },
+        "markText": "Бесплатное место",
+        "expired": false
+      },
+      {
+        "title": "Скоро появится",
+        "img": {
+          "src": "/_nuxt/assets/images/DSC_3224.jpeg",
+          "alt": "test"
+        },
+        "markText": "",
+        "expired": true
+      }
+    ]
+  }
+}

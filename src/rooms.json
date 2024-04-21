@@ -1,0 +1,105 @@
+{
+  "title": "Базовый номер",
+  "slug": "test",
+  "area": "От 30м²",
+  "persons": "До 2х гостей",
+  "viewRoom": "Вид на двор отеля",
+  "offersSlider": {
+    "slideTitle": "Специальные выгоды",
+    "slideSecondTitle": "для наших гостей",
+    "slideDescription": "Насладитесь неповторимым комфортом и выгодными условиями проживания, созданными специально для вас.",
+    "slids": [
+      {
+        "title": "Открытие Комплекса",
+        "img": {
+          "src": "/_nuxt/assets/images/DSC_3524.jpg",
+          "alt": "test"
+        },
+        "markText": "Дарим подарки",
+        "expired": false
+      },
+      {
+        "title": "ОТДЫХ С ДЕТЬМИ!",
+        "img": {
+          "src": "/_nuxt/assets/images/DSC_3524-1.jpg",
+          "alt": "test"
+        },
+        "markText": "Бесплатное место",
+        "expired": false
+      },
+      {
+        "title": "Скоро появится",
+        "img": {
+          "src": "/_nuxt/assets/images/DSC_3224.jpeg",
+          "alt": "test"
+        },
+        "markText": "",
+        "expired": true
+      }
+    ]
+  },
+  "img": {
+    "src": "/_nuxt/assets/images/Rectangle 8-3.jpg",
+    "alt": ""
+  },
+  "pagetitle": "Базовый номер",
+  "pageDescription": "Базовый номер",
+  "description": "Номер представляет собой идеальное сочетание комфорта и функциональности, созданное для того, чтобы сделать ваше пребывание незабываемым.",
+  "travelId": "123",
+  "video": {
+    "poster": "/_nuxt/assets/images/Rectangle 1.jpeg",
+    "sources": [
+      {
+        "src": "/_nuxt/assets/videos/video_2024-03-31_17-52-39.mp4",
+        "type": "video/webm"
+      }
+    ]
+  },
+  "aboutRoom": {
+    "title": "",
+    "firstText": "",
+    "secondText": ""
+  },
+  "accorionTitle": {
+    "first": "",
+    "second": ""
+  },
+  "accorionDescription": "",
+  "accordion": [
+    {
+      "title": "",
+      "text": "",
+      "active": false
+    }
+  ],
+  "gallaryTitle": "",
+  "gallaryDescription": "",
+  "gallary": [
+    {
+      "src": "",
+      "alt": ""
+    }
+  ],
+  "roomWelcome": {
+    "title": "",
+    "secondTitle": "",
+    "initialLetter": "",
+    "text": "",
+    "markText": "",
+    "subText": ""
+  },
+  "roomListTitle": "",
+  "roomListDescription": "",
+  "roomList": [
+    {
+      "title": "",
+      "area": "",
+      "persons": "",
+      "img": {
+        "src": "",
+        "alt": ""
+      },
+      "description": ""
+    }
+  ]
+}

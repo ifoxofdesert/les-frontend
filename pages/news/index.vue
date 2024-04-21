@@ -18,7 +18,6 @@
 
 <script lang="ts" setup>
   import type { Itags } from '~/types/FilterTagDate';
-  import type { Icard } from '~/types/News';
 
   const filterTags = ref<Itags[]>([
     {

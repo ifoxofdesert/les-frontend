@@ -58,7 +58,6 @@
 </template>
 
 <script setup lang="ts">
-  import { SwiperNavigation } from '#imports';
   import type { Swiper } from 'swiper/types';
 
   const { numberSlides, title, secondTitle, description, fixNumberSlides } = defineProps({
