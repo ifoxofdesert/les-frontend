@@ -16,8 +16,9 @@
 
     <div class="sliderBlock__slide">
       <Swiper
-        :slidesPerView="'auto'"
-        :spaceBetween="0"
+        :roundLengths="true"
+        :slidesPerView="4"
+        :spaceBetween="spaceBetween"
         :modules="[SwiperNavigation]"
         :navigation="{ prevEl: swiperPrev, nextEl: swiperNext, disabledClass: 'disable' }"
         @activeIndexChange="changeIndexSlide"
@@ -32,24 +33,17 @@
 <script lang="ts" setup>
   import type { Swiper } from 'swiper/types';
 
-  const { numberSlides, title, secondTitle, description, fixNumberSlides } = defineProps({
+  const { numberSlides, fixNumberSlides, spaceBetween } = defineProps({
     numberSlides: {
       type: Number,
       default: 3,
     },
 
-    title: {
-      type: String,
-      default: '',
+    spaceBetween: {
+      type: Number,
+      default: 0,
     },
-    secondTitle: {
-      type: String,
-      default: '',
-    },
-    description: {
-      type: String,
-      default: '',
-    },
+
     // Нужно чтобы правильно посчитать слайды. Свайпер иногда не считает последний слайд и это вызывает недокрут
     fixNumberSlides: {
       type: Number,
@@ -81,4 +75,51 @@
   }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .sliderBlock {
+    &__navigationBlock {
+      margin: 0 0 60px 620px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      &__button {
+        &__icon {
+          &:deep() {
+            svg {
+              path {
+                fill: #000;
+              }
+            }
+          }
+        }
+
+        &.disable {
+          .sliderBlock__navigationBlock__button__icon {
+            &:deep() {
+              svg {
+                path {
+                  fill: $gray;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &__numberBlock {
+        display: flex;
+        align-items: center;
+        font-family: Playfair Display;
+        font-size: 45px;
+        font-weight: 400;
+        line-height: 110%;
+        .delimiter {
+          font-size: 40px;
+        }
+        .all {
+          font-size: 30px;
+        }
+      }
+    }
+  }
+</style>

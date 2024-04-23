@@ -46,7 +46,7 @@ interface Iroom {
   gallary?: Iimage[];
   roomWelcome?: IroomWelcome;
   offersSlider?: IoffersSlider;
-  roomListTitle?: string;
+  roomListTitle?: ItitleCutom;
   roomListDescription?: string;
   roomList?: IroomList[];
 }

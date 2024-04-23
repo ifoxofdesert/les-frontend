@@ -48,7 +48,7 @@
     width: 100%;
     position: relative;
     cursor: pointer;
-    margin: 0 0 100px 0;
+    margin: 0;
     &__playButton {
       position: absolute;
       top: 50%;

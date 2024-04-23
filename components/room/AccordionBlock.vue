@@ -4,8 +4,6 @@
       {{ title.first }}
       <span v-if="title.second">{{ title.second }}</span>
     </h2>
-
-    <span class="titleDescription__description" v-if="description">{{ description }}</span>
     <span class="accordionBlock__description" v-if="description">{{ description }}</span>
     <RoomAccordion v-if="accordion.length" :content="accordion" />
   </div>
@@ -33,4 +31,37 @@
   });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .accordionBlock {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    &__title {
+      display: flex;
+      flex-direction: column;
+      color: $black;
+      font-family: 'Playfair Display';
+      font-size: 90px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 100%;
+      text-transform: uppercase;
+      margin: 0 0 30px 417px;
+
+      span {
+        margin: 0 0 0 201px;
+      }
+    }
+
+    &__description {
+      color: $gray;
+      font-family: Manrope;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 110%;
+      margin: 0 0 60px 620px;
+      max-width: 580px;
+    }
+  }
+</style>

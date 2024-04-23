@@ -25,12 +25,24 @@
 
 <style lang="scss" scoped>
   .markBlock {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
     &__title {
+      color: $gray;
+      font-family: 'Playfair Display';
+      font-size: 25px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
       &.first {
       }
       &.second {
+        margin: 0 0 0 528px;
       }
       &.third {
+        margin: 0 0 0 auto;
       }
     }
   }

@@ -61,9 +61,7 @@ ol {
 .accordion-enter-active,
 .accordion-leave-active {
     will-change: height, opacity;
-    transition:
-        height 0.5s ease,
-        opacity 0.5s ease;
+    transition: all ease 0.5s;
     overflow: hidden;
 }
 

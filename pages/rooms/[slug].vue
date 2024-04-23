@@ -3,7 +3,7 @@
     <Container>
       <ContainerBlock>
         <div class="roomPage__title">
-          <RoomTitle>123</RoomTitle>
+          <RoomTitle>{{ content.title }}</RoomTitle>
         </div>
         <div class="roomPage__markBlock">
           <RoomMarkBlock :firstTitle="content.area" :secondTitle="content.persons" :thirdTitle="content.viewRoom" />
@@ -78,4 +78,48 @@
   });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .roomPage {
+    padding: 200px 0 125px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+      margin: 0 0 30px 0;
+    }
+
+    &__markBlock {
+      margin: 0 0 170px 0;
+    }
+
+    &__descriptionBlock {
+      margin: 0 0 30px 0;
+    }
+
+    &__videoBlock {
+      width: 100%;
+      margin: 0 0 50px 0;
+    }
+
+    &__aboutRoomBlock {
+      margin: 0 0 150px 0;
+    }
+
+    &__accordionBlock {
+      margin: 0 0 150px 0;
+    }
+
+    &__gallaryBlock {
+      margin: 0 0 225px 0;
+    }
+
+    &__welcomeBlock {
+      margin: 0 0 225px 0;
+    }
+
+    &__offersBlock {
+      margin: 0 0 150px 0;
+    }
+  }
+</style>

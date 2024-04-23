@@ -17,4 +17,41 @@
   });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .descriptionBlock {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    &__text {
+      color: $gray;
+      font-family: 'Manrope';
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 110%;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    &__button {
+      margin: 0 0 0 auto;
+      &:deep() {
+        svg {
+          path {
+            fill: $whitesmoke;
+          }
+        }
+
+        &:hover {
+          svg {
+            path {
+              fill: $black;
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
