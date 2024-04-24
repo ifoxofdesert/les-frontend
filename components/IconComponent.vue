@@ -26,13 +26,8 @@
   async function load() {
     if (!iconCache.value[name]) {
       try {
-        const { data: iconData } = await useFetch(`${config.public.SITE_URL}/_nuxt/assets/images/icons/${name}.svg`, {
-          responseType: 'json',
-          cache: 'no-cache',
-          method: 'GET',
-        });
-
-        iconCache.value[name] = iconData.value;
+        const icon = await import(`~/assets/images/icons/${name}.svg?raw`);
+        iconCache.value[name] = icon.default;
       } catch (e) {
         iconCache.value[name] = '';
       }
