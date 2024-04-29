@@ -1,9 +1,11 @@
 import news from '~/src/news.json';
 import room from '~/src/rooms.json';
 import home from '~/src/home.json';
+import vacancy from '~/src/vacancy.json';
 import type { Icard, Inews } from '~/types/News';
 import type { Iroom } from '~/types/Room';
 import type { Ihome } from '~/types/Home';
+import type { IvacancyPage } from '~/types/VacancyPage';
 
 export default function useApi() {
   async function getHome(): Promise<Ihome> {
@@ -22,10 +24,15 @@ export default function useApi() {
     return room;
   }
 
+  async function getVacancy(): Promise<IvacancyPage> {
+    return vacancy;
+  }
+
   return {
     getHome,
     getNews,
     searchNews,
     getRoom,
+    getVacancy,
   };
 }

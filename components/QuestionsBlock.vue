@@ -9,7 +9,9 @@
             <span>берега Крыма</span>
           </h2>
           <div class="questionsBlock__container__accordionContainer">
-            <Accordion v-if="accordion.length" :content="accordion" type="titleDot" />
+            <AccordionContainer v-if="accordion.length">
+              <Accordion v-for="item in accordion" :content="item" type="titleDot" />
+            </AccordionContainer>
             <Button
               class="questionsBlock__container__accordionContainer__button"
               mod="green"

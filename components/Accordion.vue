@@ -1,7 +1,7 @@
 <template>
-  <div class="accordion" :class="{ active: item.active }" v-for="(item, index) in content">
-    <span class="accordion__title" @click="toogleAccordion(index)" :class="type">
-      {{ item.title }}
+  <div class="accordion" :class="{ active: content.active }">
+    <span class="accordion__title" @click="toogleAccordion(content)" :class="type">
+      {{ content.title }}
       <IconComponent name="union" class="accordion__title__icon" />
     </span>
     <Transition
@@ -12,8 +12,9 @@
       @before-leave="beforeLeave"
       @leave="leave"
     >
-      <div class="accordion__content" v-if="item.active">
-        <span class="accordion__content__text" v-html="item.text" />
+      <div class="accordion__content" v-if="content.active">
+        <span class="accordion__content__text" v-if="content.text?.length" v-html="content.text" />
+        <slot />
       </div>
     </Transition>
   </div>
@@ -21,12 +22,12 @@
 
 <script lang="ts" setup>
   import type { RendererElement } from 'vue';
-  import type { Iaccordion } from '~/types/Accordion';
+  import type { Iaccordion, ChangeAccardion } from '~/types/Accordion';
 
-  const { content } = defineProps({
+  const { content, type } = defineProps({
     content: {
-      type: Array as () => Iaccordion[],
-      default: () => [],
+      type: Object as () => Iaccordion,
+      default: () => {},
     },
 
     type: {
@@ -35,14 +36,14 @@
     },
   });
 
-  function toogleAccordion(index: number) {
-    content.forEach((item, i) => {
-      if (index !== i) {
-        item.active = false;
-      }
-    });
+  const Inject = inject<{ changeAccardion: ChangeAccardion }>('accordionChange');
 
-    content[index].active = !content[index].active;
+  function toogleAccordion(data: Iaccordion) {
+    if (Inject?.changeAccardion) {
+      Inject.changeAccardion(data);
+    }
+
+    content.active = !content.active;
   }
 
   function beforeEnter(el: RendererElement | HTMLElement) {
@@ -99,7 +100,7 @@
 
       &__icon {
         transition: all ease 0.5s;
-        transform: scale(-1) scaleX(-1);
+        transform: rotate(-90deg);
         margin: 7px 0 0 auto;
       }
     }
@@ -132,9 +133,8 @@
     }
 
     &.active {
-      .questionsBlock__container__accordionContainer__accordion__title__icon {
-        transform: scale(1) scaleX(1);
-        align-items: flex-end;
+      .accordion__title__icon {
+        transform: rotate(0deg);
       }
     }
   }

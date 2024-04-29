@@ -14,7 +14,7 @@
 <script setup lang="ts">
   const { mod, url, target, type } = defineProps({
     mod: {
-      type: String as () => 'green' | 'white' | 'text' | 'text_green' | 'angles',
+      type: String as () => 'green' | 'white' | 'text' | 'text_green' | 'angles' | 'navigation',
       default: '',
     },
 
@@ -74,14 +74,32 @@
       font-size: 20px;
       transition: all ease 0.2s;
 
+      &:deep() {
+        svg {
+          path {
+            transition: all ease 0.2s;
+            fill: $whitesmoke;
+          }
+        }
+        &:hover {
+          svg {
+            path {
+              fill: $black;
+            }
+          }
+        }
+      }
+
       &:hover {
         color: $black;
         background-color: $whitesmoke;
         outline-color: $black;
 
-        svg {
-          path {
-            fill: $black;
+        &:deep() {
+          svg {
+            path {
+              fill: $black;
+            }
           }
         }
       }
@@ -112,6 +130,50 @@
     &__angles {
       border-radius: 0px;
     }
+
+    &__navigation {
+      border-radius: 0;
+      background-color: transparent;
+      transition: all ease 0.2s;
+      justify-content: flex-start;
+      color: $gray;
+      padding: 0;
+      outline: none;
+      gap: 0px;
+
+      &::before {
+        content: '';
+        mask-image: url('~/assets/images/icons/arrow_right.svg');
+        mask-repeat: no-repeat;
+        mask-position: center;
+        background-color: $gray;
+        width: 0px;
+        height: 13px;
+        transition: all ease 0.2s;
+        margin: 0;
+      }
+
+      &:hover {
+        color: $green;
+
+        &::before {
+          margin: 0 10px 0 0;
+
+          background-color: $green;
+          width: 60px;
+        }
+      }
+
+      &.active {
+        color: $green;
+
+        &::before {
+          margin: 0 10px 0 0;
+          background-color: $green;
+          width: 60px;
+        }
+      }
+    }
   }
 </style>
 
@@ -128,21 +190,6 @@
         svg {
           path {
             fill: $whitesmoke;
-          }
-        }
-      }
-    }
-
-    &__green {
-      svg {
-        path {
-          transition: all ease 0.2s;
-        }
-      }
-      &:hover {
-        svg {
-          path {
-            fill: $black;
           }
         }
       }

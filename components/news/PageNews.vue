@@ -16,7 +16,9 @@
       <IconComponent name="arrow_right" />
     </Button>
     <div class="pageNews__accordionBlock">
-      <Accordion v-if="data?.accordion?.length" :content="data.accordion" />
+      <AccordionContainer v-if="data?.accordion?.length">
+        <Accordion v-for="item in data.accordion" :content="item" />
+      </AccordionContainer>
     </div>
     <NewsText v-if="data.textAfter" :text="data.textAfter" />
     <Button

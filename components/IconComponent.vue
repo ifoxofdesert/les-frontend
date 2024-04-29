@@ -17,8 +17,6 @@
     },
   });
 
-  const config = useRuntimeConfig();
-
   const iconCache = useState('iconCache', () => ({}));
 
   const nameRef = ref(name);
