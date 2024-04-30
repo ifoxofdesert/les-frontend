@@ -14,7 +14,7 @@
 <script setup lang="ts">
   const { mod, url, target, type } = defineProps({
     mod: {
-      type: String as () => 'green' | 'white' | 'text' | 'text_green' | 'angles' | 'navigation',
+      type: String as () => 'green' | 'white' | 'white br' | 'text' | 'text_green' | 'angles' | 'navigation',
       default: '',
     },
 
@@ -56,15 +56,26 @@
       color: $black;
       transition: all ease 0.2s;
 
+      &.br {
+        border: 1px solid $gray;
+      }
+
       &:hover {
         color: $whitesmoke;
         background-color: $green;
+        border-color: $green;
 
         svg {
           path {
             fill: $whitesmoke;
           }
         }
+      }
+
+      &.router-link-active {
+        background-color: $green;
+        color: $whitesmoke;
+        border-color: $green;
       }
     }
 

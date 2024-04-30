@@ -1,5 +1,8 @@
 <template>
   <div class="text" v-if="text" v-html="text" />
+  <div class="text" v-else>
+    <slot />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -89,6 +92,79 @@
       img {
         margin: 0 0 20px 0;
         object-fit: cover;
+      }
+    }
+
+    &.infoPage {
+      align-items: flex-start;
+      &:deep() {
+        h1,
+        h2,
+        h3,
+        span,
+        strong,
+        b,
+        ul,
+        ol,
+        p {
+          max-width: 100%;
+        }
+
+        h1,
+        h2,
+        h3 {
+          font-size: 30px;
+          margin: 0 0 25px 0;
+        }
+
+        span,
+        strong,
+        b,
+        ul,
+        ol,
+        p {
+          span {
+            color: $gray;
+          }
+        }
+
+        ul {
+          gap: 15px;
+
+          li {
+            &::marker {
+              color: $gray;
+            }
+          }
+        }
+
+        ol {
+          gap: 15px;
+
+          li {
+            &::marker {
+              color: $gray;
+            }
+          }
+        }
+
+        div {
+          margin: 0 0 50px 0;
+        }
+
+        .gap-10 {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .mb-15 {
+          margin: 0 0 15px 0;
+        }
+
+        .mb-0 {
+          margin: 0 0 15px 0;
+        }
       }
     }
   }
