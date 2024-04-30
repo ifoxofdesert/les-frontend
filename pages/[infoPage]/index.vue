@@ -20,7 +20,13 @@
 
   console.log(route);
 
-  const content = ref(await getInfoPage());
+  const getSlug = computed(() => route?.params['infoPage'] as string);
+
+  const content = ref(await getInfoPage(getSlug.value));
+
+  if (!content.value?.title) {
+    showError({ statusCode: 404, fatal: true });
+  }
 
   useHead({
     title: content.value?.pagetitle || '',

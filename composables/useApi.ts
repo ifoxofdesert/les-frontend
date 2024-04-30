@@ -11,6 +11,8 @@ import type { IvacancyPage } from '~/types/VacancyPage';
 import type { IcontactsPage } from '~/types/Contacts';
 import type { IinfoPage } from '~/types/InfoPages';
 
+import menu from '~/src/infoPageMenu.json';
+
 export default function useApi() {
   async function getHome(): Promise<Ihome> {
     return home;
@@ -36,8 +38,14 @@ export default function useApi() {
     return contacts;
   }
 
-  async function getInfoPage(): Promise<IinfoPage> {
-    return infoPage;
+  async function getInfoPage(slug: string): Promise<IinfoPage> {
+    console.log(slug);
+
+    if (menu.some((item) => item.url == `/${slug}`)) {
+      return infoPage;
+    } else {
+      return {};
+    }
   }
 
   return {
