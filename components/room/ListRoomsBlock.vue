@@ -12,6 +12,7 @@
       <div class="roomsListBlock__container__roomsBlock">
         <div class="roomsListBlock__container__roomsBlock__roomBlock" v-for="(item, index) in rooms" :key="index">
           <img
+            v-if="item?.img?.src"
             :src="item.img.src"
             :alt="item.img.alt || item.title"
             class="roomsListBlock__container__roomsBlock__roomBlock__image"

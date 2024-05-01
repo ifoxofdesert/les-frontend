@@ -52,6 +52,7 @@
     &__playButton {
       position: absolute;
       top: 50%;
+      transform: translate(0, -50%);
       background-color: $whitesmoke-2;
       opacity: 0.9;
       width: 100px;

@@ -40,6 +40,11 @@
       &.expired {
         opacity: 0.5;
       }
+
+      @media (max-width: 550px) {
+        width: 345px;
+        margin: 0 10px 0 0;
+      }
     }
   }
 </style>

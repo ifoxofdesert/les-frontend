@@ -9,6 +9,7 @@ export interface Icard {
   description?: string;
   type?: string;
   slug?: string;
+  main?: boolean;
 }
 
 export interface Inews {

@@ -3,7 +3,15 @@
     <Container>
       <ContainerBlock>
         <div class="burgerMenu__container">
-          <Button class="burgerMenu__container__clsoe" type="button" mod="text" @click="$emit('close')">Закрыть</Button>
+          <Button
+            class="burgerMenu__container__clsoe"
+            type="button"
+            mod="text"
+            @click="$emit('close')"
+            v-if="viewport.isGreaterOrEquals('is_1024')"
+          >
+            Закрыть
+          </Button>
 
           <div class="burgerMenu__container__menuBlock">
             <Button
@@ -14,7 +22,17 @@
               :url="item.href"
             >
               {{ item.text }}
-              <span class="burgerMenu__container__menuBlock__button__number">{{ index + 1 }}</span>
+              <span class="burgerMenu__container__menuBlock__button__number">{{ formatingNumber(index + 1) }}</span>
+            </Button>
+          </div>
+          <div class="burgerMenu__container__mobilePhoneBlock" v-if="viewport.isLessThan('is_768')">
+            <Button
+              url="tel:+78007000906"
+              class="burgerMenu__container__mobilePhoneBlock__button"
+              mod="text"
+              type="external"
+            >
+              +7 800 700-09-06
             </Button>
           </div>
           <div class="burgerMenu__container__socialsBlock">
@@ -83,10 +101,19 @@
     },
   ];
 
+  const { formatingNumber } = useFormating();
+
+  const viewport = useViewport();
+
   function checkClickDropDown(e: Event) {
     const target = e.target as HTMLButtonElement;
 
-    if (!target.closest('.burgerMenu') && !target.closest('.header__container__menu')) {
+    if (
+      !target.closest('.burgerMenu') &&
+      !target.closest('.header__container__menu') &&
+      !target.closest('.header') &&
+      !target.closest('.header__container__menuMobile')
+    ) {
       emit('close');
     }
   }
@@ -121,6 +148,10 @@
       &__clsoe {
         text-transform: uppercase;
         margin: 0 0 77px 0;
+
+        @media (max-width: 1024px) {
+          display: none;
+        }
       }
 
       &__menuBlock {
@@ -155,6 +186,20 @@
             font-weight: 400;
             line-height: 110%;
             text-transform: uppercase;
+
+            @media (max-width: 1550px) {
+              margin: 0;
+
+              font-size: 16px;
+            }
+
+            @media (max-width: 650px) {
+              font-size: 14px;
+            }
+
+            @media (max-width: 550px) {
+              font-size: 12px;
+            }
           }
 
           &:hover {
@@ -164,6 +209,30 @@
               height: 15px;
             }
           }
+
+          @media (max-width: 1550px) {
+            font-size: 45px;
+          }
+
+          @media (max-width: 1024px) {
+            &::before {
+              display: none;
+            }
+          }
+
+          @media (max-width: 650px) {
+            gap: 5px;
+
+            font-size: 28px;
+          }
+
+          @media (max-width: 550px) {
+            font-size: 22px;
+          }
+        }
+
+        @media (max-width: 1024px) {
+          margin: auto 0 0 0;
         }
       }
 
@@ -174,6 +243,43 @@
         gap: 30px;
 
         &__button {
+          @media (max-width: 650px) {
+            font-size: 14px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          margin: 0;
+        }
+      }
+
+      &__mobilePhoneBlock {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin: auto 0 35px 0;
+
+        &__button {
+          text-decoration: none;
+          font-family: 'Manrope';
+          font-size: 35px;
+          font-weight: 400;
+          line-height: 42px;
+          color: $black;
+          text-transform: uppercase;
+
+          @media (max-width: 650px) {
+            font-size: 20px;
+            line-height: 100%;
+          }
+        }
+
+        @media (max-width: 768px) {
+          display: flex;
+        }
+
+        @media (max-width: 650px) {
+          margin: auto 0 25px 0;
         }
       }
     }

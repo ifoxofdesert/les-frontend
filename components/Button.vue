@@ -51,6 +51,15 @@
     font-family: 'Manrope';
     text-decoration: none;
     outline: solid 1px transparent;
+
+    @media (max-width: 650px) {
+      padding: 15px 30px;
+    }
+
+    @media (max-width: 550px) {
+      font-size: 18px;
+    }
+
     &__white {
       background-color: $whitesmoke;
       color: $black;
@@ -84,6 +93,10 @@
       color: $whitesmoke;
       font-size: 20px;
       transition: all ease 0.2s;
+
+      @media (max-width: 550px) {
+        font-size: 18px;
+      }
 
       &:deep() {
         svg {
@@ -183,6 +196,12 @@
           background-color: $green;
           width: 60px;
         }
+      }
+    }
+
+    &:deep() {
+      svg {
+        max-width: 40px;
       }
     }
   }

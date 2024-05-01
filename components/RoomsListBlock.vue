@@ -9,7 +9,7 @@
             найдется идеальный вариант для вашего комфорта.
           </span>
 
-          <div class="roomsListBlock__container__roomsBlock">
+          <div class="roomsListBlock__container__roomsBlock" v-if="viewport.isGreaterOrEquals('is_1200')">
             <div class="roomsListBlock__container__roomsBlock__labelBlock">
               <span class="roomsListBlock__container__roomsBlock__labelBlock__name first">Класс номера</span>
               <span class="roomsListBlock__container__roomsBlock__labelBlock__name second">Площадь</span>
@@ -27,13 +27,57 @@
               <span class="roomsListBlock__container__roomsBlock__roomBlock__text second">{{ item.persons }}</span>
               <Transition>
                 <img
-                  v-if="item.active"
-                  :src="item.img"
-                  :alt="item.title"
+                  v-if="item.active && item.img?.src && viewport.isGreaterOrEquals('is_1550')"
+                  :src="item.img?.src"
+                  :alt="item.img?.alt || item.title"
                   class="roomsListBlock__container__roomsBlock__roomBlock__image"
                 />
               </Transition>
               <IconComponent name="arrow_right" class="roomsListBlock__container__roomsBlock__roomBlock__icon" />
+            </div>
+          </div>
+
+          <div
+            class="roomsListBlock__container__roomsBlock roomsListBlock__container__roomsBlock_mobile"
+            v-if="viewport.isLessThan('is_1200')"
+          >
+            <div class="roomsListBlock__container__roomsBlock_mobile__item" v-for="item in rooms">
+              <img
+                v-if="item.img?.src"
+                :src="item.img?.src"
+                :alt="item.img?.alt || item.title"
+                class="roomsListBlock__container__roomsBlock_mobile__item__image"
+              />
+              <div class="roomsListBlock__container__roomsBlock_mobile__item__infoBlock">
+                <span class="roomsListBlock__container__roomsBlock__roomBlock__title">
+                  {{ item.title }}
+                </span>
+                <span class="roomsListBlock__container__roomsBlock_mobile__item__infoBlock__block">
+                  Площадь
+                  <span class="roomsListBlock__container__roomsBlock__roomBlock__text">
+                    {{ item.area }}
+                  </span>
+                </span>
+
+                <span class="roomsListBlock__container__roomsBlock_mobile__item__infoBlock__block second">
+                  Вместимость
+                  <span class="roomsListBlock__container__roomsBlock__roomBlock__text">
+                    {{ item.persons }}
+                  </span>
+                </span>
+              </div>
+              <Button
+                type="internal"
+                mod="white br"
+                :url="item.slug"
+                class="roomsListBlock__container__roomsBlock_mobile__item__button"
+              >
+                Подробнее о номере
+                <IconComponent
+                  name="arrow_right"
+                  class="roomsListBlock__container__roomsBlock_mobile__item__button__icon"
+                />
+              </Button>
             </div>
           </div>
         </div>
@@ -43,45 +87,29 @@
 </template>
 
 <script setup lang="ts">
-  const rooms = ref([
-    {
-      title: 'Базовый',
-      area: 'от 30м2',
-      persons: 'До 2х гостей',
-      img: '/_nuxt/assets/images/Rectangle 8-3.jpg',
-      active: true,
+  import type { IroomList } from '~/types/Room';
+
+  const { rooms } = defineProps({
+    rooms: {
+      type: Array as () => IroomList[],
+      default: [],
     },
-    {
-      title: 'Стандарт',
-      area: 'от 34м2',
-      persons: 'До 3х гостей',
-      img: '/_nuxt/assets/images/Rectangle 8-2.jpg',
-      active: false,
-    },
-    {
-      title: 'Комфорт',
-      area: 'от 45м2',
-      persons: 'До 3х гостей',
-      img: '/_nuxt/assets/images/Rectangle 8-1.jpg',
-      active: false,
-    },
-    {
-      title: 'Люкс-студио',
-      area: 'от 60м2',
-      persons: 'До 4х гостей',
-      img: '/_nuxt/assets/images/Rectangle 8.jpg',
-      active: false,
-    },
-  ]);
+  });
+
+  const viewport = useViewport();
+
+  if (rooms.length) {
+    rooms[0].active = true;
+  }
 
   function selectRoom(index: number) {
-    rooms.value.forEach((item) => {
+    rooms.forEach((item) => {
       if (item.active) {
         item.active = false;
       }
     });
 
-    rooms.value[index].active = true;
+    rooms[index].active = true;
   }
 </script>
 
@@ -92,6 +120,17 @@
     flex-direction: column;
     padding: 0 0 75px 0;
     margin: 0 0 75px 0;
+
+    &:deep() {
+      .container {
+        overflow: visible;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      padding: 0;
+      margin: 0 0 120px 0;
+    }
     &__container {
       width: 100%;
       display: flex;
@@ -103,6 +142,32 @@
         line-height: 120px;
         color: $black;
         margin: 0 0 30px 307px;
+
+        @media (max-width: 1550px) {
+          font-size: 80px;
+          margin: 0 0 20px 0;
+          float: left;
+          display: block;
+
+          span {
+            margin: 0;
+          }
+        }
+
+        @media (max-width: 1200px) {
+          line-height: 100%;
+        }
+
+        @media (max-width: 1200px) {
+          font-size: 62px;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 42px;
+        }
+        @media (max-width: 550px) {
+          font-size: 30px;
+        }
       }
 
       &__description {
@@ -114,6 +179,18 @@
         font-weight: 300;
         line-height: 110%;
         color: $gray;
+
+        @media (max-width: 1550px) {
+          margin: 0 0 72px 0;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 20px;
+        }
+
+        @media (max-width: 550px) {
+          font-size: 18px;
+        }
       }
 
       &__roomsBlock {
@@ -137,14 +214,34 @@
             &.first {
               max-width: 595px;
               margin: 0 25px 0 0;
+
+              @media (max-width: 1670px) {
+                max-width: 500px;
+              }
+
+              @media (max-width: 1550px) {
+                max-width: 595px;
+              }
+
+              @media (max-width: 1450px) {
+                max-width: 500px;
+              }
             }
             &.second {
               max-width: 165px;
               margin: 0 145px 0 0;
+
+              @media (max-width: 1450px) {
+                max-width: 150px;
+              }
             }
             &.third {
               max-width: 161px;
               margin: 0 149px 0 0;
+
+              @media (max-width: 1450px) {
+                max-width: 150px;
+              }
             }
           }
         }
@@ -180,6 +277,32 @@
             max-width: 595px;
             width: 100%;
             transition: all ease 0.2s;
+
+            @media (max-width: 1670px) {
+              font-size: 52px;
+              max-width: 500px;
+            }
+
+            @media (max-width: 1550px) {
+              max-width: 595px;
+            }
+
+            @media (max-width: 1450px) {
+              max-width: 500px;
+              font-size: 46px;
+            }
+
+            @media (max-width: 1200px) {
+              max-width: 310px;
+              font-size: 40px;
+              line-height: 100%;
+            }
+
+            @media (max-width: 650px) {
+              flex: 100%;
+              max-width: 100%;
+              margin: 0 0 15px 0;
+            }
           }
 
           &__text {
@@ -194,11 +317,28 @@
             &.first {
               max-width: 170px;
               margin: 0 145px 0 0;
+
+              @media (max-width: 1450px) {
+                max-width: 150px;
+              }
             }
 
             &.second {
               max-width: 165px;
               margin: 0 149px 0 0;
+
+              @media (max-width: 1450px) {
+                max-width: 150px;
+                margin: 0;
+              }
+            }
+
+            @media (max-width: 1450px) {
+              font-size: 20px;
+            }
+
+            @media (max-width: 650px) {
+              line-height: 100%;
             }
           }
 
@@ -208,6 +348,20 @@
             width: 350px;
             height: 500px;
             object-fit: cover;
+            z-index: 1;
+
+            @media (max-width: 1800px) {
+              right: 150px;
+            }
+
+            @media (max-width: 1670px) {
+              width: 300px;
+              height: 350px;
+            }
+
+            @media (max-width: 1550px) {
+              display: none;
+            }
           }
 
           &__icon {
@@ -231,6 +385,58 @@
 
             .roomsListBlock__container__roomsBlock__roomBlock__icon {
               right: 30px;
+            }
+          }
+        }
+
+        &_mobile {
+          display: none;
+        }
+
+        @media (max-width: 1200px) {
+          display: none;
+
+          &_mobile {
+            display: flex;
+            border-top: 1px solid $black;
+
+            &__item {
+              display: flex;
+              flex-direction: column;
+              width: 100%;
+              padding: 15px 0 25px 0;
+              border-bottom: 1px solid $black;
+              gap: 15px;
+
+              &__image {
+                width: 100%;
+                height: 400px;
+                object-fit: cover;
+              }
+
+              &__infoBlock {
+                display: flex;
+                align-items: center;
+                width: 100%;
+
+                &__block {
+                  display: flex;
+                  flex-direction: column;
+                  color: $gray;
+                  font-family: Manrope;
+                  font-size: 16px;
+                  font-weight: 400;
+                  line-height: 27px;
+
+                  &.second {
+                    margin: 0 0 0 auto;
+                  }
+                }
+
+                @media (max-width: 650px) {
+                  flex-wrap: wrap;
+                }
+              }
             }
           }
         }

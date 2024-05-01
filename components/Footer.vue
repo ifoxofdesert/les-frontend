@@ -60,6 +60,15 @@
                 </Button>
               </div>
 
+              <Button
+                class="footer__container__navigationBlock__button"
+                type="button"
+                mod="white br"
+                v-if="viewport.isLessThan('is_1200')"
+              >
+                Заказать обратный звонок
+              </Button>
+
               <div class="footer__container__navigationBlock__column addressColumn">
                 <span class="footer__container__navigationBlock__column__title">Адрес</span>
                 <span class="footer__container__navigationBlock__column__text">
@@ -203,6 +212,8 @@
     },
   ];
 
+  const viewport = useViewport();
+
   function scrollTop() {
     window.scrollTo(0, 0);
   }
@@ -240,6 +251,10 @@
               font-family: 'Manrope';
               font-size: 16px;
               font-weight: 600;
+
+              @media (max-width: 1200px) {
+                margin: 0;
+              }
             }
 
             &__button {
@@ -285,21 +300,126 @@
                   transform: scaleY(0.5);
                 }
               }
+
+              @media (max-width: 1200px) {
+                border: solid $gray 1px;
+                border-radius: 30px;
+                padding: 15px 32px;
+                color: $black;
+                font-size: 20px;
+                margin: 0;
+                transition: all ease 0.2s;
+                background-color: transparent;
+
+                &__text {
+                  position: relative;
+
+                  &::before {
+                    display: none;
+                  }
+                }
+
+                &:hover {
+                  background-color: $green;
+                  color: $whitesmoke;
+
+                  &:deep() {
+                    path {
+                      fill: $whitesmoke;
+                    }
+                  }
+                }
+              }
+
+              @media (max-width: 690px) {
+                width: 100%;
+                justify-content: center;
+              }
             }
 
             &.phonesColumn {
               .footer__container__navigationBlock__column__button {
                 font-size: 20px;
               }
+
+              @media (max-width: 920px) {
+                flex: 50%;
+
+                order: 3;
+              }
             }
             &.menuColumn {
+              @media (max-width: 920px) {
+                flex: 50%;
+                margin: 0 0 40px 0;
+                order: 1;
+              }
             }
             &.navigationColumn {
+              @media (max-width: 920px) {
+                flex: 50%;
+                margin: 0 0 40px 0;
+                order: 2;
+              }
             }
             &.socialColumn {
+              @media (max-width: 920px) {
+                flex: 50%;
+                order: 4;
+              }
             }
             &.addressColumn {
+              @media (max-width: 1200px) {
+                flex: 100%;
+                max-width: 100%;
+                flex-wrap: wrap;
+                flex-direction: row;
+                justify-content: space-between;
+
+                & .footer__container__navigationBlock__column {
+                  &__title {
+                    flex: 100%;
+                  }
+
+                  &__text {
+                    max-width: 370px;
+                  }
+                }
+
+                @media (max-width: 920px) {
+                  order: 6;
+                }
+              }
             }
+
+            @media (max-width: 1200px) {
+              flex: 1;
+              gap: 12px;
+            }
+          }
+
+          &__button {
+            width: 100%;
+            background-color: transparent;
+            margin: 30px 0 40px 0;
+            border-color: $black !important;
+            display: none;
+
+            @media (max-width: 1200px) {
+              display: flex;
+            }
+
+            @media (max-width: 920px) {
+              order: 5;
+            }
+          }
+
+          @media (max-width: 1880px) {
+            margin: 0 0 60px 0;
+          }
+
+          @media (max-width: 1200px) {
+            flex-wrap: wrap;
           }
         }
 
@@ -310,6 +430,10 @@
           text-transform: uppercase;
           color: $green;
           margin: 0 0 80px 0;
+
+          @media (max-width: 1880px) {
+            display: none;
+          }
         }
 
         &__bottomBlock {
@@ -319,6 +443,7 @@
           position: relative;
           padding: 36px 0 0 0;
           border-top: 1px solid $gray;
+
           &__paymentBlock {
             display: flex;
             align-items: center;
@@ -327,6 +452,15 @@
               &__image {
                 object-fit: cover;
               }
+            }
+
+            @media (max-width: 1024px) {
+              flex: 50%;
+              order: 2;
+            }
+
+            @media (max-width: 650px) {
+              order: 2;
             }
           }
 
@@ -347,6 +481,15 @@
 
             &__icon {
             }
+
+            @media (max-width: 1024px) {
+              order: 1;
+              position: static;
+              transform: translate(0, 0);
+              flex: 100%;
+              justify-content: center;
+              margin: 0 0 40px 0;
+            }
           }
 
           &__policyButton {
@@ -358,6 +501,40 @@
             line-height: 34px;
             letter-spacing: -2%;
             color: $gray;
+
+            @media (max-width: 1024px) {
+              flex: 50%;
+              order: 3;
+              text-align: end;
+            }
+
+            @media (max-width: 768px) {
+              max-width: 220px;
+              line-height: 100%;
+            }
+
+            @media (max-width: 650px) {
+              max-width: 100%;
+              margin: 0 0 30px 0;
+              order: 1;
+            }
+          }
+
+          @media (max-width: 1024px) {
+            flex-wrap: wrap;
+          }
+
+          @media (max-width: 1024px) {
+            padding: 30px 0 0 0;
+          }
+
+          @media (max-width: 768px) {
+            align-items: flex-end;
+          }
+
+          @media (max-width: 650px) {
+            flex-direction: column;
+            align-items: center;
           }
         }
       }

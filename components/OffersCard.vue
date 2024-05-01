@@ -57,6 +57,10 @@
         height: 200px;
         object-fit: cover;
       }
+
+      @media (max-width: 550px) {
+        margin: 0 0 10px 0;
+      }
     }
     &__infoBlock {
       display: flex;
@@ -70,6 +74,10 @@
         line-height: 110%;
         color: $green;
         margin: 0 0 5px 0;
+
+        @media (max-width: 550px) {
+          font-size: 18px;
+        }
       }
       &__title {
         font-family: Playfair Display;
@@ -78,7 +86,17 @@
         line-height: 110%;
         text-transform: uppercase;
         color: $black;
+
+        @media (max-width: 550px) {
+          font-size: 25px;
+        }
       }
+    }
+
+    @media (max-width: 550px) {
+      width: 315px;
+      height: 325px;
+      padding: 15px;
     }
   }
 </style>

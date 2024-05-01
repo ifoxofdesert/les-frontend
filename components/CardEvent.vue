@@ -4,7 +4,7 @@
 
     <div class="cardEvent__infoBlock">
       <div class="cardEvent__infoBlock__dateBlock">
-        <span class="cardEvent__infoBlock__dateBlock__date" v-if="card?.date">{{ getDate }}</span>
+        <span class="cardEvent__infoBlock__dateBlock__date" v-if="card?.date">{{ formatingDateTime(card.date) }}</span>
         <span class="cardEvent__infoBlock__dateBlock__position" v-if="card?.position">{{ card.position }}</span>
       </div>
 
@@ -25,27 +25,7 @@
     },
   });
 
-  const getDate = computed(() => {
-    if (card.date) {
-      const date = new Date(Date.parse(card.date)).toLocaleString('ru', {
-        timeZone: 'Europe/Moscow',
-        month: 'long',
-        day: 'numeric',
-      });
-
-      const time = /:/.test(card.date)
-        ? `в ${new Date(Date.parse(card.date)).toLocaleString('ru', {
-            timeZone: 'Europe/Moscow',
-            hour: 'numeric',
-            minute: 'numeric',
-          })}`
-        : '';
-
-      return `${date} ${time}`;
-    } else {
-      return '';
-    }
-  });
+  const { formatingDateTime } = useFormating();
 </script>
 
 <style lang="scss" scoped>
@@ -57,11 +37,18 @@
     padding: 20px 25px 25px 25px;
     box-sizing: border-box;
     background-color: $milk;
+    text-decoration: none;
+    height: 100%;
     &__image {
       width: 100%;
       height: 300px;
       object-fit: cover;
       margin: 0 0 15px 0;
+
+      @media (max-width: 550px) {
+        height: 155px;
+        margin: 0 0 10px 0;
+      }
     }
 
     &__infoBlock {
@@ -79,6 +66,10 @@
           font-weight: 400;
           line-height: 110%;
           color: $green;
+
+          @media (max-width: 550px) {
+            font-size: 14px;
+          }
         }
 
         &__position {
@@ -90,6 +81,11 @@
           max-width: 183px;
           margin: 0 0 0 auto;
           text-align: right;
+
+          @media (max-width: 550px) {
+            font-size: 14px;
+            max-width: 150px;
+          }
         }
       }
 
@@ -105,6 +101,10 @@
           font-weight: 400;
           line-height: 110%;
           color: $black;
+
+          @media (max-width: 550px) {
+            font-size: 22px;
+          }
         }
 
         &__description {
@@ -118,8 +118,21 @@
           -webkit-line-clamp: 4;
           line-clamp: 4;
           -webkit-box-orient: vertical;
+
+          @media (max-width: 550px) {
+            font-size: 16px;
+          }
         }
       }
+
+      @media (max-width: 550px) {
+        gap: 48px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      padding: 15px;
+      max-width: 300px;
     }
   }
 </style>

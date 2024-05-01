@@ -1,16 +1,46 @@
 <template>
-  <header>
+  <header :class="{ openedMenu }">
     <div class="header" ref="headerRef">
       <Container>
         <ContainerBlock>
           <div class="header__container">
-            <Button class="header__container__menu" mod="text" type="button" @click="openMenu">Меню</Button>
+            <Button
+              class="header__container__menu"
+              mod="text"
+              type="button"
+              @click="openMenu()"
+              v-if="!openedMenu && viewport.isGreaterOrEquals('is_768')"
+            >
+              Меню
+            </Button>
             <NuxtLink to="/" class="header__container__logoButton">
               <img src="assets/images/logo.svg" alt="Санаторий ЛЕС" class="header__container__logoButton__logo" />
             </NuxtLink>
 
-            <Button url="tel:+78007000906" class="header__container__phoneButton" mod="text" type="external">
+            <IconComponent
+              name="burger"
+              @click="openMenu()"
+              class="header__container__menuMobile"
+              v-if="!openedMenu && viewport.isLessThan('is_768')"
+            />
+
+            <Button
+              url="tel:+78007000906"
+              class="header__container__phoneButton"
+              mod="text"
+              type="external"
+              v-if="!openedMenu && viewport.isGreaterOrEquals('is_768')"
+            >
               +7 800 700-09-06
+            </Button>
+            <Button
+              class="header__container__closeButton"
+              mod="text"
+              type="button"
+              @click="closeMenu"
+              v-if="openedMenu"
+            >
+              <IconComponent name="close" class="header__container__closeButton__icon" />
             </Button>
           </div>
         </ContainerBlock>
@@ -27,24 +57,31 @@
 
   const openedMenu = ref<boolean>(false);
 
+  const viewport = useViewport();
+
+  const noScroll = inject<Function>('noScroll');
+  const onScroll = inject<Function>('onScroll');
+
   let oldScrollY = 0;
 
   function wathScrollDocument() {
-    const noFixedBlock = document.querySelector('.noFixed') as HTMLElement;
+    if (!openedMenu.value) {
+      const noFixedBlock = document.querySelector('.noFixed') as HTMLElement;
 
-    const positionElementOnPage = noFixedBlock?.offsetTop || 0;
+      const positionElementOnPage = noFixedBlock?.offsetTop || 0;
 
-    const positionWindow = window.scrollY;
+      const positionWindow = window.scrollY;
 
-    const heightElement = noFixedBlock?.clientHeight || 0;
+      const heightElement = noFixedBlock?.clientHeight || 0;
 
-    if (oldScrollY > positionWindow && heightElement + positionElementOnPage + 100 < positionWindow) {
-      headerRef.value?.classList.add('fixed');
-    } else if (oldScrollY < positionWindow || heightElement + positionElementOnPage > positionWindow) {
-      headerRef.value?.classList.remove('fixed');
+      if (oldScrollY > positionWindow && heightElement + positionElementOnPage + 100 < positionWindow) {
+        headerRef.value?.classList.add('fixed');
+      } else if (oldScrollY < positionWindow || heightElement + positionElementOnPage > positionWindow) {
+        headerRef.value?.classList.remove('fixed');
+      }
+
+      oldScrollY = positionWindow;
     }
-
-    oldScrollY = positionWindow;
   }
 
   onMounted(() => {
@@ -53,10 +90,16 @@
   });
 
   function openMenu() {
+    if (typeof noScroll == 'function') {
+      noScroll();
+    }
     openedMenu.value = true;
   }
 
   function closeMenu() {
+    if (typeof onScroll == 'function') {
+      onScroll();
+    }
     openedMenu.value = false;
   }
 </script>
@@ -95,6 +138,20 @@
           &__logo {
             height: 40px;
             object-fit: cover;
+
+            @media (max-width: 768px) {
+              height: 36px;
+            }
+
+            @media (max-width: 550px) {
+              height: 26px;
+            }
+          }
+
+          @media (max-width: 768px) {
+            position: static;
+            left: 0;
+            transform: translate(0, 0);
           }
         }
 
@@ -108,11 +165,87 @@
           color: $black;
           text-transform: uppercase;
         }
+
+        &__closeButton {
+          margin: 0 0 0 auto;
+          display: none;
+
+          &:active {
+            &:deep() {
+              path {
+                stroke: $green;
+              }
+            }
+          }
+
+          @media (max-width: 550px) {
+            &:deep() {
+              svg {
+                height: 18px;
+              }
+            }
+          }
+        }
+
+        &__menuMobile {
+          display: none;
+          margin: 0 0 0 auto;
+          @media (max-width: 768px) {
+            display: flex;
+          }
+
+          @media (max-width: 550px) {
+            &:deep() {
+              svg {
+                height: 16px;
+              }
+            }
+          }
+        }
+
+        @media (max-width: 650px) {
+          height: 75px;
+          border-radius: 0px 0px 30px 30px;
+          padding: 0 20px;
+          width: calc(100% - 40px);
+        }
+
+        @media (max-width: 550px) {
+          height: 45px;
+          border-radius: 0px 0px 20px 20px;
+          padding: 0 10px;
+          width: calc(100% - 20px);
+        }
       }
 
       &.fixed {
         position: fixed;
         top: 0;
+      }
+      @media (max-width: 1024px) {
+        z-index: 6;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      z-index: 6;
+    }
+
+    &.openedMenu {
+      .header {
+        position: fixed;
+        top: 0 !important;
+        @media (max-width: 1024px) {
+          &__container {
+            &__closeButton {
+              display: flex;
+            }
+            &__logoButton {
+              position: static;
+              transform: translate(0, 0);
+            }
+          }
+        }
       }
     }
   }

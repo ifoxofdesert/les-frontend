@@ -7,8 +7,17 @@
             {{ title }}
             <span v-if="secondTitle">{{ secondTitle }}</span>
           </h2>
+          <span
+            class="sliderAndText__container__sliderContainer__infoBlock__description"
+            v-if="description && viewport.isLessThan('is_1200')"
+          >
+            {{ description }}
+          </span>
           <div class="sliderAndText__container__sliderContainer">
-            <div class="sliderAndText__container__sliderContainer__infoBlock">
+            <div
+              class="sliderAndText__container__sliderContainer__infoBlock"
+              v-if="viewport.isGreaterOrEquals('is_1200')"
+            >
               <span class="sliderAndText__container__sliderContainer__infoBlock__description" v-if="description">
                 {{ description }}
               </span>
@@ -87,6 +96,8 @@
 
   const { formatingNumber } = useFormating();
 
+  const viewport = useViewport();
+
   const swiperNext = ref<HTMLElement | null>(null);
   const swiperPrev = ref<HTMLElement | null>(null);
 
@@ -101,7 +112,7 @@
   const allIndex = computed(() => Math.round(numberSlides - fixNumberSlides));
 
   function changeIndexSlide(data: Swiper) {
-    if (data.activeIndex + 1 == allIndex.value) {
+    if (data.activeIndex + 1 == allIndex.value && viewport.isGreaterOrEquals('is_1200')) {
       swiperRef.value?.slideNext();
     }
 
@@ -132,6 +143,30 @@
         span {
           margin: 0 0 0 470px;
         }
+
+        @media (max-width: 1550px) {
+          font-size: 80px;
+          margin: 0 0 70px 0;
+          float: left;
+          display: block;
+
+          span {
+            margin: 0 0 0 0;
+          }
+        }
+
+        @media (max-width: 1200px) {
+          font-size: 62px;
+          margin: 0 0 20px 0;
+          line-height: 120%;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 42px;
+        }
+        @media (max-width: 550px) {
+          font-size: 30px;
+        }
       }
 
       &__sliderContainer {
@@ -147,6 +182,17 @@
             font-size: 22px;
             font-weight: 300;
             line-height: 110%;
+
+            @media (max-width: 1200px) {
+              margin: 0 0 40px 0;
+            }
+
+            @media (max-width: 768px) {
+              font-size: 20px;
+            }
+            @media (max-width: 550px) {
+              font-size: 18px;
+            }
           }
 
           &__navigationBlock {
@@ -183,6 +229,11 @@
           overflow: hidden;
         }
       }
+    }
+
+    @media (max-width: 1200px) {
+      padding: 0;
+      margin: 0 0 120px 0;
     }
   }
 </style>

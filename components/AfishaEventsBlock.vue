@@ -12,17 +12,21 @@
             для себя уникальные возможности для получения захватывающих впечатлений.
           </span>
 
-          <div class="afishaEventsBlock__container__afishaBlock">
-            <div class="afishaEventsBlock__container__afishaBlock__mainBlock">
+          <div class="afishaEventsBlock__container__afishaBlock" v-if="viewport.isGreaterOrEquals('is_1450')">
+            <div class="afishaEventsBlock__container__afishaBlock__mainBlock" v-if="mainBlock?.title">
               <img
-                :src="mainBlock?.img"
-                :alt="mainBlock?.title"
+                v-if="mainBlock?.image?.src"
+                :src="mainBlock.image.src"
+                :alt="mainBlock.image.alt || mainBlock?.title"
                 class="afishaEventsBlock__container__afishaBlock__mainBlock__image"
               />
               <div class="afishaEventsBlock__container__afishaBlock__mainBlock__infoBlock">
                 <div class="afishaEventsBlock__container__afishaBlock__mainBlock__infoBlock__dateBlock">
-                  <span class="afishaEventsBlock__container__afishaBlock__mainBlock__infoBlock__dateBlock__date">
-                    {{ mainBlock?.date }}
+                  <span
+                    class="afishaEventsBlock__container__afishaBlock__mainBlock__infoBlock__dateBlock__date"
+                    v-if="mainBlock?.date"
+                  >
+                    {{ formatingDateTime(mainBlock.date) }}
                   </span>
                   <span class="afishaEventsBlock__container__afishaBlock__mainBlock__infoBlock__dateBlock__position">
                     {{ mainBlock?.position }}
@@ -37,24 +41,28 @@
               </div>
             </div>
 
-            <div class="afishaEventsBlock__container__afishaBlock__othersPosters">
+            <div
+              class="afishaEventsBlock__container__afishaBlock__othersPosters"
+              :class="{ jc_sb: content.length > 2 }"
+            >
               <template v-for="(item, index) in content">
                 <div
                   class="afishaEventsBlock__container__afishaBlock__othersPosters__poster"
-                  v-if="!item.main"
+                  v-if="item != mainBlock"
                   :key="index"
                 >
                   <img
-                    :src="item.img"
-                    :alt="item.title"
+                    :src="item.image?.src"
+                    :alt="item.image?.alt || item.title"
                     class="afishaEventsBlock__container__afishaBlock__othersPosters__poster__image"
                   />
                   <div class="afishaEventsBlock__container__afishaBlock__othersPosters__poster__infoBlock">
                     <div class="afishaEventsBlock__container__afishaBlock__othersPosters__poster__infoBlock__dateBlock">
                       <span
                         class="afishaEventsBlock__container__afishaBlock__othersPosters__poster__infoBlock__dateBlock__date"
+                        v-if="item?.date"
                       >
-                        {{ item.date }}
+                        {{ formatingDateTime(item.date) }}
                       </span>
                       <span
                         class="afishaEventsBlock__container__afishaBlock__othersPosters__poster__infoBlock__dateBlock__position"
@@ -75,6 +83,21 @@
               </template>
             </div>
           </div>
+          <div class="afishaEventsBlock__container__afishaMobileBlock" v-if="viewport.isLessThan('is_1450')">
+            <Swiper
+              class="afishaEventsBlock__container__afishaMobileBlock__slider"
+              :slidesPerView="'auto'"
+              :spaceBetween="15"
+            >
+              <SwiperSlide
+                v-for="(item, index) in content"
+                :key="index"
+                class="afishaEventsBlock__container__afishaMobileBlock__slider__slide"
+              >
+                <CardEvent :card="item" />
+              </SwiperSlide>
+            </Swiper>
+          </div>
           <Button class="afishaEventsBlock__container__button" mod="green" type="button">
             Посмотреть все новости
             <IconComponent name="arrow_right" />
@@ -86,50 +109,30 @@
 </template>
 
 <script setup lang="ts">
-  const content = [
-    {
-      img: '/_nuxt/assets/images/1.jpeg',
-      date: '1 марта / 10:00',
-      position: 'Актовый зал в корпусе Кедр',
-      title: 'Открытие отеля',
-      description:
-        'Добро пожаловать в отель нового поколения, где роскошь встречает современные удобства. Откройте двери в мир элегантности и уюта, где каждая деталь создана для вашего комфорта и наслаждения.',
-      link: '#',
-      main: true,
+  import type { Icard } from '~/types/News.d.ts';
+  const { content } = defineProps({
+    content: {
+      type: Array as () => Icard[],
+      default: () => [],
     },
-    {
-      img: '/_nuxt/assets/images/1-1.jpeg',
-      date: '10 марта / 15:00',
-      position: 'Парковая зона',
-      title: 'Открытие нового корпуса',
-      description:
-        'Добро пожаловать в отель нового поколения, где роскошь встречает современные удобства. Откройте двери в мир элегантности и уюта, где каждая деталь создана для вашего комфорта и наслаждения.',
-      link: '#',
-      main: false,
-    },
-    {
-      img: '/_nuxt/assets/images/1-2.jpeg',
-      date: '24 апреля 2024г.',
-      position: 'Интересное',
-      title: 'Высота горы Ай-Петри',
-      description:
-        'Добро пожаловать в отель нового поколения, где роскошь встречает современные удобства. Откройте двери в мир элегантности и уюта, где каждая деталь создана для вашего комфорта и наслаждения.',
-      link: '#',
-      main: false,
-    },
-    {
-      img: '/_nuxt/assets/images/1-3.jpeg',
-      date: '15 июня 2024г.',
-      position: 'Крым',
-      title: 'Отдых в Крыму зимой',
-      description:
-        'Добро пожаловать в отель нового поколения, где роскошь встречает современные удобства. Откройте двери в мир элегантности и уюта, где каждая деталь создана для вашего комфорта и наслаждения.',
-      link: '#',
-      main: false,
-    },
-  ];
+  });
 
-  const mainBlock = computed(() => content.find((item) => item.main));
+  console.log(content);
+
+  const { formatingDateTime } = useFormating();
+
+  const viewport = useViewport();
+
+  const mainBlock = computed(() => {
+    if (content.length) {
+      const isMain = content.find((item) => item.main);
+      if (!isMain?.title) {
+        return content.slice(0, 1)[0];
+      } else {
+        return isMain;
+      }
+    }
+  });
 </script>
 
 <style lang="scss" scoped>
@@ -155,6 +158,31 @@
         span {
           margin: 0 0 0 307px;
         }
+
+        @media (max-width: 1550px) {
+          font-size: 80px;
+          margin: 0 0 20px 0;
+          float: left;
+          display: block;
+          line-height: 120%;
+
+          span {
+            margin: 0;
+          }
+        }
+
+        @media (max-width: 1200px) {
+          font-size: 62px;
+          line-height: 100%;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 42px;
+        }
+
+        @media (max-width: 550px) {
+          font-size: 30px;
+        }
       }
 
       &__description {
@@ -165,6 +193,14 @@
         line-height: 110%;
         color: $gray;
         max-width: 598px;
+
+        @media (max-width: 1550px) {
+          margin: 0;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 20px;
+        }
       }
 
       &__afishaBlock {
@@ -236,10 +272,11 @@
           width: 100%;
           max-width: 755px;
           gap: 20px;
+
           &__poster {
             max-width: 705px;
             width: 100%;
-            height: 200px;
+            min-height: 200px;
             padding: 25px;
             background-color: $milk;
             display: flex;
@@ -297,7 +334,37 @@
                 line-height: 120%;
               }
             }
+
+            @media (max-width: 1650px) {
+              box-sizing: border-box;
+            }
           }
+
+          &.jc_sb {
+            justify-content: space-between;
+          }
+        }
+
+        @media (max-width: 1449px) {
+          display: none;
+        }
+      }
+      &__afishaMobileBlock {
+        display: none;
+        margin: 40px 0 20px 0;
+
+        &__slider {
+          overflow: visible;
+
+          &__slide {
+            height: auto;
+            margin: 0 15px 0 0;
+            width: auto;
+          }
+        }
+
+        @media (max-width: 1449px) {
+          display: block;
         }
       }
     }

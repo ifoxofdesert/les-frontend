@@ -68,6 +68,32 @@
           text-align: right;
           font-style: italic;
         }
+
+        @media (max-width: 1550px) {
+          font-size: 100px;
+        }
+
+        @media (max-width: 1100px) {
+          font-size: 72px;
+        }
+
+        @media (max-width: 920px) {
+          font-size: 62px;
+        }
+
+        @media (max-width: 690px) {
+          display: block;
+          float: left;
+          text-align: right;
+          margin: 0 0 20px 0;
+        }
+
+        @media (max-width: 650px) {
+          font-size: 42px;
+        }
+        @media (max-width: 550px) {
+          font-size: 30px;
+        }
       }
 
       &__coordinate {
@@ -81,11 +107,33 @@
         font-weight: 400;
         line-height: 110%;
         margin: -70px 0 0;
+
+        @media (max-width: 1550px) {
+          font-size: 32px;
+        }
+
+        @media (max-width: 920px) {
+          margin: -44px 0 0 0;
+          flex-direction: column;
+          align-items: flex-start;
+          line-height: 50%;
+          font-size: 18px;
+        }
+
+        @media (max-width: 690px) {
+          margin: 0;
+          flex-direction: row;
+          justify-content: space-between;
+        }
       }
 
       &__button {
         width: 100%;
         margin: 64px 0 0 0;
+
+        @media (max-width: 690px) {
+          margin: 30px 0 0 0;
+        }
       }
     }
   }

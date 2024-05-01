@@ -18,11 +18,13 @@ export interface IroomWelcome {
 }
 
 export interface IroomList {
-  title: string;
-  area: string;
-  persons: string;
-  img: Iimage;
-  description: string;
+  title?: string;
+  area?: string;
+  persons?: string;
+  img?: Iimage;
+  description?: string;
+  active?: boolean;
+  slug?: string;
 }
 
 interface Iroom {

@@ -81,6 +81,32 @@
         span {
           margin: 0 0 0 640px;
         }
+
+        @media (max-width: 1800px) {
+          float: left;
+          text-align: center;
+          display: block;
+
+          span {
+            margin: 0 20px 0 0;
+          }
+        }
+
+        @media (max-width: 1550px) {
+          font-size: 80px;
+          text-align: left;
+        }
+
+        @media (max-width: 1200px) {
+          font-size: 62px;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 42px;
+        }
+        @media (max-width: 550px) {
+          font-size: 30px;
+        }
       }
 
       &__accordionContainer {
@@ -114,7 +140,15 @@
             }
           }
         }
+
+        @media (max-width: 768px) {
+          top: 0;
+          max-width: 100%;
+        }
       }
+    }
+    @media (max-width: 768px) {
+      min-height: 0;
     }
   }
 </style>
