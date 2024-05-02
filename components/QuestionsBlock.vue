@@ -145,6 +145,10 @@
           top: 0;
           max-width: 100%;
         }
+
+        @media (max-width: 550px) {
+          padding: 30px;
+        }
       }
     }
     @media (max-width: 768px) {

@@ -145,6 +145,7 @@
       width: 100%;
       display: flex;
       flex-direction: column;
+      padding: 0 0 2px 0;
       &__title {
         display: flex;
         flex-direction: column;
@@ -367,6 +368,10 @@
           display: block;
         }
       }
+    }
+
+    @media (max-width: 550px) {
+      margin: 0 0 80px 0;
     }
   }
 </style>

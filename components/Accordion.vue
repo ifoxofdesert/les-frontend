@@ -95,6 +95,12 @@
           position: relative;
           margin: 0 10px 0 0;
           top: 15px;
+
+          @media (max-width: 550px) {
+            width: 9px;
+            height: 9px;
+            top: 7px;
+          }
         }
       }
 
@@ -102,6 +108,19 @@
         transition: all ease 0.5s;
         transform: rotate(-90deg);
         margin: 7px 0 0 auto;
+      }
+
+      @media (max-width: 550px) {
+        font-size: 20px;
+        line-height: 100%;
+      }
+
+      @media (max-width: 550px) {
+        &:deep() {
+          svg {
+            height: 18px;
+          }
+        }
       }
     }
 
@@ -136,6 +155,10 @@
       .accordion__title__icon {
         transform: rotate(0deg);
       }
+    }
+
+    @media (max-width: 550px) {
+      margin: 0 0 10px 0;
     }
   }
 </style>

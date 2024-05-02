@@ -60,6 +60,10 @@
       font-size: 18px;
     }
 
+    @media (max-width: 400px) {
+      font-size: 16px;
+    }
+
     &__white {
       background-color: $whitesmoke;
       color: $black;
@@ -96,6 +100,10 @@
 
       @media (max-width: 550px) {
         font-size: 18px;
+      }
+
+      @media (max-width: 400px) {
+        font-size: 16px;
       }
 
       &:deep() {
@@ -199,9 +207,11 @@
       }
     }
 
-    &:deep() {
-      svg {
-        max-width: 40px;
+    @media (max-width: 550px) {
+      &:deep() {
+        svg {
+          max-width: 40px;
+        }
       }
     }
   }

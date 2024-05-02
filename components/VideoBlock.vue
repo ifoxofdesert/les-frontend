@@ -63,6 +63,28 @@
       justify-content: center;
       border-radius: 360px;
       z-index: 1;
+
+      @media (max-width: 768px) {
+        width: 70px;
+        height: 70px;
+
+        &:deep() {
+          svg {
+            height: 28px;
+          }
+        }
+      }
+
+      @media (max-width: 550px) {
+        width: 50px;
+        height: 50px;
+
+        &:deep() {
+          svg {
+            height: 20px;
+          }
+        }
+      }
     }
 
     &__video {

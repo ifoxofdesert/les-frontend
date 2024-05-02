@@ -39,6 +39,10 @@
       @media (max-width: 768px) {
         margin: 0px 0 100px 0;
       }
+
+      @media (max-width: 550px) {
+        margin: 0 0 50px 0;
+      }
     }
   }
 </style>

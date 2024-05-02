@@ -136,5 +136,9 @@
         }
       }
     }
+
+    @media (max-width: 550px) {
+      margin: 0 0 80px 0;
+    }
   }
 </style>

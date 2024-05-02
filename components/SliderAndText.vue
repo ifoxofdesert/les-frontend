@@ -235,6 +235,10 @@
       padding: 0;
       margin: 0 0 120px 0;
     }
+
+    @media (max-width: 550px) {
+      margin: 0 0 50px 0;
+    }
   }
 </style>
 
