@@ -1,6 +1,6 @@
 <template>
   <div class="filterTagDate">
-    <Container>
+    <Container class="filterTagDate__mainContainer">
       <ContainerBlock>
         <div class="filterTagDate__container">
           <div class="filterTagDate__container__tagsBlock">
@@ -88,6 +88,9 @@
 
 <style lang="scss" scoped>
   .filterTagDate {
+    &__mainContainer {
+      overflow: visible;
+    }
     &__container {
       display: flex;
       border-top: solid 1px $black;

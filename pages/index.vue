@@ -12,7 +12,7 @@
     <div class="videoBlock">
       <VideoBlock :video="content?.video" />
     </div>
-    <AfishaEventsBlock v-if="news?.length" :data="content?.afishaEvents" :content="news" />
+    <AfishaEventsBlock v-if="news?.result?.length" :data="content?.afishaEvents" :content="news?.result" />
   </div>
 </template>
 
@@ -26,7 +26,7 @@
   const news = ref(
     await getPreviewsNews({
       populate: 'deep',
-      limit: 4,
+      pageSize: 4,
     })
   );
 

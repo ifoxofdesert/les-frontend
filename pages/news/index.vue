@@ -1,13 +1,23 @@
 <template>
   <div class="newsIndex">
-    <TextMainBlock />
-    <FilterTagDate :tags="filterTags" @selectTag="selectTag" />
+    <TextMainBlock :title="content?.title" :description="content?.description" />
+    <FilterTagDate :tags="tags" @selectTag="selectTag" />
     <Container>
       <ContainerBlock>
         <div class="newsIndex__cardblock">
-          <CardEvent v-for="(item, index) in cardFilterData" :key="index" :card="item" />
+          <CardEvent v-for="(item, index) in cardData?.result" :key="`${item.slug}_${index}`" :card="item" />
         </div>
-        <Button class="newsIndex__nextPage" type="button" mod="green">
+        <Button
+          class="newsIndex__nextPage"
+          type="button"
+          mod="green"
+          v-if="
+            cardData?.pagination?.pageCount &&
+            cardData.pagination.pageCount > 1 &&
+            cardData?.pagination?.page < cardData.pagination.pageCount
+          "
+          @click="loadNextPage"
+        >
           Загрузить еще
           <IconComponent name="arrow_right" class="newsIndex__nextPage__icon" />
         </Button>
@@ -18,57 +28,108 @@
 
 <script lang="ts" setup>
   import type { Itags } from '~/types/FilterTagDate';
+  import type { Ipage } from '~/types/General';
+  import type { Icard } from '~/types/News';
 
-  const filterTags = ref<Itags[]>([
-    {
-      name: 'Все',
-      tag: 'all',
-      active: true,
-    },
-    {
-      name: 'Мероприятия',
-      tag: 'events',
-      active: false,
-    },
-    {
-      name: 'Новости',
-      tag: 'news',
-      active: false,
-    },
-  ]);
+  const { getNewsListingPage, getTags, getPreviewsNews } = useApi();
 
-  const filterOptions = ref({
-    tag: 'all',
-    date: '',
+  const route = useRoute();
+  const router = useRouter();
+
+  const queryPage = ref(JSON.parse(JSON.stringify(route.query)));
+
+  const content = ref(await getNewsListingPage());
+
+  const filterTags = computed(() => {
+    if (route.query?.tags) {
+      return route.query?.tags as string;
+    } else if (content.value?.defaultFilter) {
+      return content.value.defaultFilter;
+    } else {
+      return 'all';
+    }
   });
 
-  const { getNews } = useApi();
+  const filterQuery = computed(() => {
+    if (filterTags.value != 'all') {
+      return { pageNews: { type: { tag: { $eq: filterTags.value } } } };
+    } else {
+      return undefined;
+    }
+  });
+
+  const tags = ref([{ name: 'Все', tag: 'all' }, ...((await getTags()) || [])]);
+  tags.value.forEach((tag) => {
+    tag.active = false;
+    if (tag.tag == filterTags.value) {
+      tag.active = true;
+    }
+  });
+
+  const cardData = ref<Ipage<Icard[]> | null>(null);
+
+  async function loadNews() {
+    cardData.value = await getPreviewsNews({
+      populate: 'deep',
+      pageSize: 4,
+      page: Number(route?.query?.page) || 1,
+      filters: JSON.stringify(filterQuery.value),
+    });
+  }
+
+  await loadNews();
 
   function selectTag(index: number, tag: Itags) {
-    filterTags.value.forEach((item) => {
+    tags.value.forEach((item) => {
       if (tag !== item) {
         item.active = false;
       }
     });
-    filterTags.value[index].active = true;
-    filterOptions.value.tag = filterTags.value[index].tag;
+    tags.value[index].active = true;
+    queryPage.value.tags = tag.tag;
+    queryPage.value.page = undefined;
+    router.replace({
+      query: queryPage.value,
+    });
   }
 
-  const card = ref(await getNews());
-
-  const cardFilterData = computed(() => {
-    return card.value.filter((item) => {
-      if (filterOptions.value.date && filterOptions.value?.tag) {
-        return item.date == filterOptions.value.date && item.type == filterOptions.value.tag;
-      } else if (filterOptions.value?.tag && filterOptions.value?.tag != 'all') {
-        return item.type == filterOptions.value.tag;
-      } else if (filterOptions.value.date) {
-        return item.date == filterOptions.value.date;
+  async function loadNextPage() {
+    if (cardData.value && Number(queryPage.value.page || 0) < cardData.value.pagination.pageCount) {
+      if (route?.query?.page) {
+        queryPage.value.page = Number(route?.query?.page) + 1;
+        router.replace({
+          query: queryPage.value,
+        });
       } else {
-        return true;
+        queryPage.value.page = 2;
+        router.replace({
+          query: queryPage.value,
+        });
       }
-    });
-  });
+
+      const data = await getPreviewsNews({
+        populate: 'deep',
+        pageSize: 4,
+        page: Number(queryPage.value.page) || 1,
+        filters: JSON.stringify(filterQuery.value),
+      });
+
+      if (data?.result?.length) {
+        cardData.value?.result.push(...data.result);
+      }
+
+      if (cardData?.value?.pagination && data?.pagination) {
+        cardData.value.pagination = data.pagination;
+      }
+    }
+  }
+
+  watch(
+    () => route.query?.tags,
+    async () => {
+      await loadNews();
+    }
+  );
 </script>
 
 <style lang="scss" scoped>

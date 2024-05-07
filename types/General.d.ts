@@ -3,7 +3,15 @@ export interface IfindMany {
   limit?: number;
   sort?: object;
   populate?: string;
-  filters?: object;
+  filters?: string;
+}
+
+export interface IfindPage {
+  pageSize?: number;
+  page?: number;
+  sort?: object;
+  populate?: string;
+  filters?: string;
 }
 
 export interface Iimage {
@@ -34,6 +42,18 @@ export interface Iphone {
 export interface Icoordinate {
   latitude?: string;
   longitude?: string;
+}
+
+export interface Ipagination {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
+}
+
+export interface Ipage<result> {
+  result: result;
+  pagination: Ipagination;
 }
 
 export type Emails = string[];

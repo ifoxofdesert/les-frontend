@@ -1,6 +1,14 @@
 import type { Iaccordion } from './Accordion';
 import type { Iimage } from './General';
 
+export interface IlistingPage {
+  title?: string;
+  description?: string;
+  pagetitle?: string;
+  pageDescription?: string;
+  defaultFilter?: string;
+}
+
 export interface Icard {
   image?: Iimage;
   date?: string;

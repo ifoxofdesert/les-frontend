@@ -5,7 +5,7 @@ import roomsListing from '~/src/roomsListing.json';
 import vacancy from '~/src/vacancy.json';
 import contacts from '~/src/contacts.json';
 import infoPage from '~/src/infoPage.json';
-import type { Icard, Inews } from '~/types/News';
+import type { Icard, IlistingPage, Inews } from '~/types/News';
 import type { Iroom, IroomList } from '~/types/Room';
 import type { Ihome } from '~/types/Home';
 import type { IvacancyPage } from '~/types/VacancyPage';
@@ -13,7 +13,8 @@ import type { IcontactsPage } from '~/types/Contacts';
 import type { IinfoPage } from '~/types/InfoPages';
 
 import menu from '~/src/infoPageMenu.json';
-import type { IfindMany } from '~/types/General';
+import type { IfindMany, IfindPage, Ipage } from '~/types/General';
+import type { Itags } from '~/types/FilterTagDate';
 
 const apiFetch = $fetch.create({
   baseURL: 'http://localhost:1337/api',
@@ -40,20 +41,48 @@ export default function useApi() {
     return data?.value;
   }
 
-  async function getPreviewsNews({ start, limit, sort, populate, filters }: IfindMany): Promise<Icard[] | null> {
-    const { data } = await useAsyncData<Icard[]>('previewsNews', () =>
+  async function getPreviewsNews({
+    page,
+    pageSize,
+    sort,
+    populate,
+    filters,
+  }: IfindPage): Promise<Ipage<Icard[]> | null> {
+    const { data } = await useAsyncData<Ipage<Icard[]>>('previewsNews', () =>
       apiFetch(`/getPreviews/`, {
         method: 'GET',
         params: {
-          start,
-          limit,
+          page,
+          pageSize,
           sort,
           populate,
-          filters,
+          filters: filters || null,
         },
       })
     );
     console.log('previewsNews', data);
+
+    return data?.value;
+  }
+
+  async function getTags(): Promise<Itags[] | null> {
+    const { data } = await useAsyncData<Itags[]>('newsTags', () =>
+      apiFetch(`/getTags/`, {
+        method: 'GET',
+      })
+    );
+    console.log('newsTags', data);
+
+    return data?.value;
+  }
+
+  async function getNewsListingPage(): Promise<IlistingPage | null> {
+    const { data } = await useAsyncData<IlistingPage>('newsListingPage', () =>
+      apiFetch(`/getNewsListingPage/`, {
+        method: 'GET',
+      })
+    );
+    console.log('newsListingPage', data);
 
     return data?.value;
   }
@@ -114,7 +143,9 @@ export default function useApi() {
     getHome,
     getNews,
     getPreviewsNews,
+    getTags,
     searchNews,
+    getNewsListingPage,
     getRoom,
     getRooms,
     getPreviewsRoom,

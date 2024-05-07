@@ -3,10 +3,9 @@
     <Container>
       <ContainerBlock>
         <div class="textMainBlock__container">
-          <h1 class="textMainBlock__container__title">Ознакомьтесь с Мероприятиями и новостями нашего отеля</h1>
-          <span class="textMainBlock__container__description">
-            Узнайте о наших мероприятиях, развлечениях и экскурсиях заранее. Погрузитесь в мир разнообразия и откройте
-            для себя уникальные возможности для получения захватывающих впечатлений.
+          <h1 class="textMainBlock__container__title" v-if="title">{{ title }}</h1>
+          <span class="textMainBlock__container__description" v-if="description">
+            {{ description }}
           </span>
         </div>
       </ContainerBlock>
@@ -14,7 +13,18 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+  const { title, description } = defineProps({
+    title: {
+      type: String,
+      default: '',
+    },
+    description: {
+      type: String,
+      default: '',
+    },
+  });
+</script>
 
 <style lang="scss" scoped>
   .textMainBlock {
