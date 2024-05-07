@@ -4,19 +4,18 @@
       <ContainerBlock>
         <div class="afishaEventsBlock__container">
           <h2 class="afishaEventsBlock__container__title">
-            Афиша мероприятий
-            <span>и новостей</span>
+            {{ data.titleCustom.first }}
+            <span v-if="data?.titleCustom?.second">{{ data.titleCustom.second }}</span>
           </h2>
-          <span class="afishaEventsBlock__container__description">
-            Узнайте о наших мероприятиях, развлечениях и экскурсиях заранее. Погрузитесь в мир разнообразия и откройте
-            для себя уникальные возможности для получения захватывающих впечатлений.
+          <span class="afishaEventsBlock__container__description" v-if="data?.description">
+            {{ data.description }}
           </span>
 
           <div class="afishaEventsBlock__container__afishaBlock" v-if="viewport.isGreaterOrEquals('is_1450')">
             <div class="afishaEventsBlock__container__afishaBlock__mainBlock" v-if="mainBlock?.title">
               <img
                 v-if="mainBlock?.image?.src"
-                :src="mainBlock.image.src"
+                :src="useImage(mainBlock.image.src)"
                 :alt="mainBlock.image.alt || mainBlock?.title"
                 class="afishaEventsBlock__container__afishaBlock__mainBlock__image"
               />
@@ -52,7 +51,8 @@
                   :key="index"
                 >
                   <img
-                    :src="item.image?.src"
+                    v-if="item.image?.src"
+                    :src="useImage(item.image.src)"
                     :alt="item.image?.alt || item.title"
                     class="afishaEventsBlock__container__afishaBlock__othersPosters__poster__image"
                   />
@@ -98,7 +98,7 @@
               </SwiperSlide>
             </Swiper>
           </div>
-          <Button class="afishaEventsBlock__container__button" mod="green" type="button">
+          <Button class="afishaEventsBlock__container__button" mod="green" type="internal" url="/news/">
             Посмотреть все новости
             <IconComponent name="arrow_right" />
           </Button>
@@ -109,15 +109,18 @@
 </template>
 
 <script setup lang="ts">
+  import type { IafishaEvents } from '~/types/Home';
   import type { Icard } from '~/types/News.d.ts';
   const { content } = defineProps({
     content: {
       type: Array as () => Icard[],
       default: () => [],
     },
+    data: {
+      type: Object as () => IafishaEvents,
+      default: {},
+    },
   });
-
-  console.log(content);
 
   const { formatingDateTime } = useFormating();
 

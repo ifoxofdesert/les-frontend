@@ -1,3 +1,11 @@
+export interface IfindMany {
+  start?: number;
+  limit?: number;
+  sort?: object;
+  populate?: string;
+  filters?: object;
+}
+
 export interface Iimage {
   src?: string;
   alt?: string;
@@ -13,7 +21,7 @@ export interface Ivideo {
   sources?: IvideoSources[];
 }
 
-export interface ItitleCutom {
+export interface ItitleCustom {
   first?: string;
   second?: string;
 }
@@ -21,6 +29,11 @@ export interface ItitleCutom {
 export interface Iphone {
   text?: string;
   url?: string;
+}
+
+export interface Icoordinate {
+  latitude?: string;
+  longitude?: string;
 }
 
 export type Emails = string[];

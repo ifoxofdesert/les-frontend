@@ -11,7 +11,7 @@
 
 <script lang="ts" setup>
   import type { Iaccordion } from '~/types/Accordion';
-  import type { ItitleCutom } from '~/types/General';
+  import type { ItitleCustom } from '~/types/General';
 
   const { title, description, accordion } = defineProps({
     accordion: {
@@ -20,7 +20,7 @@
     },
 
     title: {
-      type: Object as () => ItitleCutom,
+      type: Object as () => ItitleCustom,
       default: '',
     },
 

@@ -9,9 +9,9 @@
         class="videoBlock__video"
         ref="videoElement"
         preload="metadata"
-        :poster="video.poster"
+        :poster="useImage(video.poster)"
       >
-        <source v-for="item in video.sources" :src="item.src" :type="item.type" />
+        <source v-for="item in video.sources" :src="useImage(item.src)" :type="item.type" />
       </video>
     </Container>
   </div>
@@ -88,6 +88,7 @@
     }
 
     &__video {
+      object-fit: cover;
       width: 100%;
       max-height: 900px;
     }

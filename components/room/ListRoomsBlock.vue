@@ -45,12 +45,12 @@
 </template>
 
 <script lang="ts" setup>
-  import type { ItitleCutom } from '~/types/General';
+  import type { ItitleCustom } from '~/types/General';
   import type { IroomList } from '~/types/Room';
 
   const { title, description, rooms } = defineProps({
     title: {
-      type: Object as () => ItitleCutom,
+      type: Object as () => ItitleCustom,
       default: '',
     },
     description: {
@@ -58,7 +58,7 @@
       default: '',
     },
     rooms: {
-      type: Array as () => IroomList[],
+      type: Array<IroomList>,
       default: [],
     },
   });

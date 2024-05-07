@@ -21,7 +21,7 @@
               <span class="sliderAndText__container__sliderContainer__infoBlock__description" v-if="description">
                 {{ description }}
               </span>
-              <div class="sliderAndText__container__sliderContainer__infoBlock__navigationBlock">
+              <div class="sliderAndText__container__sliderContainer__infoBlock__navigationBlock" v-if="allIndex > 1">
                 <button
                   class="sliderAndText__container__sliderContainer__infoBlock__navigationBlock__button left"
                   ref="swiperPrev"

@@ -1,16 +1,16 @@
 <template>
   <div class="mainBlock noFixed">
     <Container>
-      <img src="assets/images/DSC_3610.jpg" alt="Обложка" class="mainBlock__backgroundImage" />
+      <img :src="useImage(image.src)" :alt="image?.alt || ''" class="mainBlock__backgroundImage" />
       <ContainerBlock>
         <div class="mainBlock__contentBlock">
           <h1 class="mainBlock__contentBlock__title">
-            Природа снаружи —
-            <span>Уют внутри</span>
+            {{ title.first }}
+            <span v-if="title.second">{{ title.second }}</span>
           </h1>
-          <span class="mainBlock__contentBlock__coordinate">
-            <span>44º65′33″63.N</span>
-            <span>34º39′48″30.E</span>
+          <span v-if="coordinate?.latitude" class="mainBlock__contentBlock__coordinate">
+            <span>{{ coordinate.latitude }}</span>
+            <span>{{ coordinate.longitude }}</span>
           </span>
           <Button
             class="mainBlock__contentBlock__button"
@@ -27,6 +27,25 @@
     </Container>
   </div>
 </template>
+
+<script setup lang="ts">
+  import type { ItitleCustom, Icoordinate, Iimage } from '~/types/General';
+
+  const { title, coordinate, image } = defineProps({
+    title: {
+      type: Object as () => ItitleCustom,
+      default: {},
+    },
+    coordinate: {
+      type: Object as () => Icoordinate,
+      default: {},
+    },
+    image: {
+      type: Object as () => Iimage,
+      default: {},
+    },
+  });
+</script>
 
 <style lang="scss" scoped>
   .mainBlock {

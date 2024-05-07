@@ -4,7 +4,11 @@
       <span class="offersCard__imageBlock__number">
         {{ formatingNumber(index + 1) }}
       </span>
-      <img :src="content?.img?.src" :alt="content?.img?.alt || content.title" class="offersCard__imageBlock__image" />
+      <img
+        :src="useImage(content?.img?.src)"
+        :alt="content?.img?.alt || content.title"
+        class="offersCard__imageBlock__image"
+      />
     </div>
     <div class="offersCard__infoBlock">
       <span class="offersCard__infoBlock__markText">

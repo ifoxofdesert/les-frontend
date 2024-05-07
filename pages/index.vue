@@ -1,34 +1,54 @@
 <template>
   <div class="homePage">
-    <MainBlock />
+    <MainBlock
+      v-if="content?.mainBlock?.mainImage?.src"
+      :coordinate="content?.mainBlock?.coordinate"
+      :title="content?.mainBlock?.mainTitle"
+      :image="content?.mainBlock?.mainImage"
+    />
     <OffersSlider v-if="content?.offersSlider?.slids?.length" :data="content.offersSlider" />
-    <RoomsListBlock :rooms="rooms" />
-    <QuestionsBlock />
+    <RoomsListBlock v-if="content?.roomsListBlock && rooms?.length" :rooms="rooms" :content="content.roomsListBlock" />
+    <QuestionsBlock v-if="content?.questions" :content="content.questions" />
     <div class="videoBlock">
-      <VideoBlock :video="video" />
+      <VideoBlock :video="content?.video" />
     </div>
-    <AfishaEventsBlock :content="news.slice(0, 4)" />
+    <AfishaEventsBlock v-if="news?.length" :data="content?.afishaEvents" :content="news" />
   </div>
 </template>
 
 <script setup lang="ts">
-  const { getHome, getNews, getRooms } = useApi();
+  const { getHome, getPreviewsNews, getPreviewsRoom } = useApi();
 
   const content = ref(await getHome());
 
-  const news = ref(await getNews());
+  console.log(content.value);
 
-  const rooms = ref(await getRooms());
+  const news = ref(
+    await getPreviewsNews({
+      populate: 'deep',
+      limit: 4,
+    })
+  );
 
-  const video = {
-    poster: '/_nuxt/assets/images/Rectangle 1.jpeg',
-    sources: [
+  const rooms = ref(
+    await getPreviewsRoom({
+      populate: 'deep',
+    })
+  );
+
+  useHead({
+    title: content.value?.pagetitle || '',
+    meta: [
       {
-        src: '/_nuxt/assets/videos/video_2024-03-31_17-52-39.mp4',
-        type: 'video/webm',
+        property: 'og:description',
+        content: content.value?.pageDescription || '',
+      },
+      {
+        name: 'description',
+        content: content.value?.pageDescription || '',
       },
     ],
-  };
+  });
 </script>
 
 <style lang="scss" scoped>

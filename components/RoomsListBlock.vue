@@ -3,10 +3,9 @@
     <Container>
       <ContainerBlock>
         <div class="roomsListBlock__container">
-          <h2 class="roomsListBlock__container__title">Номерной фонд комплекса</h2>
-          <span class="roomsListBlock__container__description">
-            Выбирайте из разнообразия номеров для вашего пребывания. От уютных стандартов до роскошных люксов - у нас
-            найдется идеальный вариант для вашего комфорта.
+          <h2 class="roomsListBlock__container__title" v-if="content.title">{{ content.title }}</h2>
+          <span class="roomsListBlock__container__description" v-if="content.description">
+            {{ content.description }}
           </span>
 
           <div class="roomsListBlock__container__roomsBlock" v-if="viewport.isGreaterOrEquals('is_1200')">
@@ -28,7 +27,7 @@
               <Transition>
                 <img
                   v-if="item.active && item.img?.src && viewport.isGreaterOrEquals('is_1550')"
-                  :src="item.img?.src"
+                  :src="useImage(item.img.src)"
                   :alt="item.img?.alt || item.title"
                   class="roomsListBlock__container__roomsBlock__roomBlock__image"
                 />
@@ -44,7 +43,7 @@
             <div class="roomsListBlock__container__roomsBlock_mobile__item" v-for="item in rooms">
               <img
                 v-if="item.img?.src"
-                :src="item.img?.src"
+                :src="useImage(item.img.src)"
                 :alt="item.img?.alt || item.title"
                 class="roomsListBlock__container__roomsBlock_mobile__item__image"
               />
@@ -87,20 +86,23 @@
 </template>
 
 <script setup lang="ts">
+  import type { IroomsListBlock } from '~/types/Home';
   import type { IroomList } from '~/types/Room';
 
-  const { rooms } = defineProps({
+  const { content, rooms } = defineProps({
+    content: {
+      type: Object as () => IroomsListBlock,
+      default: {},
+    },
     rooms: {
-      type: Array as () => IroomList[],
+      type: Array<IroomList>,
       default: [],
     },
   });
 
   const viewport = useViewport();
 
-  if (rooms.length) {
-    rooms[0].active = true;
-  }
+  rooms[0].active = true;
 
   function selectRoom(index: number) {
     rooms.forEach((item) => {

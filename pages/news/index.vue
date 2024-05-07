@@ -84,6 +84,7 @@
 
     &__nextPage {
       width: 100%;
+      margin: 0 0 1px 0;
       &__icon {
       }
     }

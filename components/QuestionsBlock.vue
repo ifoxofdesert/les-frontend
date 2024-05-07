@@ -4,13 +4,13 @@
       <ContainerBlock>
         <div class="questionsBlock__container">
           <h2 class="questionsBlock__container__title">
-            современный комплекс
-            <span>Южного</span>
-            <span>берега Крыма</span>
+            {{ content.title }}
+            <span v-if="content?.secondTitle">{{ content.secondTitle }}</span>
+            <span v-if="content?.thirdTitle">{{ content?.thirdTitle }}</span>
           </h2>
           <div class="questionsBlock__container__accordionContainer">
-            <AccordionContainer v-if="accordion.length">
-              <Accordion v-for="item in accordion" :content="item" type="titleDot" />
+            <AccordionContainer v-if="content?.accordion?.length">
+              <Accordion v-for="item in content.accordion" :content="item" type="titleDot" />
             </AccordionContainer>
             <Button
               class="questionsBlock__container__accordionContainer__button"
@@ -30,30 +30,14 @@
 </template>
 
 <script setup lang="ts">
-  import type { Iaccordion } from '~/types/Accordion';
+  import type { IquestionsBlock } from '~/types/Accordion';
 
-  const accordion = ref<Iaccordion[]>([
-    {
-      title: 'Краткая информация',
-      text: 'Он расположен в одном из самых живописных мест Крымского полуострова – «Профессорском уголке» города Алушта. Тихий район в стороне от дорог, шума и скопления людей, с удобными галечными пляжами и набережной. Уникальный крымский климат, обилие зелени, море и горы создают особые условия для отдыха и оздоровления.',
-      active: true,
+  const { content } = defineProps({
+    content: {
+      type: Object as () => IquestionsBlock,
+      default: {},
     },
-    {
-      title: 'Детский отдых',
-      text: 'Детская площадка – это не только отличная возможность для активного отдыха ребенка и общения со сверстниками, но и хороший шанс для родителей провести время без лишних переживаний. Площадка оборудована игровыми и спортивными элементами: лесенки, качели, горки, песочница. А веселые аниматоры не дадут нашим маленьким гостям скучать. Для детей до 3-х лет предусмотрена игровая комната. Для ребят постарше - VR -клуб.',
-      active: false,
-    },
-    {
-      title: 'Размеренный отдых',
-      text: 'Территория парка – это замечательное место для вечерних тихих прогулок, задушевных бесед в тени деревьев. Здесь можно полежать на открытых шезлонгах и вдоволь насладиться ароматом хвои. Просторные аллеи, свежий морской воздух и большое количество локаций для отдыха способствует получению удовольствия от времяпрепровождения в нашем комплексе',
-      active: false,
-    },
-    {
-      title: 'Активный отдых',
-      text: 'Для любителей спорта и активного образа жизни инфраструктурой комплекса предусмотрена многофункциональная спортивная площадка Здесь установлены различные уличные турники, брусья, рукоходы, кольца для баскетбола. Также благоустройством предусмотрено отдельное игровое поле для командных игр с мячом, площадка для пляжного волейбола. Здесь можно проводить различные групповые фитнес-тренировки, устраивать спортивные соревнования, заниматься йогой.',
-      active: false,
-    },
-  ]);
+  });
 </script>
 
 <style lang="scss" scoped>

@@ -11,13 +11,14 @@ export default function useFormating() {
         day: 'numeric',
       });
 
-      const time = /:/.test(dateTime)
-        ? `в ${new Date(Date.parse(dateTime)).toLocaleString('ru', {
-            timeZone: 'Europe/Moscow',
-            hour: 'numeric',
-            minute: 'numeric',
-          })}`
-        : '';
+      const time =
+        /:/.test(dateTime) && !/00:00/.test(dateTime)
+          ? `в ${new Date(Date.parse(dateTime)).toLocaleString('ru', {
+              timeZone: 'Europe/Moscow',
+              hour: 'numeric',
+              minute: 'numeric',
+            })}`
+          : '';
 
       return `${date} ${time}`;
     } else {

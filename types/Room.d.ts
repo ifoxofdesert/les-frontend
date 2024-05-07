@@ -1,5 +1,5 @@
 import type { Iaccordion } from './Accordion';
-import type { Iimage, ItitleCutom, Ivideo } from './General';
+import type { Iimage, ItitleCustom, Ivideo } from './General';
 import type { IoffersSlider } from './OffersSlider';
 
 export interface IaboutRoom {
@@ -40,7 +40,7 @@ interface Iroom {
   travelId?: string;
   video?: Ivideo;
   aboutRoom?: IaboutRoom;
-  accorionTitle?: ItitleCutom;
+  accorionTitle?: ItitleCustom;
   accorionDescription?: string;
   accordion?: Iaccordion[];
   gallaryTitle?: string;
@@ -48,7 +48,7 @@ interface Iroom {
   gallary?: Iimage[];
   roomWelcome?: IroomWelcome;
   offersSlider?: IoffersSlider;
-  roomListTitle?: ItitleCutom;
+  roomListTitle?: ItitleCustom;
   roomListDescription?: string;
   roomList?: IroomList[];
 }
