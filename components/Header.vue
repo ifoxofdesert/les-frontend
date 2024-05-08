@@ -29,7 +29,7 @@
               class="header__container__phoneButton"
               mod="text"
               type="external"
-              v-if="!openedMenu && viewport.isGreaterOrEquals('is_768')"
+              v-if="!cheackOpenedMenuResponse(viewport.isGreaterOrEquals('is_768'))"
             >
               +7 800 700-09-06
             </Button>
@@ -63,6 +63,10 @@
   const onScroll = inject<Function>('onScroll');
 
   let oldScrollY = 0;
+
+  function cheackOpenedMenuResponse(response: boolean) {
+    return response ? openedMenu.value : true;
+  }
 
   function wathScrollDocument() {
     if (!openedMenu.value) {

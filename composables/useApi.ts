@@ -30,9 +30,9 @@ const apiFetch = $fetch.create({
 });
 
 export default function useApi() {
-  async function getHome(): Promise<Ihome | null> {
-    const { data } = await useAsyncData<Ihome>('home', () =>
-      apiFetch(`/getHome/`, {
+  async function getHome() {
+    const { data } = await useAsyncData('home', () =>
+      apiFetch<Promise<Ihome>>(`/getHome/`, {
         method: 'GET',
       })
     );
@@ -41,15 +41,9 @@ export default function useApi() {
     return data?.value;
   }
 
-  async function getPreviewsNews({
-    page,
-    pageSize,
-    sort,
-    populate,
-    filters,
-  }: IfindPage): Promise<Ipage<Icard[]> | null> {
-    const { data } = await useAsyncData<Ipage<Icard[]>>('previewsNews', () =>
-      apiFetch(`/getPreviews/`, {
+  async function getPreviewsNews({ page, pageSize, sort, populate, filters }: IfindPage) {
+    const { data } = await useAsyncData('previewsNews', () =>
+      apiFetch<Promise<Ipage<Icard[]>>>(`/getPreviews/`, {
         method: 'GET',
         params: {
           page,
@@ -65,9 +59,9 @@ export default function useApi() {
     return data?.value;
   }
 
-  async function getTags(): Promise<Itags[] | null> {
-    const { data } = await useAsyncData<Itags[]>('newsTags', () =>
-      apiFetch(`/getTags/`, {
+  async function getTags() {
+    const { data } = await useAsyncData('newsTags', () =>
+      apiFetch<Promise<Itags[]>>(`/getTags/`, {
         method: 'GET',
       })
     );
@@ -76,9 +70,9 @@ export default function useApi() {
     return data?.value;
   }
 
-  async function getNewsListingPage(): Promise<IlistingPage | null> {
-    const { data } = await useAsyncData<IlistingPage>('newsListingPage', () =>
-      apiFetch(`/getNewsListingPage/`, {
+  async function getNewsListingPage() {
+    const { data } = await useAsyncData('newsListingPage', () =>
+      apiFetch<Promise<IlistingPage>>(`/getNewsListingPage/`, {
         method: 'GET',
       })
     );
@@ -91,8 +85,22 @@ export default function useApi() {
     return news.listingNews;
   }
 
-  async function searchNews(slug: string): Promise<Inews | undefined> {
-    return news.news.find((item) => item.slug === slug);
+  async function searchNews({ limit, start, sort, populate, filters }: IfindMany) {
+    const { data } = await useAsyncData('newsPage', () =>
+      apiFetch<Promise<Inews>>(`/getNewsPage/`, {
+        method: 'GET',
+        params: {
+          start,
+          limit,
+          sort,
+          populate,
+          filters: filters || null,
+        },
+      })
+    );
+    console.log('searchNews', data);
+
+    return data?.value;
   }
 
   async function getRoom(): Promise<Iroom> {
@@ -103,9 +111,9 @@ export default function useApi() {
     return roomsListing;
   }
 
-  async function getPreviewsRoom({ start, limit, sort, populate, filters }: IfindMany): Promise<IroomList[] | null> {
-    const { data } = await useAsyncData<Icard[]>('previewsRoom', () =>
-      apiFetch(`/getPreviewsRoom/`, {
+  async function getPreviewsRoom({ start, limit, sort, populate, filters }: IfindMany) {
+    const { data } = await useAsyncData('previewsRoom', () =>
+      apiFetch<Promise<IroomList[]>>(`/getPreviewsRoom/`, {
         method: 'GET',
         params: {
           start,

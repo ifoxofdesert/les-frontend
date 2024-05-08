@@ -9,7 +9,7 @@
         class="videoBlock__video"
         ref="videoElement"
         preload="metadata"
-        :poster="useImage(video.poster)"
+        :poster="video?.poster ? useImage(video.poster) : ''"
       >
         <source v-for="item in video.sources" :src="useImage(item.src)" :type="item.type" />
       </video>

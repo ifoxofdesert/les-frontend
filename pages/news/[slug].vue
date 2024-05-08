@@ -13,7 +13,14 @@
 
   const route = useRoute();
 
-  const content = ref(await searchNews(route.params.slug));
+  const content = ref(
+    await searchNews({
+      filters: {
+        slug: { $eq: route.params.slug },
+      },
+      populate: 'deep',
+    })
+  );
 
   if (!content.value) {
     showError({ statusCode: 404, fatal: true });

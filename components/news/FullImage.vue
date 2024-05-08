@@ -1,5 +1,5 @@
 <template>
-  <img class="fullImage" :src="image.src" :alt="image.alt" />
+  <img class="fullImage" :src="useImage(image.src)" :alt="image.alt" />
 </template>
 
 <script setup lang="ts">

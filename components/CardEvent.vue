@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="card.slug" class="cardEvent">
+  <NuxtLink :to="`/news/${card.slug}`" class="cardEvent">
     <img v-if="card.image?.src" :src="useImage(card.image.src)" :alt="card.image.alt" class="cardEvent__image" />
 
     <div class="cardEvent__infoBlock">
