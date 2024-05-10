@@ -560,16 +560,18 @@
             line-height: 34px;
             letter-spacing: -2%;
             color: $gray;
+            text-align: end;
+            white-space: nowrap;
 
             @media (max-width: 1024px) {
               flex: 50%;
               order: 3;
-              text-align: end;
             }
 
             @media (max-width: 768px) {
               max-width: 220px;
               line-height: 100%;
+              white-space: normal;
             }
 
             @media (max-width: 650px) {
