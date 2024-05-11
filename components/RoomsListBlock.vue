@@ -14,11 +14,12 @@
               <span class="roomsListBlock__container__roomsBlock__labelBlock__name second">Площадь</span>
               <span class="roomsListBlock__container__roomsBlock__labelBlock__name third">Вместимость</span>
             </div>
-            <div
+            <NuxtLink
               class="roomsListBlock__container__roomsBlock__roomBlock"
               v-for="(item, index) in rooms"
               :key="index"
               :class="{ active: item.active }"
+              :to="`rooms/${item.slug}`"
               @mouseover="selectRoom(index)"
             >
               <span class="roomsListBlock__container__roomsBlock__roomBlock__title">{{ item.title }}</span>
@@ -33,7 +34,7 @@
                 />
               </Transition>
               <IconComponent name="arrow_right" class="roomsListBlock__container__roomsBlock__roomBlock__icon" />
-            </div>
+            </NuxtLink>
           </div>
 
           <div
@@ -260,6 +261,7 @@
           position: relative;
           cursor: pointer;
           border-bottom: 1px solid $black;
+          text-decoration: none;
 
           &::before {
             position: absolute;

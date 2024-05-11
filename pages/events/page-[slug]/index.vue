@@ -22,7 +22,7 @@
     })
   );
 
-  if (!content.value) {
+  if (!content?.value?.slug) {
     showError({ statusCode: 404, fatal: true });
   }
 

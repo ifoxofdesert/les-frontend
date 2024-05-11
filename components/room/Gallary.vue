@@ -8,7 +8,11 @@
           <div class="gallaryBlock__sliderBlock__slide__imageBlock">
             <span class="gallaryBlock__sliderBlock__slide__imageBlock__number">{{ formatingNumber(index + 1) }}</span>
 
-            <img :src="item.src" :alt="item.src" class="gallaryBlock__sliderBlock__slide__imageBlock__image" />
+            <img
+              :src="useImage(item.src)"
+              :alt="item.src"
+              class="gallaryBlock__sliderBlock__slide__imageBlock__image"
+            />
           </div>
         </SwiperSlide>
       </RoomSlider>

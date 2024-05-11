@@ -10,10 +10,15 @@
       </span>
 
       <div class="roomsListBlock__container__roomsBlock">
-        <div class="roomsListBlock__container__roomsBlock__roomBlock" v-for="(item, index) in rooms" :key="index">
+        <NuxtLink
+          class="roomsListBlock__container__roomsBlock__roomBlock"
+          v-for="(item, index) in rooms"
+          :key="index"
+          :to="`rooms/${item.slug}`"
+        >
           <img
             v-if="item?.img?.src"
-            :src="item.img.src"
+            :src="useImage(item.img.src)"
             :alt="item.img.alt || item.title"
             class="roomsListBlock__container__roomsBlock__roomBlock__image"
           />
@@ -38,7 +43,7 @@
           </div>
 
           <IconComponent name="arrow_right" class="roomsListBlock__container__roomsBlock__roomBlock__icon" />
-        </div>
+        </NuxtLink>
       </div>
     </div>
   </div>
@@ -113,6 +118,7 @@
           border-bottom: 1px solid $black;
           cursor: pointer;
           position: relative;
+          text-decoration: none;
 
           &::before {
             position: absolute;

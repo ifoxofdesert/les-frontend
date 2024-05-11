@@ -73,7 +73,7 @@
       populate: 'deep',
       pageSize: 4,
       page: Number(route?.query?.page) || 1,
-      filters: JSON.stringify(filterQuery.value),
+      filters: filterQuery.value,
     });
   }
 
@@ -111,7 +111,7 @@
         populate: 'deep',
         pageSize: 4,
         page: Number(queryPage.value.page) || 1,
-        filters: JSON.stringify(filterQuery.value),
+        filters: filterQuery.value,
       });
 
       if (data?.result?.length) {

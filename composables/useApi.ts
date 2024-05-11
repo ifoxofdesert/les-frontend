@@ -50,7 +50,7 @@ export default function useApi() {
           pageSize,
           sort,
           populate,
-          filters: filters || null,
+          filters: JSON.stringify(filters || undefined),
         },
       })
     );
@@ -105,7 +105,7 @@ export default function useApi() {
           limit,
           sort,
           populate,
-          filters: filters || null,
+          filters: JSON.stringify(filters || undefined),
         },
       })
     );
@@ -114,8 +114,22 @@ export default function useApi() {
     return data?.value;
   }
 
-  async function getRoom(): Promise<Iroom> {
-    return room;
+  async function getRoomPage({ limit, start, sort, populate, filters }: IfindMany) {
+    const { data } = await useAsyncData('roomPage', () =>
+      apiFetch<Promise<Iroom>>(`/getRoomPage/`, {
+        method: 'GET',
+        params: {
+          start,
+          limit,
+          sort,
+          populate,
+          filters: JSON.stringify(filters || undefined),
+        },
+      })
+    );
+    console.log('roomPage', data);
+
+    return data?.value;
   }
 
   async function getRooms(): Promise<IroomList[]> {
@@ -131,7 +145,7 @@ export default function useApi() {
           limit,
           sort,
           populate,
-          filters,
+          filters: JSON.stringify(filters || undefined),
         },
       })
     );
@@ -166,7 +180,7 @@ export default function useApi() {
     getTags,
     searchNews,
     getNewsListingPage,
-    getRoom,
+    getRoomPage,
     getRooms,
     getPreviewsRoom,
     getVacancy,

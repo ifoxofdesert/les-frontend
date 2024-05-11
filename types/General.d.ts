@@ -6,7 +6,7 @@ export interface IfindMany {
   limit?: number;
   sort?: object;
   populate?: string;
-  filters?: string;
+  filters?: object;
 }
 
 export interface IfindPage {
@@ -14,7 +14,7 @@ export interface IfindPage {
   page?: number;
   sort?: object;
   populate?: string;
-  filters?: string;
+  filters?: object;
 }
 
 export interface Iimage {

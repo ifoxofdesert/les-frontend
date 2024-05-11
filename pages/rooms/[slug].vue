@@ -2,27 +2,30 @@
   <div class="roomPage">
     <Container>
       <ContainerBlock>
-        <div class="roomPage__title">
+        <div class="roomPage__title" v-if="content?.title">
           <RoomTitle>{{ content.title }}</RoomTitle>
         </div>
-        <div class="roomPage__markBlock">
+        <div class="roomPage__markBlock" v-if="content?.area || content?.persons || content?.viewRoom">
           <RoomMarkBlock :firstTitle="content.area" :secondTitle="content.persons" :thirdTitle="content.viewRoom" />
         </div>
-        <div class="roomPage__descriptionBlock">
+        <div class="roomPage__descriptionBlock" v-if="content?.description">
           <RoomDescriptionBlock :text="content.description" />
         </div>
       </ContainerBlock>
     </Container>
-    <div class="roomPage__videoBlock">
+    <div class="roomPage__videoBlock" v-if="content?.video?.sources?.length">
       <VideoBlock :video="content.video" />
     </div>
     <Container>
       <ContainerBlock>
-        <div class="roomPage__aboutRoomBlock">
+        <div class="roomPage__aboutRoomBlock" v-if="content?.aboutRoom">
           <RoomAboutRoom :data="content.aboutRoom" />
         </div>
 
-        <div class="roomPage__accordionBlock">
+        <div
+          class="roomPage__accordionBlock"
+          v-if="content?.accorionTitle || content?.accorionDescription || content?.accordion"
+        >
           <RoomAccordionBlock
             :title="content.accorionTitle"
             :description="content.accorionDescription"
@@ -30,7 +33,7 @@
           />
         </div>
 
-        <div class="roomPage__gallaryBlock">
+        <div class="roomPage__gallaryBlock" v-if="content?.gallary?.length">
           <RoomGallary
             :data="content.gallary"
             :title="content.gallaryTitle"
@@ -38,15 +41,15 @@
           />
         </div>
 
-        <div class="roomPage__welcomeBlock">
+        <div class="roomPage__welcomeBlock" v-if="content?.roomWelcome">
           <RoomWelcomeBlock :data="content.roomWelcome" />
         </div>
 
-        <div class="roomPage__offersBlock">
-          <OffersSlider v-if="content?.offersSlider?.slids?.length" :data="content.offersSlider" />
+        <div class="roomPage__offersBlock" v-if="content?.offersSlider?.slids?.length">
+          <OffersSlider :data="content.offersSlider" />
         </div>
 
-        <div class="roomPage__roomList">
+        <div class="roomPage__roomList" v-if="content?.roomListTitle">
           <RoomListRoomsBlock
             :title="content.roomListTitle"
             :description="content.roomListDescription"
@@ -59,9 +62,22 @@
 </template>
 
 <script setup lang="ts">
-  const { getRoom } = useApi();
+  const { getRoomPage } = useApi();
 
-  const content = ref(await getRoom());
+  const route = useRoute();
+
+  const content = ref(
+    await getRoomPage({
+      filters: {
+        slug: { $eq: route.params.slug },
+      },
+      populate: 'deep',
+    })
+  );
+
+  if (!content?.value?.slug) {
+    showError({ statusCode: 404, fatal: true });
+  }
 
   useHead({
     title: content.value?.pagetitle || '',
