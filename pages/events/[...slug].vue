@@ -41,8 +41,8 @@
   const content = ref(await getNewsListingPage());
 
   const filterTags = computed(() => {
-    if (route.query?.tags) {
-      return route.query?.tags as string;
+    if (route.params?.slug) {
+      return route.params?.slug as string;
     } else if (content.value?.defaultFilter) {
       return content.value.defaultFilter;
     } else {
@@ -86,9 +86,9 @@
       }
     });
     tags.value[index].active = true;
-    queryPage.value.tags = tag.tag;
     queryPage.value.page = undefined;
-    router.replace({
+    router.push({
+      path: `/events/${tag.tag != 'all' ? `${tag.tag}/` : ''}`,
       query: queryPage.value,
     });
   }
@@ -122,6 +122,10 @@
         cardData.value.pagination = data.pagination;
       }
     }
+  }
+
+  if (!cardData?.value?.result?.length) {
+    showError({ statusCode: 404, fatal: true });
   }
 
   watch(
