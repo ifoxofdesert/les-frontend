@@ -14,7 +14,15 @@
 <script setup lang="ts">
   const { mod, url, target, type } = defineProps({
     mod: {
-      type: String as () => 'green' | 'white' | 'white br' | 'text' | 'text_green' | 'angles' | 'navigation',
+      type: String as () =>
+        | 'green'
+        | 'white'
+        | 'white br'
+        | 'text'
+        | 'text link'
+        | 'text_green'
+        | 'angles'
+        | 'navigation',
       default: '',
     },
 
@@ -147,6 +155,12 @@
 
       &:hover {
         color: $green;
+      }
+
+      &.link {
+        &.router-link-active {
+          color: $green;
+        }
       }
 
       &_green {

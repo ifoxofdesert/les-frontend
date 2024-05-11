@@ -13,7 +13,7 @@ import type { IcontactsPage } from '~/types/Contacts';
 import type { IinfoPage } from '~/types/InfoPages';
 
 import menu from '~/src/infoPageMenu.json';
-import type { IfindMany, IfindPage, Ipage } from '~/types/General';
+import type { IfindMany, IfindPage, Igeneral, Ipage } from '~/types/General';
 import type { Itags } from '~/types/FilterTagDate';
 
 const apiFetch = $fetch.create({
@@ -55,6 +55,17 @@ export default function useApi() {
       })
     );
     console.log('previewsNews', data);
+
+    return data?.value;
+  }
+
+  async function getGeneral() {
+    const { data } = await useAsyncData('general', () =>
+      apiFetch<Promise<Igeneral>>(`/getGeneral/`, {
+        method: 'GET',
+      })
+    );
+    console.log('general', data);
 
     return data?.value;
   }
@@ -148,6 +159,7 @@ export default function useApi() {
   }
 
   return {
+    getGeneral,
     getHome,
     getNews,
     getPreviewsNews,

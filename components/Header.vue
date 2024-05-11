@@ -13,8 +13,12 @@
             >
               Меню
             </Button>
-            <NuxtLink to="/" class="header__container__logoButton">
-              <img src="assets/images/logo.svg" alt="Санаторий ЛЕС" class="header__container__logoButton__logo" />
+            <NuxtLink to="/" class="header__container__logoButton" v-if="dataGeneral?.header?.logo?.src">
+              <img
+                :src="useImage(dataGeneral.header.logo.src)"
+                :alt="dataGeneral.header.logo.alt"
+                class="header__container__logoButton__logo"
+              />
             </NuxtLink>
 
             <IconComponent
@@ -25,13 +29,13 @@
             />
 
             <Button
-              url="tel:+78007000906"
+              :url="`tel:${dataGeneral.header.phone.url}`"
               class="header__container__phoneButton"
               mod="text"
               type="external"
-              v-if="adaptive_1024_to_768"
+              v-if="adaptive_1024_to_768 && dataGeneral?.header?.phone?.text"
             >
-              +7 800 700-09-06
+              {{ dataGeneral.header.phone.text }}
             </Button>
             <Button
               class="header__container__closeButton"
@@ -53,6 +57,10 @@
 </template>
 
 <script setup lang="ts">
+  import type { Igeneral } from '~/types/General';
+
+  const dataGeneral = useState<Igeneral>('dataGeneral');
+
   const headerRef = ref<HTMLElement>();
 
   const openedMenu = ref<boolean>(false);

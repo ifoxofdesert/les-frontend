@@ -5,11 +5,14 @@
         <ContainerBlock>
           <div class="footer__container">
             <div class="footer__container__navigationBlock">
-              <div class="footer__container__navigationBlock__column phonesColumn">
+              <div
+                class="footer__container__navigationBlock__column phonesColumn"
+                v-if="dataGeneral?.footer?.phones?.length"
+              >
                 <span class="footer__container__navigationBlock__column__title">Телефон</span>
 
                 <Button
-                  v-for="item in phones"
+                  v-for="item in dataGeneral.footer.phones"
                   :url="`tel:${item.url}`"
                   class="footer__container__navigationBlock__column__button"
                   mod="text"
@@ -18,11 +21,14 @@
                   {{ item.text }}
                 </Button>
               </div>
-              <div class="footer__container__navigationBlock__column menuColumn">
+              <div
+                class="footer__container__navigationBlock__column menuColumn"
+                v-if="dataGeneral?.footer?.menu?.length"
+              >
                 <span class="footer__container__navigationBlock__column__title">Меню</span>
 
                 <Button
-                  v-for="item in menu"
+                  v-for="item in dataGeneral.footer.menu"
                   :url="item.url"
                   class="footer__container__navigationBlock__column__button"
                   mod="text"
@@ -32,10 +38,13 @@
                 </Button>
               </div>
 
-              <div class="footer__container__navigationBlock__column navigationColumn">
+              <div
+                class="footer__container__navigationBlock__column navigationColumn"
+                v-if="dataGeneral?.footer?.navigation?.length"
+              >
                 <span class="footer__container__navigationBlock__column__title">Навигация</span>
                 <Button
-                  v-for="item in navigation"
+                  v-for="item in dataGeneral.footer.navigation"
                   :url="item.url"
                   class="footer__container__navigationBlock__column__button"
                   mod="text"
@@ -45,11 +54,14 @@
                 </Button>
               </div>
 
-              <div class="footer__container__navigationBlock__column socialColumn">
+              <div
+                class="footer__container__navigationBlock__column socialColumn"
+                v-if="dataGeneral?.footer?.socials?.length"
+              >
                 <span class="footer__container__navigationBlock__column__title">Соц.Сети</span>
 
                 <Button
-                  v-for="item in socials"
+                  v-for="item in dataGeneral.footer.socials"
                   :url="item.url"
                   class="footer__container__navigationBlock__column__button"
                   target="_blank"
@@ -69,10 +81,10 @@
                 Заказать обратный звонок
               </Button>
 
-              <div class="footer__container__navigationBlock__column addressColumn">
+              <div class="footer__container__navigationBlock__column addressColumn" v-if="dataGeneral?.address">
                 <span class="footer__container__navigationBlock__column__title">Адрес</span>
                 <span class="footer__container__navigationBlock__column__text">
-                  {{ address }}
+                  {{ dataGeneral?.address }}
                 </span>
 
                 <NuxtLink to="/" class="footer__container__navigationBlock__column__mapButton">
@@ -84,14 +96,14 @@
             <span class="footer__container__contactTitle"> Контакты </span>
 
             <div class="footer__container__bottomBlock">
-              <div class="footer__container__bottomBlock__paymentBlock">
+              <div class="footer__container__bottomBlock__paymentBlock" v-if="dataGeneral?.footer?.payments?.length">
                 <a
-                  v-for="item in payments"
+                  v-for="item in dataGeneral.footer.payments"
                   :href="item.url"
                   class="footer__container__bottomBlock__paymentBlock__imageButton"
                 >
                   <img
-                    :src="item.image"
+                    :src="useImage(item.src)"
                     :alt="item.alt"
                     class="footer__container__bottomBlock__paymentBlock__imageButton__image"
                   />
@@ -103,7 +115,11 @@
                 <IconComponent name="circleUpArrow" class="footer__container__bottomBlock__goTopButton__icon" />
               </button>
 
-              <NuxtLink to="/" class="footer__container__bottomBlock__policyButton">
+              <NuxtLink
+                :to="dataGeneral.policyUrl"
+                class="footer__container__bottomBlock__policyButton"
+                v-if="dataGeneral?.policyUrl"
+              >
                 Политика конфиденциальности
               </NuxtLink>
             </div>
@@ -115,102 +131,9 @@
 </template>
 
 <script setup lang="ts">
-  const phones = [
-    {
-      text: '+7 978 50-872-50',
-      url: '+79785087250',
-    },
-    {
-      text: '+7(36560) 777-50',
-      url: '+73656077750',
-    },
-    {
-      text: '+7 800 700-09-06',
-      url: '+78007000906',
-    },
-  ];
+  import type { Igeneral } from '~/types/General';
 
-  const menu = [
-    {
-      text: 'Номера',
-      url: '/',
-    },
-    {
-      text: 'Афиша',
-      url: '/',
-    },
-    {
-      text: 'Спецпредложения',
-      url: '/',
-    },
-    {
-      text: 'Новости',
-      url: '/',
-    },
-  ];
-
-  const navigation = [
-    {
-      text: 'Вакансии',
-      url: '/',
-    },
-    {
-      text: 'Имущество отеля',
-      url: '/',
-    },
-    {
-      text: 'Правила проживания',
-      url: '/',
-    },
-    {
-      text: 'Правила размещения',
-      url: '/',
-    },
-    {
-      text: 'Юридическая информация',
-      url: '/',
-    },
-  ];
-
-  const socials = [
-    {
-      text: 'VKontakte',
-      url: '/',
-    },
-    {
-      text: 'Telegram',
-      url: '/',
-    },
-    {
-      text: 'Tripadvisor',
-      url: '/',
-    },
-  ];
-
-  const address = 'Крым, г. Алушта, Профессорский уголок, ул. Глазкрицкого, 17';
-
-  const payments = [
-    {
-      image: '/_nuxt/assets/images/visa.png',
-      alt: 'Виза',
-      url: '/',
-    },
-    {
-      image: '/_nuxt/assets/images/mir.png',
-      alt: 'мир',
-      url: '/',
-    },
-    {
-      image: '/_nuxt/assets/images/master.png',
-      alt: 'мастер',
-      url: '/',
-    },
-    {
-      image: '/_nuxt/assets/images/logo-yookassa.png',
-      alt: 'ю касса',
-      url: '/',
-    },
-  ];
+  const dataGeneral = useState<Igeneral>('dataGeneral');
 
   const viewport = useViewport();
 

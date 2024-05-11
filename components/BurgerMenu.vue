@@ -15,24 +15,28 @@
 
           <div class="burgerMenu__container__menuBlock">
             <Button
+              v-if="dataGeneral?.header?.menu?.length"
               class="burgerMenu__container__menuBlock__button"
-              v-for="(item, index) in menu"
+              v-for="(item, index) in dataGeneral.header.menu"
               type="internal"
-              mod="text"
-              :url="item.href"
+              mod="text link"
+              :url="item.url"
             >
               {{ item.text }}
               <span class="burgerMenu__container__menuBlock__button__number">{{ formatingNumber(index + 1) }}</span>
             </Button>
           </div>
-          <div class="burgerMenu__container__mobilePhoneBlock" v-if="viewport.isLessThan('is_768')">
+          <div
+            class="burgerMenu__container__mobilePhoneBlock"
+            v-if="viewport.isLessThan('is_768') && dataGeneral?.header?.phone?.text"
+          >
             <Button
-              url="tel:+78007000906"
+              :url="`tel:${dataGeneral.header.phone.url}`"
               class="burgerMenu__container__mobilePhoneBlock__button"
               mod="text"
               type="external"
             >
-              +7 800 700-09-06
+              {{ dataGeneral.header.phone.text }}
             </Button>
           </div>
           <div class="burgerMenu__container__socialsBlock">
@@ -53,38 +57,11 @@
 </template>
 
 <script lang="ts" setup>
-  const emit = defineEmits(['close']);
+  import type { Igeneral } from '~/types/General';
 
-  const menu = [
-    {
-      text: 'Номера',
-      href: '/',
-    },
-    {
-      text: 'Афиша',
-      href: '/',
-    },
-    {
-      text: 'Спецпредложения',
-      href: '/',
-    },
-    {
-      text: 'Новости',
-      href: '/',
-    },
-    {
-      text: 'Контакты',
-      href: '/',
-    },
-    {
-      text: 'Забронировать',
-      href: '/',
-    },
-    {
-      text: 'Внести предоплату',
-      href: '/',
-    },
-  ];
+  const dataGeneral = useState<Igeneral>('dataGeneral');
+
+  const emit = defineEmits(['close']);
 
   const socials = [
     {
@@ -203,6 +180,14 @@
           }
 
           &:hover {
+            &::before {
+              opacity: 1;
+              width: 15px;
+              height: 15px;
+            }
+          }
+
+          &.router-link-active {
             &::before {
               opacity: 1;
               width: 15px;

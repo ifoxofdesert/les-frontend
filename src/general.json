@@ -1,0 +1,156 @@
+{
+  "address": "Крым, г. Алушта, Профессорский уголок, ул. Глазкрицкого, 17",
+  "policyUrl": "#",
+
+  "footer": {
+    "phones": [
+      {
+        "text": "+7 978 50-872-50",
+        "url": "+79785087250"
+      },
+      {
+        "text": "+7(36560) 777-50",
+        "url": "+73656077750"
+      },
+      {
+        "text": "+7 800 700-09-06",
+        "url": "+78007000906"
+      }
+    ],
+
+    "menu": [
+      {
+        "text": "Номера",
+        "url": "/"
+      },
+      {
+        "text": "Афиша",
+        "url": "/"
+      },
+      {
+        "text": "Спецпредложения",
+        "url": "/"
+      },
+      {
+        "text": "Новости",
+        "url": "/"
+      }
+    ],
+
+    "navigation": [
+      {
+        "text": "Вакансии",
+        "url": "/"
+      },
+      {
+        "text": "Имущество отеля",
+        "url": "/"
+      },
+      {
+        "text": "Правила проживания",
+        "url": "/"
+      },
+      {
+        "text": "Правила размещения",
+        "url": "/"
+      },
+      {
+        "text": "Юридическая информация",
+        "url": "/"
+      }
+    ],
+
+    "socials": [
+      {
+        "text": "VKontakte",
+        "url": "/"
+      },
+      {
+        "text": "Telegram",
+        "url": "/"
+      },
+      {
+        "text": "Tripadvisor",
+        "url": "/"
+      }
+    ],
+
+    "payments": [
+      {
+        "image": "/_nuxt/assets/images/visa.png",
+        "alt": "Виза",
+        "url": "/"
+      },
+      {
+        "image": "/_nuxt/assets/images/mir.png",
+        "alt": "мир",
+        "url": "/"
+      },
+      {
+        "image": "/_nuxt/assets/images/master.png",
+        "alt": "мастер",
+        "url": "/"
+      },
+      {
+        "image": "/_nuxt/assets/images/logo-yookassa.png",
+        "alt": "ю касса",
+        "url": "/"
+      }
+    ]
+  },
+  "header": {
+    "phone": {
+      "text": "+7 978 50-872-50",
+      "url": "+79785087250"
+    },
+    "menu": [
+      {
+        "text": "Номера",
+        "url": "/"
+      },
+      {
+        "text": "Афиша",
+        "url": "/"
+      },
+      {
+        "text": "Спецпредложения",
+        "url": "/"
+      },
+      {
+        "text": "Новости",
+        "url": "/"
+      },
+      {
+        "text": "Контакты",
+        "url": "/"
+      },
+      {
+        "text": "Забронировать",
+        "url": "/"
+      },
+      {
+        "text": "Внести предоплату",
+        "url": "/"
+      }
+    ],
+
+    "socials": [
+      {
+        "text": "VKontakte",
+        "url": "/"
+      },
+      {
+        "text": "Telegram",
+        "url": "/"
+      },
+      {
+        "text": "Tripadvisor",
+        "url": "/"
+      }
+    ],
+    "logo": {
+      "src": "/_nuxt/assets/images/2news.jpg",
+      "alt": "Санаторий ЛЕС"
+    }
+  }
+}

@@ -1,3 +1,6 @@
+import type { Ifooter } from './Footer';
+import type { Iheader } from './Header';
+
 export interface IfindMany {
   start?: number;
   limit?: number;
@@ -17,6 +20,10 @@ export interface IfindPage {
 export interface Iimage {
   src?: string;
   alt?: string;
+}
+
+export interface IlinkImage extends Iimage {
+  url?: string;
 }
 
 export interface IvideoSources {
@@ -39,6 +46,11 @@ export interface Iphone {
   url?: string;
 }
 
+export interface IlinkButton {
+  text?: string;
+  url?: string;
+}
+
 export interface Icoordinate {
   latitude?: string;
   longitude?: string;
@@ -57,3 +69,10 @@ export interface Ipage<result> {
 }
 
 export type Emails = string[];
+
+export interface Igeneral {
+  address?: string;
+  policyUrl?: string;
+  footer?: Ifooter;
+  header?: Iheader;
+}
