@@ -19,7 +19,7 @@
               v-for="(item, index) in rooms"
               :key="index"
               :class="{ active: item.active }"
-              :to="`rooms/${item.slug}`"
+              :to="`/rooms/${item.slug}`"
               @mouseover="selectRoom(index)"
             >
               <span class="roomsListBlock__container__roomsBlock__roomBlock__title">{{ item.title }}</span>

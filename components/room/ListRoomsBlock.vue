@@ -14,7 +14,7 @@
           class="roomsListBlock__container__roomsBlock__roomBlock"
           v-for="(item, index) in rooms"
           :key="index"
-          :to="`rooms/${item.slug}`"
+          :to="`/rooms/${item.slug}`"
         >
           <img
             v-if="item?.img?.src"
