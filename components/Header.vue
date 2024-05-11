@@ -9,7 +9,7 @@
               mod="text"
               type="button"
               @click="openMenu()"
-              v-if="!openedMenu && viewport.isGreaterOrEquals('is_768')"
+              v-if="adaptive_1024_to_768"
             >
               Меню
             </Button>
@@ -21,7 +21,7 @@
               name="burger"
               @click="openMenu()"
               class="header__container__menuMobile"
-              v-if="!openedMenu && viewport.isLessThan('is_768')"
+              v-if="viewport.isLessThan('is_768') && !openedMenu"
             />
 
             <Button
@@ -29,7 +29,7 @@
               class="header__container__phoneButton"
               mod="text"
               type="external"
-              v-if="!cheackOpenedMenuResponse(viewport.isGreaterOrEquals('is_768'))"
+              v-if="adaptive_1024_to_768"
             >
               +7 800 700-09-06
             </Button>
@@ -59,14 +59,14 @@
 
   const viewport = useViewport();
 
+  const adaptive_1024_to_768 = computed(
+    () => viewport.isGreaterOrEquals('is_1024') || (viewport.isGreaterOrEquals('is_768') && !openedMenu.value)
+  );
+
   const noScroll = inject<Function>('noScroll');
   const onScroll = inject<Function>('onScroll');
 
   let oldScrollY = 0;
-
-  function cheackOpenedMenuResponse(response: boolean) {
-    return response ? openedMenu.value : true;
-  }
 
   function wathScrollDocument() {
     if (!openedMenu.value) {
