@@ -154,8 +154,15 @@ export default function useApi() {
     return data?.value;
   }
 
-  async function getVacancy(): Promise<IvacancyPage> {
-    return vacancy;
+  async function getVacancy() {
+    const { data } = await useAsyncData('vacancyPage', () =>
+      apiFetch<Promise<IvacancyPage>>(`/getVacancyPage/`, {
+        method: 'GET',
+      })
+    );
+    console.log('vacancyPage', data);
+
+    return data?.value;
   }
 
   async function getContacts() {

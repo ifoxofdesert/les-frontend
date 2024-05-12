@@ -1,5 +1,5 @@
 export interface Ivacancies {
-  active: boolean;
+  active?: boolean;
   title: string;
   experience: string;
   employment: string;

@@ -1,5 +1,5 @@
 <template>
-  <div class="vacancies">
+  <div class="vacancies" v-if="content">
     <Container>
       <ContainerBlock>
         <InfoPagesStructureBlock
@@ -33,6 +33,10 @@
   const { getVacancy } = useApi();
 
   const content = ref(await getVacancy());
+
+  if (!content.value?.pagetitle) {
+    showError({ statusCode: 404, fatal: true });
+  }
 
   const getNavigations = computed<Inavigations[]>(() => {
     const vacancies = content.value?.vacancies;

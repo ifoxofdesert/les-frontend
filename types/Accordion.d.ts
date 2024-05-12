@@ -1,7 +1,7 @@
 export interface Iaccordion {
   title: string;
   text?: string;
-  active: boolean;
+  active?: boolean;
 }
 
 export type ChangeAccardion = (accordion: Iaccordion) => void;
