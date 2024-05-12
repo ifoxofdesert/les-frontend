@@ -1,6 +1,6 @@
 <template>
   <div class="contacts">
-    <Container>
+    <Container v-if="content">
       <ContainerBlock>
         <InfoPagesMenuSlider :buttons="menu" class="contacts__menuBlock" />
         <InfoPagesStructureBlock :title="content.title" :lastUpdate="content.lastUpdate">
@@ -90,6 +90,10 @@
   const { getContacts } = useApi();
 
   const content = ref(await getContacts());
+
+  if (!content.value?.pagetitle) {
+    showError({ statusCode: 404, fatal: true });
+  }
 
   useHead({
     title: content.value?.pagetitle || '',

@@ -1,14 +1,17 @@
+import type { formatingDateTime } from '~/types/formating';
+
 export default function useFormating() {
   function formatingNumber(number: number): string | number {
     return number > 9 ? number : `0${number}`;
   }
 
-  function formatingDateTime(dateTime: string) {
+  function formatingDateTime(dateTime: string, options?: formatingDateTime) {
     if (dateTime) {
       const date = new Date(Date.parse(dateTime)).toLocaleString('ru', {
         timeZone: 'Europe/Moscow',
         month: 'long',
         day: 'numeric',
+        year: options?.onYear ? 'numeric' : undefined,
       });
 
       const time =

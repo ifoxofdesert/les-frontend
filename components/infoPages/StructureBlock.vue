@@ -3,7 +3,12 @@
     <div class="structureBlock__navigationBlock">
       <h1 class="structureBlock__navigationBlock__title" v-if="title">{{ title }}</h1>
       <span class="structureBlock__navigationBlock__lastUpdate" v-if="lastUpdate">
-        Последнее редактирование: {{ lastUpdate }}
+        Последнее редактирование:
+        {{
+          formatingDateTime(lastUpdate, {
+            onYear: true,
+          })
+        }}
       </span>
 
       <div class="structureBlock__navigationBlock__container">
@@ -43,6 +48,8 @@
       default: [],
     },
   });
+
+  const { formatingDateTime } = useFormating();
 
   const emit = defineEmits(['changeTab']);
 

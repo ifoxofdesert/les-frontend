@@ -158,8 +158,15 @@ export default function useApi() {
     return vacancy;
   }
 
-  async function getContacts(): Promise<IcontactsPage> {
-    return contacts;
+  async function getContacts() {
+    const { data } = await useAsyncData('contact', () =>
+      apiFetch<Promise<IcontactsPage>>(`/getContact/`, {
+        method: 'GET',
+      })
+    );
+    console.log('contact', data);
+
+    return data?.value;
   }
 
   async function getInfoPage(slug: string): Promise<IinfoPage> {
