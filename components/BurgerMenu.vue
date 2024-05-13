@@ -116,7 +116,7 @@
     z-index: 5;
     height: 100%;
 
-    &__container {
+    .burgerMenu__container {
       width: 100%;
       padding: 33px 0 43px 0;
       height: calc(100vh - 76px);
