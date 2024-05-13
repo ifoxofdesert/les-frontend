@@ -11,7 +11,7 @@ export default function useApi() {
   const env = useEnv();
 
   const apiFetch = $fetch.create({
-    baseURL: 'http://localhost:1337/api',
+    baseURL: env.API_URR,
     responseType: 'json',
     headers: {
       Authorization: `Bearer ${env.API_TOKEN}`,

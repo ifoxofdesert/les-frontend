@@ -162,6 +162,7 @@ export default defineNuxtConfig({
       SITE_URL: process.env.SITE_URL,
       MEDIA_URL: process.env.MEDIA_URL,
       API_TOKEN: process.env.API_TOKEN,
+      API_URL: process.env.API_URL,
     },
   },
 
