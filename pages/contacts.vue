@@ -2,7 +2,7 @@
   <div class="contacts">
     <Container v-if="content">
       <ContainerBlock>
-        <InfoPagesMenuSlider :buttons="menu" class="contacts__menuBlock" />
+        <InfoPagesMenuSlider v-if="menu?.length" :buttons="menu" class="contacts__menuBlock" />
         <InfoPagesStructureBlock :title="content.title" :lastUpdate="content.lastUpdate">
           <NewsText class="infoPage">
             <div>
@@ -85,11 +85,11 @@
 </template>
 
 <script lang="ts" setup>
-  import menu from '~/src/infoPageMenu.json';
-
-  const { getContacts } = useApi();
+  const { getContacts, getInfoPageMenu } = useApi();
 
   const content = ref(await getContacts());
+
+  const menu = ref(await getInfoPageMenu());
 
   if (!content.value?.pagetitle) {
     showError({ statusCode: 404, fatal: true });

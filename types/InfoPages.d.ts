@@ -10,6 +10,7 @@ export interface IpageMenu {
 }
 
 export interface IinfoPage {
+  slug: string;
   pagetitle?: string;
   pageDescription?: string;
   title?: string;

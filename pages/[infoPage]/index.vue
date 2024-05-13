@@ -1,8 +1,8 @@
 <template>
-  <div class="contacts">
+  <div class="contacts" v-if="content">
     <Container>
       <ContainerBlock>
-        <InfoPagesMenuSlider :buttons="menu" class="contacts__menuBlock" />
+        <InfoPagesMenuSlider v-if="menu?.length" :buttons="menu" class="contacts__menuBlock" />
         <InfoPagesStructureBlock :title="content.title" :lastUpdate="content.lastUpdate">
           <NewsText :text="content.text" class="infoPage" />
         </InfoPagesStructureBlock>
@@ -12,19 +12,22 @@
 </template>
 
 <script lang="ts" setup>
-  import menu from '~/src/infoPageMenu.json';
-
-  const { getInfoPage } = useApi();
+  const { getInfoPage, getInfoPageMenu } = useApi();
 
   const route = useRoute();
 
-  console.log(route);
-
   const getSlug = computed(() => route?.params['infoPage'] as string);
 
-  const content = ref(await getInfoPage(getSlug.value));
+  const content = ref(
+    await getInfoPage({
+      populate: 'deep',
+      filters: { slug: { $eq: getSlug.value } },
+    })
+  );
 
-  if (!content.value?.title) {
+  const menu = ref(await getInfoPageMenu());
+
+  if (!content.value?.slug) {
     showError({ statusCode: 404, fatal: true });
   }
 
