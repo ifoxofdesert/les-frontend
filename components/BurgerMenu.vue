@@ -19,6 +19,7 @@
               class="burgerMenu__container__menuBlock__button"
               v-for="(item, index) in dataGeneral.header.menu"
               type="internal"
+              @click="$emit('close')"
               mod="text link"
               :url="item.url"
             >
