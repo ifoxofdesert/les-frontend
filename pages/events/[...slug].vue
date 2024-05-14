@@ -51,17 +51,18 @@
   });
 
   const filterQuery = computed(() => {
-    if (filterTags.value != 'all') {
-      return { pageNews: { type: { tag: { $eq: filterTags.value } } } };
+    if (!filterTags.value.includes('all')) {
+      return { pageNews: { type: { tag: { $eq: filterTags.value[0] } } } };
     } else {
       return undefined;
     }
   });
 
   const tags = ref([{ name: 'Все', tag: 'all' }, ...((await getTags()) || [])]);
+
   tags.value.forEach((tag) => {
     tag.active = false;
-    if (tag.tag == filterTags.value) {
+    if (filterTags.value.includes(tag.tag)) {
       tag.active = true;
     }
   });
