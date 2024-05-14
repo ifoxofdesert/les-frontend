@@ -55,6 +55,24 @@
     display: flex;
     flex-direction: column;
     margin: 0 0 100px 0;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 11.693%, rgba(0, 0, 0, 0.6) 100%);
+      z-index: 1;
+    }
+
+    &:deep() {
+      .containerBlock {
+        z-index: 2;
+      }
+    }
+
     &__backgroundImage {
       position: absolute;
       top: 0;
