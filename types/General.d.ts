@@ -4,7 +4,7 @@ import type { Iheader } from './Header';
 export interface IfindMany {
   start?: number;
   limit?: number;
-  sort?: object;
+  sort?: object | string;
   populate?: string;
   filters?: object;
 }

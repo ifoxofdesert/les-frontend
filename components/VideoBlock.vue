@@ -11,7 +11,12 @@
         preload="metadata"
         :poster="video?.poster ? useImage(video.poster) : ''"
       >
-        <source v-for="item in video.sources" :src="useImage(item.src)" :type="item.type" />
+        <source
+          v-if="video?.sources?.length"
+          v-for="item in video.sources"
+          :src="useImage(item.src)"
+          :type="item.type"
+        />
       </video>
     </Container>
   </div>

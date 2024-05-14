@@ -33,6 +33,7 @@
   const rooms = ref(
     await getPreviewsRoom({
       populate: 'deep',
+      sort: 'order:asc',
     })
   );
 
