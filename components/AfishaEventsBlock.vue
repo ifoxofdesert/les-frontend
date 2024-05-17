@@ -12,7 +12,11 @@
           </span>
 
           <div class="afishaEventsBlock__container__afishaBlock" v-if="viewport.isGreaterOrEquals('is_1450')">
-            <div class="afishaEventsBlock__container__afishaBlock__mainBlock" v-if="mainBlock?.title">
+            <NuxtLink
+              class="afishaEventsBlock__container__afishaBlock__mainBlock"
+              :to="`/events/page-${mainBlock?.slug}`"
+              v-if="mainBlock?.title"
+            >
               <img
                 v-if="mainBlock?.image?.src"
                 :src="useImage(mainBlock.image.src)"
@@ -38,14 +42,15 @@
                   {{ mainBlock?.description }}
                 </span>
               </div>
-            </div>
+            </NuxtLink>
 
             <div
               class="afishaEventsBlock__container__afishaBlock__othersPosters"
               :class="{ jc_sb: content.length > 2 }"
             >
               <template v-for="(item, index) in content">
-                <div
+                <NuxtLink
+                  :to="`/events/page-${item?.slug}`"
                   class="afishaEventsBlock__container__afishaBlock__othersPosters__poster"
                   v-if="item != mainBlock"
                   :key="index"
@@ -79,7 +84,7 @@
                       {{ item.description }}
                     </span>
                   </div>
-                </div>
+                </NuxtLink>
               </template>
             </div>
           </div>
@@ -94,7 +99,12 @@
                 :key="index"
                 class="afishaEventsBlock__container__afishaMobileBlock__slider__slide"
               >
-                <CardEvent :card="item" />
+                <NuxtLink
+                  class="afishaEventsBlock__container__afishaMobileBlock__slider__slide__button"
+                  :to="`/events/page-${mainBlock?.slug}`"
+                >
+                  <CardEvent :card="item" />
+                </NuxtLink>
               </SwiperSlide>
             </Swiper>
           </div>
@@ -217,6 +227,7 @@
           padding: 25px 30px;
           max-width: 1005px;
           width: 100%;
+          text-decoration: none;
 
           &__image {
             width: 100%;
@@ -285,6 +296,7 @@
             background-color: $milk;
             display: flex;
             gap: 20px;
+            text-decoration: none;
 
             &__image {
               max-width: 265px;
@@ -364,6 +376,10 @@
             height: auto;
             margin: 0 15px 0 0;
             width: auto;
+
+            &__button {
+              text-decoration: none;
+            }
           }
         }
 
