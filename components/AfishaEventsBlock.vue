@@ -108,7 +108,7 @@
               </SwiperSlide>
             </Swiper>
           </div>
-          <Button class="afishaEventsBlock__container__button" mod="green" type="internal" url="/news/">
+          <Button class="afishaEventsBlock__container__button" mod="green" type="internal" url="/events/">
             Посмотреть все новости
             <IconComponent name="arrow_right" />
           </Button>
