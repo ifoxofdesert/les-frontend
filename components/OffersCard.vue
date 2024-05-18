@@ -1,5 +1,5 @@
 <template>
-  <div v-if="content.title" class="offersCard">
+  <NuxtLink :to="`/events/page-${content.slug}`" v-if="content.title" class="offersCard">
     <div class="offersCard__imageBlock">
       <span class="offersCard__imageBlock__number">
         {{ formatingNumber(index + 1) }}
@@ -18,7 +18,7 @@
         {{ content.title }}
       </span>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">
@@ -46,6 +46,7 @@
     background-color: $milk;
     height: 420px;
     width: 415px;
+    text-decoration: none;
     &__imageBlock {
       display: flex;
       justify-content: space-between;
@@ -55,6 +56,7 @@
         font-size: 20px;
         font-weight: 500;
         line-height: 110%;
+        color: $black;
       }
       &__image {
         width: 200px;
