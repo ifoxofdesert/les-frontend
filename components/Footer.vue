@@ -93,7 +93,6 @@
                 </NuxtLink>
               </div>
             </div>
-            <span class="footer__container__contactTitle"> Контакты </span>
 
             <div class="footer__container__bottomBlock">
               <div class="footer__container__bottomBlock__paymentBlock" v-if="dataGeneral?.footer?.payments?.length">
@@ -157,7 +156,7 @@
         flex-direction: column;
         &__navigationBlock {
           width: 100%;
-          margin: 0 0 212px 0;
+          margin: 0 0 60px 0;
           display: flex;
           justify-content: space-between;
 
@@ -367,29 +366,12 @@
             }
           }
 
-          @media (max-width: 1880px) {
-            margin: 0 0 60px 0;
-          }
-
           @media (max-width: 1200px) {
             flex-wrap: wrap;
           }
 
           @media (max-width: 400px) {
             margin: 0 0 50px 0;
-          }
-        }
-
-        &__contactTitle {
-          font-size: 20.375em;
-          font-weight: 500;
-          font-family: 'Playfair Display';
-          text-transform: uppercase;
-          color: $green;
-          margin: 0 0 80px 0;
-
-          @media (max-width: 1880px) {
-            display: none;
           }
         }
 
