@@ -27,6 +27,6 @@
     document.body.style.overflow = '';
   }
 
-  provide('noScroll', noScroll);
-  provide('onScroll', onScroll);
+  useListen('scroll:no', () => noScroll());
+  useListen('scroll:on', () => onScroll());
 </script>

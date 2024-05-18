@@ -155,6 +155,10 @@
             opacity: 0;
             width: 0;
             transition: all ease 0.2s;
+
+            @media (max-width: 1550px) {
+              margin: 20px 0 0 0;
+            }
           }
 
           &__number {
@@ -167,7 +171,6 @@
 
             @media (max-width: 1550px) {
               margin: 0;
-
               font-size: 16px;
             }
 
@@ -183,7 +186,7 @@
           &:hover {
             &::before {
               opacity: 1;
-              width: 15px;
+              min-width: 15px;
               height: 15px;
             }
           }
@@ -191,7 +194,7 @@
           &.router-link-active {
             &::before {
               opacity: 1;
-              width: 15px;
+              min-width: 15px;
               height: 15px;
             }
           }

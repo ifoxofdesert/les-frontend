@@ -1,5 +1,5 @@
 <template>
-  <header :class="{ openedMenu }">
+  <header :class="{ openedPopup }">
     <div class="header" ref="headerRef">
       <Container>
         <ContainerBlock>
@@ -25,7 +25,7 @@
               name="burger"
               @click="openMenu()"
               class="header__container__menuMobile"
-              v-if="viewport.isLessThan('is_768') && !openedMenu"
+              v-if="viewport.isLessThan('is_768') && !openedPopup"
             />
 
             <Button
@@ -42,7 +42,7 @@
               mod="text"
               type="button"
               @click="closeMenu"
-              v-if="openedMenu"
+              v-if="openedPopup"
             >
               <IconComponent name="close" class="header__container__closeButton__icon" />
             </Button>
@@ -63,21 +63,20 @@
 
   const headerRef = ref<HTMLElement>();
 
-  const openedMenu = ref<boolean>(false);
+  const openedMenu = ref(false);
+
+  const openedPopup = ref(false);
 
   const viewport = useViewport();
 
   const adaptive_1024_to_768 = computed(
-    () => viewport.isGreaterOrEquals('is_1024') || (viewport.isGreaterOrEquals('is_768') && !openedMenu.value)
+    () => viewport.isGreaterOrEquals('is_1024') || (viewport.isGreaterOrEquals('is_768') && !openedPopup.value)
   );
-
-  const noScroll = inject<Function>('noScroll');
-  const onScroll = inject<Function>('onScroll');
 
   let oldScrollY = 0;
 
   function wathScrollDocument() {
-    if (!openedMenu.value) {
+    if (!openedPopup.value) {
       const noFixedBlock = document.querySelector('.noFixed') as HTMLElement;
 
       const positionElementOnPage = noFixedBlock?.offsetTop || 0;
@@ -101,17 +100,29 @@
     document.addEventListener('scroll', wathScrollDocument);
   });
 
-  function openMenu() {
-    if (typeof noScroll == 'function') {
-      noScroll();
+  useListen('popup:open', () => showHeaderPopup());
+
+  useListen('popup:close', () => hideHeaderPopup());
+
+  function showHeaderPopup() {
+    if (viewport.isLessThan('is_1024')) {
+      openedPopup.value = true;
     }
+  }
+
+  function hideHeaderPopup() {
+    openedPopup.value = false;
+  }
+
+  function openMenu() {
+    useEvent('scroll:no');
     openedMenu.value = true;
+    showHeaderPopup();
   }
 
   function closeMenu() {
-    if (typeof onScroll == 'function') {
-      onScroll();
-    }
+    useEvent('popup:close');
+    useEvent('scroll:on');
     openedMenu.value = false;
   }
 </script>
@@ -243,7 +254,7 @@
       z-index: 6;
     }
 
-    &.openedMenu {
+    &.openedPopup {
       .header {
         position: fixed;
         top: 0 !important;
