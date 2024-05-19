@@ -35,10 +35,29 @@
 
         <div class="roomPage__gallaryBlock" v-if="content?.gallary?.length">
           <RoomGallary
-            :data="content.gallary"
             :title="content.gallaryTitle"
             :description="content.gallaryDescription"
-          />
+            :numberSlides="content.gallary.length"
+            :fixNumberSlides="30"
+            :spaceBetween="20"
+          >
+            <SwiperSlide
+              v-for="(item, index) in content.gallary"
+              :key="index"
+              class="roomPage__gallaryBlock__slide"
+              :class="`roomPage__gallaryBlock__slide_${getSchemaIndex(index)}`"
+            >
+              <div class="roomPage__gallaryBlock__slide__imageBlock">
+                <span class="roomPage__gallaryBlock__slide__imageBlock__number">{{ formatingNumber(index + 1) }}</span>
+
+                <img
+                  :src="useImage(item.src)"
+                  :alt="item.src"
+                  class="roomPage__gallaryBlock__slide__imageBlock__image"
+                />
+              </div>
+            </SwiperSlide>
+          </RoomGallary>
         </div>
 
         <div class="roomPage__welcomeBlock" v-if="content?.roomWelcome">
@@ -77,6 +96,20 @@
 
   if (!content?.value?.slug) {
     showError({ statusCode: 404, fatal: true });
+  }
+
+  const { formatingNumber } = useFormating();
+
+  let repeatIndex = 0;
+
+  function getSchemaIndex(i: number) {
+    let index = i + 1 - repeatIndex;
+    if (index <= 4) {
+      return index;
+    } else if (index > 4) {
+      repeatIndex = index - 1;
+      return i + 1 - repeatIndex;
+    }
   }
 
   useHead({
@@ -128,6 +161,50 @@
 
     &__gallaryBlock {
       margin: 0 0 225px 0;
+
+      &__slide {
+        margin: 0 20px 0 0;
+        display: flex;
+        flex-direction: column;
+
+        &__imageBlock {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+
+          &__number {
+            font-family: Manrope;
+            font-size: 20px;
+            font-weight: 300;
+            line-height: 110%;
+            color: $gray;
+            margin: 0 auto 0 0;
+          }
+
+          &__image {
+            object-fit: cover;
+            height: 100%;
+          }
+        }
+
+        &_1 {
+          width: 445px !important;
+          height: 465px !important;
+          margin: 0 155px 0 0 !important;
+        }
+        &_2 {
+          width: 290px !important;
+          height: 355px !important;
+        }
+        &_3 {
+          width: 445px !important;
+          height: 477px !important;
+        }
+        &_4 {
+          width: 600px !important;
+          height: 397px !important;
+        }
+      }
     }
 
     &__welcomeBlock {

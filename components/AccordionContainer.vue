@@ -10,8 +10,6 @@
   const slots = useSlots();
 
   function changeAccardion(accordion: Iaccordion) {
-    console.log(accordion);
-
     if (slots?.default) {
       const data = slots.default();
 

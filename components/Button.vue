@@ -17,6 +17,7 @@
       type: String as () =>
         | 'green'
         | 'white'
+        | 'gray'
         | 'white br'
         | 'text'
         | 'text link'
@@ -97,6 +98,56 @@
         background-color: $green;
         color: $whitesmoke;
         border-color: $green;
+      }
+    }
+
+    &__gray {
+      background-color: $gray;
+      color: $whitesmoke;
+      font-size: 20px;
+      transition: all ease 0.2s;
+
+      @media (max-width: 550px) {
+        font-size: 18px;
+      }
+
+      @media (max-width: 400px) {
+        font-size: 16px;
+      }
+
+      &:deep() {
+        svg {
+          path {
+            transition: all ease 0.2s;
+            fill: $whitesmoke;
+          }
+        }
+      }
+
+      &:not([disabled]) {
+        &:deep() {
+          &:hover {
+            svg {
+              path {
+                fill: $black;
+              }
+            }
+          }
+        }
+
+        &:hover {
+          color: $black;
+          background-color: $whitesmoke;
+          outline-color: $black;
+
+          &:deep() {
+            svg {
+              path {
+                fill: $black;
+              }
+            }
+          }
+        }
       }
     }
 
