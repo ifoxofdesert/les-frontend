@@ -9,18 +9,32 @@
                 class="footer__container__navigationBlock__column phonesColumn"
                 v-if="dataGeneral?.footer?.phones?.length"
               >
-                <span class="footer__container__navigationBlock__column__title">Телефон</span>
-
-                <Button
-                  v-for="item in dataGeneral.footer.phones"
-                  :url="`tel:${item.url}`"
-                  class="footer__container__navigationBlock__column__button"
-                  mod="text"
-                  type="external"
+                <div
+                  class="footer__container__navigationBlock__column__phonesBlock"
+                  v-for="(group, gIndex) in phonesGroups"
+                  :key="gIndex"
                 >
-                  {{ item.text }}
+                  <span class="footer__container__navigationBlock__column__phonesBlock__title">{{ group.name }}</span>
+                  <Button
+                    v-for="item in group.data"
+                    :url="`tel:${item.url}`"
+                    class="footer__container__navigationBlock__column__button"
+                    mod="text"
+                    type="external"
+                  >
+                    {{ item.text }}
+                  </Button>
+                </div>
+                <Button
+                  class="footer__container__navigationBlock__button"
+                  type="button"
+                  mod="white br"
+                  v-if="viewport.isGreaterOrEquals('is_1200')"
+                >
+                  Заказать обратный звонок
                 </Button>
               </div>
+
               <div
                 class="footer__container__navigationBlock__column menuColumn"
                 v-if="dataGeneral?.footer?.menu?.length"
@@ -136,6 +150,23 @@
 
   const viewport = useViewport();
 
+  const phonesGroups = computed(() => {
+    if (dataGeneral?.value?.footer?.phones?.length) {
+      return dataGeneral.value.footer.phones.map((group) => {
+        if (dataGeneral?.value?.footer?.phones?.length) {
+          return {
+            name: group.mission,
+            data: dataGeneral.value.footer.phones?.filter((item) => item.mission == group.mission),
+          };
+        } else {
+          return {};
+        }
+      });
+    } else {
+      return [];
+    }
+  });
+
   function scrollTop() {
     window.scrollTo(0, 0);
   }
@@ -163,8 +194,8 @@
           &__column {
             display: flex;
             flex-direction: column;
-            max-width: 290px;
-            width: 100%;
+            max-width: 350px;
+
             gap: 15px;
 
             &__title {
@@ -176,6 +207,25 @@
 
               @media (max-width: 1200px) {
                 margin: 0;
+              }
+            }
+
+            &__phonesBlock {
+              display: flex;
+              flex-direction: column;
+
+              &__title {
+                margin: 0 0 7px 0;
+                color: $green;
+                font-family: 'Manrope';
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 100%;
+                display: block;
+              }
+
+              @media (max-width: 425px) {
+                margin: 0 0 10px 0;
               }
             }
 
@@ -242,6 +292,7 @@
                 margin: 0;
                 transition: all ease 0.2s;
                 background-color: transparent;
+                align-self: center;
 
                 &__text {
                   position: relative;
@@ -349,12 +400,13 @@
           &__button {
             width: 100%;
             background-color: transparent;
-            margin: 30px 0 40px 0;
+            margin: 15px 0 0 0;
             border-color: $black !important;
-            display: none;
+            display: flex;
+            font-size: 20px;
 
             @media (max-width: 1200px) {
-              display: flex;
+              margin: 30px 0 40px 0;
             }
 
             @media (max-width: 920px) {
@@ -492,9 +544,6 @@
 
           @media (max-width: 1024px) {
             flex-wrap: wrap;
-          }
-
-          @media (max-width: 1024px) {
             padding: 30px 0 0 0;
           }
 

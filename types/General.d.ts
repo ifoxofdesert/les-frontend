@@ -44,6 +44,7 @@ export interface ItitleCustom {
 export interface Iphone {
   text?: string;
   url?: string;
+  mission?: string;
 }
 
 export interface IlinkButton {

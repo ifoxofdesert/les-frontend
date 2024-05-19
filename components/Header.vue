@@ -33,7 +33,7 @@
               class="header__container__phoneButton"
               mod="text"
               type="external"
-              v-if="adaptive_1024_to_768 && dataGeneral?.header?.phone?.text"
+              v-if="dataGeneral?.header?.phone?.text"
             >
               {{ dataGeneral.header.phone.text }}
             </Button>
@@ -176,6 +176,10 @@
             left: 0;
             transform: translate(0, 0);
           }
+
+          @media (max-width: 768px) {
+            order: 1;
+          }
         }
 
         &__phoneButton {
@@ -187,11 +191,22 @@
           line-height: 42px;
           color: $black;
           text-transform: uppercase;
+
+          @media (max-width: 768px) {
+            order: 2;
+            font-size: 18px;
+          }
+
+          @media (max-width: 380px) {
+            order: 2;
+            font-size: 14px;
+          }
         }
 
         &__closeButton {
           margin: 0 0 0 auto;
           display: none;
+          width: 45px;
 
           &:active {
             &:deep() {
@@ -199,6 +214,10 @@
                 stroke: $green;
               }
             }
+          }
+
+          @media (max-width: 768px) {
+            order: 3;
           }
 
           @media (max-width: 550px) {
@@ -215,6 +234,7 @@
           margin: 0 0 0 auto;
           @media (max-width: 768px) {
             display: flex;
+            order: 3;
           }
 
           @media (max-width: 550px) {
