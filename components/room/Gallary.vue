@@ -4,7 +4,12 @@
     <span class="gallaryBlock__description" v-if="description">{{ description }}</span>
     <div class="gallaryBlock__sliderBlock">
       <RoomSlider :numberSlides="data.length" :fixNumberSlides="3" :spaceBetween="20">
-        <SwiperSlide v-for="(item, index) in data" :key="index" class="gallaryBlock__sliderBlock__slide">
+        <SwiperSlide
+          v-for="(item, index) in data"
+          :key="index"
+          class="gallaryBlock__sliderBlock__slide"
+          :class="`gallaryBlock__sliderBlock__slide_${getSchemaIndex(index)}`"
+        >
           <div class="gallaryBlock__sliderBlock__slide__imageBlock">
             <span class="gallaryBlock__sliderBlock__slide__imageBlock__number">{{ formatingNumber(index + 1) }}</span>
 
@@ -41,6 +46,18 @@
   });
 
   const { formatingNumber } = useFormating();
+
+  let repeatIndex = 0;
+
+  function getSchemaIndex(i: number) {
+    let index = i + 1 - repeatIndex;
+    if (index <= 4) {
+      return index;
+    } else if (index > 4) {
+      repeatIndex = index - 1;
+      return i + 1 - repeatIndex;
+    }
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -72,16 +89,15 @@
       width: 100%;
 
       &__slide {
-        max-width: 445px;
-        max-height: 477px;
         margin: 0 20px 0 0;
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
 
         &__imageBlock {
           display: flex;
           flex-direction: column;
+          height: 100%;
+
           &__number {
             font-family: Manrope;
             font-size: 20px;
@@ -93,8 +109,26 @@
 
           &__image {
             object-fit: cover;
-            max-width: 445px;
+            height: 100%;
           }
+        }
+
+        &_1 {
+          width: 445px !important;
+          height: 465px !important;
+          margin: 0 155px 0 0 !important;
+        }
+        &_2 {
+          width: 290px !important;
+          height: 355px !important;
+        }
+        &_3 {
+          width: 445px !important;
+          height: 477px !important;
+        }
+        &_4 {
+          width: 600px !important;
+          height: 397px !important;
         }
       }
     }

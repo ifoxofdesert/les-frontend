@@ -1,15 +1,15 @@
 <template>
   <div class="sliderBlock">
     <div class="sliderBlock__navigationBlock">
-      <button class="sliderBlock__navigationBlock__button left" ref="swiperPrev">
+      <button class="sliderBlock__navigationBlock__button left" ref="swiperPrev" v-if="allIndex > 1">
         <IconComponent name="arrow_left" class="sliderBlock__navigationBlock__button__icon" />
       </button>
-      <div class="sliderBlock__navigationBlock__numberBlock">
+      <div class="sliderBlock__navigationBlock__numberBlock" v-if="allIndex > 1">
         {{ activeIndex }}
         <span class="delimiter">/</span>
         <span class="all">{{ formatingNumber(allIndex) }}</span>
       </div>
-      <button class="sliderBlock__navigationBlock__button right" ref="swiperNext">
+      <button class="sliderBlock__navigationBlock__button right" ref="swiperNext" v-if="allIndex > 1">
         <IconComponent name="arrow_right" class="sliderBlock__navigationBlock__button__icon" />
       </button>
     </div>
