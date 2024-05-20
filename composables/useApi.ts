@@ -6,6 +6,7 @@ import type { IcontactsPage } from '~/types/Contacts';
 import type { IinfoPage, IpageMenu } from '~/types/InfoPages';
 import type { IfindMany, IfindPage, Igeneral, Ipage } from '~/types/General';
 import type { Itags } from '~/types/FilterTagDate';
+import type { IformFeedbackRequests, IresponseStatus } from '~/types/Form';
 
 export default function useApi() {
   const env = useEnv();
@@ -186,6 +187,18 @@ export default function useApi() {
     return data?.value;
   }
 
+  async function sendFeedbackRequests(fields: IformFeedbackRequests) {
+    const { data } = await useAsyncData('sendFeedbackRequests', () =>
+      apiFetch<Promise<IresponseStatus>>(`/send-feedback-requests/`, {
+        method: 'POST',
+        body: fields,
+      })
+    );
+    console.log('sendFeedbackRequests', data);
+
+    return data?.value;
+  }
+
   return {
     getGeneral,
     getHome,
@@ -199,5 +212,6 @@ export default function useApi() {
     getContacts,
     getInfoPage,
     getInfoPageMenu,
+    sendFeedbackRequests,
   };
 }

@@ -30,6 +30,7 @@
                   type="button"
                   mod="white br"
                   v-if="viewport.isGreaterOrEquals('is_1200')"
+                  @click="openPopupFeedbackRequests()"
                 >
                   Заказать обратный звонок
                 </Button>
@@ -91,6 +92,7 @@
                 type="button"
                 mod="white br"
                 v-if="viewport.isLessThan('is_1200')"
+                @click="openPopupFeedbackRequests()"
               >
                 Заказать обратный звонок
               </Button>
@@ -166,6 +168,12 @@
       return [];
     }
   });
+
+  function openPopupFeedbackRequests() {
+    console.log(123);
+
+    useEvent('popupFeedbackRequests:open');
+  }
 
   function scrollTop() {
     window.scrollTo(0, 0);

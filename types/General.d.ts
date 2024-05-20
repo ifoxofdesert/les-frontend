@@ -1,4 +1,5 @@
 import type { Ifooter } from './Footer';
+import type { IformFeedback } from './Form';
 import type { Iheader } from './Header';
 
 export interface IfindMany {
@@ -76,4 +77,5 @@ export interface Igeneral {
   policyUrl?: string;
   footer?: Ifooter;
   header?: Iheader;
+  formFeedback?: IformFeedback;
 }

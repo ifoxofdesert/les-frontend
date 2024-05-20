@@ -1,7 +1,7 @@
 <template>
-  <div class="formPopup">
+  <div class="formPopup" @click="checkClick">
     <div class="formPopup__container">
-      <IconComponent name="close" class="formPopup__container__close" />
+      <IconComponent name="close" class="formPopup__container__close" @click="$emit('close')" />
       <div class="formPopup__container__formBlock">
         <h2 class="formPopup__container__formBlock__title" v-if="data?.title" v-html="data.title" />
 
@@ -29,7 +29,7 @@
           />
           <Button
             class="formPopup__container__formBlock__form__button"
-            mod="gray"
+            :mod="disabledSend ? 'gray' : 'green'"
             type="button"
             :disabled="disabledSend"
             @click="sendForm()"
@@ -38,24 +38,43 @@
             <IconComponent name="arrow_right" />
           </Button>
         </form>
+
+        <span class="formPopup__container__formBlock__policyText" v-if="policyUrl">
+          Нажимая на кнопку вы сошлашаетесь с
+          <Button
+            mod="text_green"
+            :url="policyUrl"
+            type="internal"
+            class="formPopup__container__formBlock__policyText__button"
+          >
+            политикой конфиденциальности
+          </Button>
+        </span>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import type { IformPopup, Iinput } from '~/types/Form.d.ts';
+  import type { IformFeedback, Iinput, IformFeedbackRequests } from '~/types/Form.d.ts';
+
+  const emit = defineEmits(['close']);
 
   const disabledSend = ref(true);
 
   const { data } = defineProps({
     data: {
-      type: Object as () => IformPopup,
+      type: Object as () => IformFeedback,
       default: {},
+    },
+    policyUrl: {
+      type: String,
+      default: '',
     },
   });
 
   const { checkValidate } = useForm();
+  const { sendFeedbackRequests } = useApi();
 
   const name = ref<Iinput>();
   const phone = ref<Iinput>();
@@ -74,11 +93,30 @@
     }
   }
 
-  function sendForm() {
+  async function sendForm() {
     const valid = validate();
 
     if (valid) {
-      const dataForm = formInputs.value.map((item) => ({ [item.type]: item.value }));
+      const dataForm: IformFeedbackRequests = {
+        name: name.value?.value,
+        phone: phone.value?.value,
+        email: email.value?.value,
+        description: description.value?.value,
+      };
+
+      disabledSend.value = true;
+
+      const res = await sendFeedbackRequests(dataForm);
+
+      emit('close');
+    }
+  }
+
+  function checkClick(e: Event) {
+    const target = e.target as HTMLButtonElement;
+
+    if (!target.closest('.formPopup__container')) {
+      emit('close');
     }
   }
 </script>
@@ -164,6 +202,31 @@
 
           &__button {
             margin: 15px 0 0 0;
+
+            &[disabled] {
+              cursor: default;
+            }
+
+            &.button__green:hover {
+              background-color: transparent;
+            }
+          }
+        }
+        &__policyText {
+          font-family: Manrope;
+          font-size: 16px;
+          font-weight: 300;
+          line-height: 110%;
+          letter-spacing: -1px;
+          color: $gray;
+          margin: 10px 0 0 0;
+
+          &__button {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 110%;
+            letter-spacing: -1px;
+            display: contents;
           }
         }
       }

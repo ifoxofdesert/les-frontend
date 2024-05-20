@@ -5,6 +5,7 @@ type ApplicationEvents = {
   'popup:open': void;
   'scroll:on': void;
   'scroll:no': void;
+  'popupFeedbackRequests:open': void;
 };
 
 const emitter = mitt<ApplicationEvents>();

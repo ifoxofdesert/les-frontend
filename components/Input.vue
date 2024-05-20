@@ -146,7 +146,7 @@
     success,
     error,
     inputField,
-    type,
+    name,
     value,
   });
 </script>
@@ -162,7 +162,7 @@
     font-size: 20px;
     font-weight: 300;
     line-height: 110%;
-    letter-spacing: -3%;
+    letter-spacing: -1px;
     color: $black;
     &::placeholder {
       color: $gray;
