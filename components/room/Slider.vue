@@ -17,7 +17,7 @@
     <div class="sliderBlock__slide">
       <Swiper
         :roundLengths="true"
-        :slidesPerView="4"
+        :slidesPerView="slidesPerView"
         :spaceBetween="spaceBetween"
         :modules="[SwiperNavigation]"
         :navigation="{ prevEl: swiperPrev, nextEl: swiperNext, disabledClass: 'disable' }"
@@ -33,7 +33,7 @@
 <script lang="ts" setup>
   import type { Swiper } from 'swiper/types';
 
-  const { numberSlides, fixNumberSlides, spaceBetween } = defineProps({
+  const { numberSlides, fixNumberSlides, spaceBetween, slidesPerView } = defineProps({
     numberSlides: {
       type: Number,
       default: 3,
@@ -48,6 +48,11 @@
     fixNumberSlides: {
       type: Number,
       default: 1,
+    },
+
+    slidesPerView: {
+      type: [String as () => 'auto', Number],
+      default: 4,
     },
   });
 

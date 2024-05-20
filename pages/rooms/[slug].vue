@@ -46,6 +46,7 @@
               :key="index"
               class="roomPage__gallaryBlock__slide"
               :class="`roomPage__gallaryBlock__slide_${getSchemaIndex(index)}`"
+              :id="index"
             >
               <div class="roomPage__gallaryBlock__slide__imageBlock">
                 <span class="roomPage__gallaryBlock__slide__imageBlock__number">{{ formatingNumber(index + 1) }}</span>
@@ -103,7 +104,11 @@
   let repeatIndex = 0;
 
   function getSchemaIndex(i: number) {
+    if (i == 0) {
+      repeatIndex = 0;
+    }
     let index = i + 1 - repeatIndex;
+
     if (index <= 4) {
       return index;
     } else if (index > 4) {

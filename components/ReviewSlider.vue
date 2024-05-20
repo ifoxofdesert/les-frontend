@@ -7,6 +7,7 @@
       :numberSlides="slides.length"
       :fixNumberSlides="3"
       :spaceBetween="40"
+      :slidesPerView="'auto'"
     >
       <SwiperSlide v-for="(item, index) in slides" :key="index" class="reviewSlider__slider__slide">
         <div class="reviewSlider__slider__slide__review">

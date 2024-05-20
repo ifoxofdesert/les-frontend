@@ -33,8 +33,6 @@
 
   const content = ref(await getHome());
 
-  console.log(content.value);
-
   const news = ref(
     await getPreviewsNews({
       populate: 'deep',

@@ -3,7 +3,12 @@
     <h2 class="gallaryBlock__title" v-if="title" v-html="title" />
     <span class="gallaryBlock__description" v-if="description" v-html="description" />
     <div class="gallaryBlock__sliderBlock">
-      <RoomSlider :numberSlides="numberSlides" :fixNumberSlides="fixNumberSlides" :spaceBetween="spaceBetween">
+      <RoomSlider
+        :numberSlides="numberSlides"
+        :fixNumberSlides="fixNumberSlides"
+        :spaceBetween="spaceBetween"
+        :slidesPerView="slidesPerView"
+      >
         <slot />
       </RoomSlider>
     </div>
@@ -11,7 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-  const { title, description, numberSlides, fixNumberSlides, spaceBetween } = defineProps({
+  const { title, description, numberSlides, fixNumberSlides, spaceBetween, slidesPerView } = defineProps({
     title: {
       type: String,
       default: '',
@@ -35,6 +40,11 @@
     spaceBetween: {
       type: Number,
       default: 20,
+    },
+
+    slidesPerView: {
+      type: [String as () => 'auto', Number],
+      default: 4,
     },
   });
 </script>
