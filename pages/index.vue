@@ -13,6 +13,18 @@
       <VideoBlock :video="content?.video" />
     </div>
     <AfishaEventsBlock v-if="news?.result?.length" :data="content?.afishaEvents" :content="news?.result" />
+    <div class="reviewSlider">
+      <Container>
+        <ContainerBlock>
+          <ReviewSlider
+            v-if="content?.reviewSlider?.slides?.length"
+            :title="content.reviewSlider.title"
+            :description="content.reviewSlider.description"
+            :slides="content.reviewSlider.slides"
+          />
+        </ContainerBlock>
+      </Container>
+    </div>
   </div>
 </template>
 
@@ -63,6 +75,14 @@
 
       @media (max-width: 550px) {
         margin: 0 0 50px 0;
+      }
+    }
+
+    .reviewSlider {
+      margin: 0 0 125px 0;
+
+      @media (max-width: 550px) {
+        margin: 0 0 80px 0;
       }
     }
   }

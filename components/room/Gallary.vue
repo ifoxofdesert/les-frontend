@@ -1,7 +1,7 @@
 <template>
   <div class="gallaryBlock">
-    <h2 class="gallaryBlock__title" v-if="title">{{ title }}</h2>
-    <span class="gallaryBlock__description" v-if="description">{{ description }}</span>
+    <h2 class="gallaryBlock__title" v-if="title" v-html="title" />
+    <span class="gallaryBlock__description" v-if="description" v-html="description" />
     <div class="gallaryBlock__sliderBlock">
       <RoomSlider :numberSlides="numberSlides" :fixNumberSlides="fixNumberSlides" :spaceBetween="spaceBetween">
         <slot />

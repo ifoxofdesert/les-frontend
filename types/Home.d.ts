@@ -1,6 +1,7 @@
 import type { IquestionsBlock } from './Accordion';
 import type { Icoordinate, Iimage, ItitleCustom, Ivideo } from './General';
 import type { IoffersSlider } from './OffersSlider';
+import type { IreviewSlider } from './Review';
 import type { IroomList } from './Room';
 
 export interface ImainBlock {
@@ -27,5 +28,6 @@ export interface Ihome {
   video?: Ivideo;
   questions?: IquestionsBlock;
   roomsListBlock?: IroomsListBlock;
+  reviewSlider?: IreviewSlider;
   afishaEvents?: IafishaEvents;
 }

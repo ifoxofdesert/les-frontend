@@ -4,7 +4,7 @@
     <main class="main">
       <slot />
     </main>
-    <FormPopup :data="dataForm" />
+    <FormPopup :data="dataForm" v-if="false" />
     <Footer />
   </div>
 </template>

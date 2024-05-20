@@ -38,7 +38,7 @@
             :title="content.gallaryTitle"
             :description="content.gallaryDescription"
             :numberSlides="content.gallary.length"
-            :fixNumberSlides="30"
+            :fixNumberSlides="3"
             :spaceBetween="20"
           >
             <SwiperSlide
