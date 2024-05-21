@@ -1,59 +1,68 @@
 <template>
   <div class="burgerMenu">
-    <Container>
-      <ContainerBlock>
-        <div class="burgerMenu__container">
-          <Button
-            class="burgerMenu__container__clsoe"
-            type="button"
-            mod="text"
-            @click="$emit('close')"
-            v-if="viewport.isGreaterOrEquals('is_1024')"
-          >
-            Закрыть
-          </Button>
-
-          <div class="burgerMenu__container__menuBlock">
+    <div class="burgerMenu__block">
+      <Container>
+        <ContainerBlock>
+          <div class="burgerMenu__container">
             <Button
-              v-if="dataGeneral?.header?.menu?.length"
-              class="burgerMenu__container__menuBlock__button"
-              v-for="(item, index) in dataGeneral.header.menu"
-              type="internal"
-              @click="$emit('close')"
-              mod="text link"
-              :url="item.url"
-            >
-              {{ item.text }}
-              <span class="burgerMenu__container__menuBlock__button__number">{{ formatingNumber(index + 1) }}</span>
-            </Button>
-          </div>
-          <div
-            class="burgerMenu__container__mobilePhoneBlock"
-            v-if="viewport.isLessThan('is_768') && dataGeneral?.header?.phone?.text"
-          >
-            <Button
-              :url="`tel:${dataGeneral.header.phone.url}`"
-              class="burgerMenu__container__mobilePhoneBlock__button"
+              class="burgerMenu__container__clsoe"
+              type="button"
               mod="text"
-              type="external"
+              @click="$emit('close')"
+              v-if="viewport.isGreaterOrEquals('is_1024')"
             >
-              {{ dataGeneral.header.phone.text }}
+              Закрыть
             </Button>
-          </div>
-          <div class="burgerMenu__container__socialsBlock">
-            <Button
-              v-for="item in socials"
-              class="burgerMenu__container__socialsBlock__button"
-              type="external"
-              mod="text_green"
-              :url="item.url"
+
+            <div class="burgerMenu__container__menuBlock">
+              <Button
+                v-if="dataGeneral?.header?.menu?.length"
+                class="burgerMenu__container__menuBlock__button"
+                v-for="(item, index) in dataGeneral.header.menu"
+                type="internal"
+                @click="$emit('close')"
+                mod="text link"
+                :url="item.url"
+              >
+                {{ item.text }}
+                <span class="burgerMenu__container__menuBlock__button__number">{{ formatingNumber(index + 1) }}</span>
+              </Button>
+            </div>
+            <div
+              class="burgerMenu__container__mobilePhoneBlock"
+              v-if="viewport.isLessThan('is_768') && dataGeneral?.header?.phone?.text"
             >
-              {{ item.text }}
-            </Button>
+              <Button
+                :url="`tel:${dataGeneral.header.phone.url}`"
+                class="burgerMenu__container__mobilePhoneBlock__button"
+                mod="text"
+                type="external"
+              >
+                {{ dataGeneral.header.phone.text }}
+              </Button>
+            </div>
+            <div class="burgerMenu__container__socialsBlock">
+              <Button
+                v-for="item in dataGeneral.header?.socials"
+                class="burgerMenu__container__socialsBlock__button"
+                type="external"
+                mod="text_green"
+                :url="item.url"
+              >
+                {{ item.text }}
+              </Button>
+            </div>
           </div>
-        </div>
-      </ContainerBlock>
-    </Container>
+        </ContainerBlock>
+      </Container>
+    </div>
+    <img
+      v-if="dataGeneral.header?.burgerBackground?.src"
+      :src="useImage(dataGeneral.header?.burgerBackground.src)"
+      :alt="dataGeneral.header?.burgerBackground.alt"
+      class="burgerMenu__backgroun"
+      @click="$emit('close')"
+    />
   </div>
 </template>
 
@@ -63,21 +72,6 @@
   const dataGeneral = useState<Igeneral>('dataGeneral');
 
   const emit = defineEmits(['close']);
-
-  const socials = [
-    {
-      text: 'VKontakte',
-      url: '/',
-    },
-    {
-      text: 'Telegram',
-      url: '/',
-    },
-    {
-      text: 'Tripadvisor',
-      url: '/',
-    },
-  ];
 
   const { formatingNumber } = useFormating();
 
@@ -107,15 +101,32 @@
 
 <style lang="scss" scoped>
   .burgerMenu {
-    max-width: 1045px;
     width: 100%;
-    background-color: $gray-mercury;
-    opacity: 0.98;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 5;
     height: 100%;
+    display: flex;
+
+    &__backgroun {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+
+      @media (max-width: 1045px) {
+        display: none;
+      }
+    }
+
+    &__block {
+      background-color: $gray-mercury;
+      opacity: 0.98;
+      width: 100%;
+      max-width: 1045px;
+      width: 100%;
+      flex: none;
+    }
 
     .burgerMenu__container {
       width: 100%;

@@ -5,4 +5,5 @@ export interface Iheader {
   menu?: IlinkButton[];
   socials?: IlinkButton[];
   logo?: Iimage;
+  burgerBackground?: Iimage;
 }
