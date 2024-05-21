@@ -34,7 +34,7 @@
             :disabled="disabledSend"
             @click="sendForm()"
           >
-            Внести предоплату
+            Отправить заявку
             <IconComponent name="arrow_right" />
           </Button>
         </form>
