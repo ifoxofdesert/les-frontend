@@ -3,6 +3,10 @@ import type { InputHTMLAttributes, InputTypeHTMLAttribute } from 'vue';
 export interface IformFeedback {
   title?: string;
   description?: string;
+  succes?: {
+    title?: string;
+    text?: string;
+  };
 }
 
 export interface IvalidateInput {

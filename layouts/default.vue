@@ -23,24 +23,25 @@
 
   useListen('popupFeedbackRequests:open', () => openFeedbackRequests());
 
-  useListen('popup:close', () => closeFeedbackRequests());
+  useListen('popup:close', () => {
+    if (isOpenedFeedbackRequests.value) {
+      closeFeedbackRequests();
+    }
+  });
 
   const isOpenedFeedbackRequests = ref(false);
 
   function closeFeedbackRequests() {
-    useEvent('scroll:on');
-
     isOpenedFeedbackRequests.value = false;
+
+    useEvent('popup:close');
+    useEvent('scroll:on');
   }
 
   function openFeedbackRequests() {
-    useEvent('scroll:no');
-
     isOpenedFeedbackRequests.value = true;
-  }
 
-  const dataForm = {
-    title: 'Заявка на обратный <span>звонок</span>',
-    description: 'Оставьте заявку и наш специалист позвонит в удобное для вас время для решения вашего вопроса.',
-  };
+    useEvent('popup:open');
+    useEvent('scroll:no');
+  }
 </script>

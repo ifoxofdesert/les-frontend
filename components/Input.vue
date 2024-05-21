@@ -172,5 +172,9 @@
       border-color: $red;
       color: $red;
     }
+
+    @media (max-width: 550px) {
+      font-size: 14px;
+    }
   }
 </style>

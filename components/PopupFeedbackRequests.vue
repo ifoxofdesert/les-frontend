@@ -2,7 +2,7 @@
   <div class="formPopup" @click="checkClick">
     <div class="formPopup__container">
       <IconComponent name="close" class="formPopup__container__close" @click="$emit('close')" />
-      <div class="formPopup__container__formBlock">
+      <div class="formPopup__container__formBlock" v-if="!send">
         <h2 class="formPopup__container__formBlock__title" v-if="data?.title" v-html="data.title" />
 
         <span class="formPopup__container__formBlock__description" v-if="data?.description">
@@ -51,12 +51,21 @@
           </Button>
         </span>
       </div>
+
+      <div class="formPopup__container__messageBlock" :class="{ error: statusSend.error }" v-if="send">
+        <span class="formPopup__container__messageBlock__title" v-if="statusSend?.content?.title">
+          {{ statusSend.content.title }}
+        </span>
+        <span class="formPopup__container__messageBlock__text" v-if="statusSend?.content?.text">
+          {{ statusSend.content.text }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import type { IformFeedback, Iinput, IformFeedbackRequests } from '~/types/Form.d.ts';
+  import type { IformFeedback, Iinput, IformFeedbackRequests, IresponseStatus } from '~/types/Form.d.ts';
 
   const emit = defineEmits(['close']);
 
@@ -93,6 +102,28 @@
     }
   }
 
+  const errorMessage = {
+    title: 'Ошибка',
+    text: 'Заявка не отправлена, попробуйте снова ',
+  };
+
+  const response = ref<IresponseStatus | null>();
+  const send = ref(false);
+
+  const statusSend = computed(() => {
+    if (response.value?.status == 'successfully') {
+      return {
+        error: false,
+        content: data.succes,
+      };
+    } else {
+      return {
+        error: true,
+        content: errorMessage,
+      };
+    }
+  });
+
   async function sendForm() {
     const valid = validate();
 
@@ -106,9 +137,12 @@
 
       disabledSend.value = true;
 
-      const res = await sendFeedbackRequests(dataForm);
+      response.value = await sendFeedbackRequests(dataForm);
+      send.value = true;
 
-      emit('close');
+      setTimeout(() => {
+        emit('close');
+      }, 2000);
     }
   }
 
@@ -182,6 +216,10 @@
               color: $green;
             }
           }
+
+          @media (max-width: 550px) {
+            font-size: 35px;
+          }
         }
 
         &__description {
@@ -191,6 +229,11 @@
           line-height: 110%;
           color: $gray;
           margin: 20px 0 0 0;
+
+          @media (max-width: 550px) {
+            font-size: 14px;
+            margin: 10px 0 0 0;
+          }
         }
 
         &__form {
@@ -211,6 +254,11 @@
               background-color: transparent;
             }
           }
+
+          @media (max-width: 550px) {
+            margin: 30px 0 0 0;
+            gap: 25px;
+          }
         }
         &__policyText {
           font-family: Manrope;
@@ -230,6 +278,62 @@
           }
         }
       }
+
+      &__messageBlock {
+        display: flex;
+        flex-direction: column;
+        max-width: 514px;
+        width: 100vw;
+        gap: 15px;
+
+        &__title {
+          font-family: 'Playfair Display';
+          font-size: 55px;
+          font-weight: 500;
+          line-height: 95%;
+          color: $green;
+          text-align: center;
+
+          @media (max-width: 550px) {
+            font-size: 35px;
+          }
+        }
+
+        &__text {
+          font-family: Manrope;
+          font-size: 20px;
+          font-weight: 300;
+          line-height: 110%;
+          color: $black;
+          text-align: center;
+
+          @media (max-width: 550px) {
+            font-size: 14px;
+          }
+        }
+        @media (max-width: 550px) {
+          gap: 10px;
+        }
+
+        &.error {
+          .formPopup__container__messageBlock__title {
+            color: $red;
+          }
+        }
+      }
+
+      @media (max-width: 1024px) {
+        padding: 20px;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      z-index: 5;
     }
   }
 </style>
