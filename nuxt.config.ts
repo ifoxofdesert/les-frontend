@@ -118,7 +118,13 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['nuxt-schema-org', 'nuxt-viewport', 'nuxt-swiper', '@samk-dev/nuxt-vcalendar'],
+  modules: [
+    'nuxt-schema-org',
+    'nuxt-viewport',
+    'nuxt-swiper',
+    '@samk-dev/nuxt-vcalendar',
+    'yandex-metrika-module-nuxt3',
+  ],
   viewport: {
     breakpoints: {
       is_1920: 1920,
@@ -174,6 +180,15 @@ export default defineNuxtConfig({
 
   devServer: {
     port: Number(process.env.PORT) || 3000,
+  },
+
+  yandexMetrika: {
+    id: '97344238',
+    clickmap: true,
+    trackLinks: true,
+    accurateTrackBounce: true,
+    webvisor: true,
+    ecommerce: 'dataLayer',
   },
 
   css: [

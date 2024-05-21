@@ -15,7 +15,8 @@
     "nuxt": "^3.11.1",
     "nuxt-swiper": "^1.2.2",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "yandex-metrika-module-nuxt3": "^1.5.3"
   },
   "devDependencies": {
     "@samk-dev/nuxt-vcalendar": "^1.0.3",
