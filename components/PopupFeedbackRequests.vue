@@ -221,7 +221,7 @@
           color: $gray;
           margin: 10px 0 0 0;
 
-          &__button {
+          .formPopup__container__formBlock__policyText__button {
             font-size: 16px;
             font-weight: 300;
             line-height: 110%;
