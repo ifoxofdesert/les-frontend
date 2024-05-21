@@ -1,5 +1,5 @@
 import type { Iaccordion } from './Accordion';
-import type { Iimage } from './General';
+import type { Iimage, Ipage } from './General';
 
 export interface IlistingPage {
   title?: string;
@@ -7,6 +7,10 @@ export interface IlistingPage {
   pagetitle?: string;
   pageDescription?: string;
   defaultFilter?: string;
+}
+
+export interface IPageEvents<result> extends Ipage<result> {
+  dateEvents: string[];
 }
 
 export interface Icard {

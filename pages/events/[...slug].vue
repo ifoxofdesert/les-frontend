@@ -1,7 +1,13 @@
 <template>
   <div class="newsIndex">
     <TextMainBlock :title="content?.title" :description="content?.description" />
-    <FilterTagDate :tags="tags" @selectTag="selectTag" />
+    <FilterTagDate
+      :tags="tags"
+      @selectTag="selectTag"
+      :dates="cardData?.dateEvents"
+      @updateDate="selectDate"
+      :selectedDate="queryPage.date"
+    />
     <Container>
       <ContainerBlock>
         <div class="newsIndex__cardblock">
@@ -28,8 +34,7 @@
 
 <script lang="ts" setup>
   import type { Itags } from '~/types/FilterTagDate';
-  import type { Ipage } from '~/types/General';
-  import type { Icard } from '~/types/News';
+  import type { IPageEvents, Icard } from '~/types/News';
 
   const { getNewsListingPage, getTags, getPreviewsNews } = useApi();
 
@@ -39,6 +44,28 @@
   const queryPage = ref(JSON.parse(JSON.stringify(route.query)));
 
   const content = ref(await getNewsListingPage());
+
+  const getDateQery = computed(() => {
+    if (queryPage?.value?.date) {
+      const gte = new Date(queryPage.value.date);
+      const lte = new Date(queryPage.value.date);
+
+      gte.setHours(0);
+      gte.setMinutes(0);
+      gte.setSeconds(0);
+
+      lte.setHours(23);
+      lte.setMinutes(59);
+      lte.setSeconds(59);
+
+      return {
+        gte: gte.toISOString(),
+        lte: lte.toISOString(),
+      };
+    } else {
+      return '';
+    }
+  });
 
   const filterTags = computed(() => {
     if (route.params?.slug) {
@@ -51,7 +78,22 @@
   });
 
   const filterQuery = computed(() => {
-    if (!filterTags.value.includes('all')) {
+    if (queryPage.value.date && !filterTags?.value?.includes('all') && getDateQery.value) {
+      return {
+        $and: [
+          { pageNews: { type: { tag: { $eq: filterTags.value[0] } } } },
+          { PreviewCard: { date: { $gte: getDateQery.value.gte } } },
+          { PreviewCard: { date: { $lte: getDateQery.value.lte } } },
+        ],
+      };
+    } else if (queryPage?.value?.date && getDateQery.value) {
+      return {
+        $and: [
+          { PreviewCard: { date: { $gte: getDateQery.value.gte } } },
+          { PreviewCard: { date: { $lte: getDateQery.value.lte } } },
+        ],
+      };
+    } else if (!filterTags.value.includes('all')) {
       return { pageNews: { type: { tag: { $eq: filterTags.value[0] } } } };
     } else {
       return undefined;
@@ -67,7 +109,7 @@
     }
   });
 
-  const cardData = ref<Ipage<Icard[]> | null>(null);
+  const cardData = ref<IPageEvents<Icard[]> | null>(null);
 
   async function loadNews() {
     cardData.value = await getPreviewsNews({
@@ -92,6 +134,21 @@
       path: `/events/${tag.tag != 'all' ? `${tag.tag}/` : ''}`,
       query: queryPage.value,
     });
+  }
+
+  function selectDate(date: string) {
+    queryPage.value.page = undefined;
+    if (date) {
+      queryPage.value.date = date;
+      router.push({
+        query: queryPage.value,
+      });
+    } else {
+      queryPage.value.date = undefined;
+      router.push({
+        query: queryPage.value,
+      });
+    }
   }
 
   async function loadNextPage() {
@@ -130,7 +187,7 @@
   }
 
   watch(
-    () => route.query?.tags,
+    () => route.query,
     async () => {
       await loadNews();
     }

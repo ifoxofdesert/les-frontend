@@ -10,7 +10,7 @@
               type="button"
               mod="text"
               v-for="(item, index) in tags"
-              @click="$emit('selectTag', ...[index, item])"
+              @click="$emit('selectTag', index, item)"
             >
               {{ item.name }}
             </Button>
@@ -28,6 +28,7 @@
               v-if="openDatepicker"
               class="filterTagDate__container__dateBlock__datePicker"
               v-model="date"
+              @dayclick="updateDate()"
               :attributes="attrs"
               :isDark="true"
             />
@@ -41,11 +42,38 @@
 <script lang="ts" setup>
   import type { Itags } from '~/types/FilterTagDate.d.ts';
 
-  const { tags } = defineProps({
+  const { tags, dates, selectedDate } = defineProps({
     tags: {
       type: Array<Itags>,
       defaul: () => [],
     },
+    dates: {
+      type: Array<string>,
+      defaul: [],
+    },
+    selectedDate: {
+      type: String as () => string | undefined,
+      default: '',
+    },
+  });
+
+  function getISOMiniRu(date: string) {
+    if (date) {
+      const dat = new Date(date);
+      dat.setHours(dat.getHours() + 3);
+      return dat.toISOString().slice(0, 10);
+    } else {
+      return '';
+    }
+  }
+
+  const emit = defineEmits<{
+    (eventName: 'updateDate', date: string): string;
+    (eventName: 'selectTag', index: number, item: Itags): { index: number; item: Itags };
+  }>();
+
+  const getUniqueDates = computed(() => {
+    return [...new Set(dates?.map((item) => getISOMiniRu(item)))];
   });
 
   const openDatepicker = ref(false);
@@ -54,7 +82,11 @@
     openDatepicker.value = !openDatepicker.value;
   }
 
-  const date = ref(new Date());
+  const date = ref(selectedDate || '');
+
+  function updateDate() {
+    emit('updateDate', getISOMiniRu(date.value));
+  }
 
   const attrs = ref([
     {
@@ -62,7 +94,10 @@
         color: 'green',
         fillMode: 'solid',
       },
-      dates: new Date(),
+    },
+    {
+      dot: true,
+      dates: getUniqueDates.value,
     },
   ]);
 

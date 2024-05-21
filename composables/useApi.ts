@@ -1,4 +1,4 @@
-import type { Icard, IlistingPage, Inews } from '~/types/News';
+import type { IPageEvents, Icard, IlistingPage, Inews } from '~/types/News';
 import type { Iroom, IroomList } from '~/types/Room';
 import type { Ihome } from '~/types/Home';
 import type { IvacancyPage } from '~/types/VacancyPage';
@@ -36,7 +36,7 @@ export default function useApi() {
 
   async function getPreviewsNews({ page, pageSize, sort, populate, filters }: IfindPage) {
     const { data } = await useAsyncData('previewsNews', () =>
-      apiFetch<Promise<Ipage<Icard[]>>>(`/getPreviews/`, {
+      apiFetch<Promise<IPageEvents<Icard[]>>>(`/getPreviews/`, {
         method: 'GET',
         params: {
           page,
