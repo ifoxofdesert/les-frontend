@@ -11,7 +11,12 @@
     <Container>
       <ContainerBlock>
         <div class="newsIndex__cardblock">
-          <CardEvent v-for="(item, index) in cardData?.result" :key="`${item.slug}_${index}`" :card="item" />
+          <CardEvent
+            v-for="(item, index) in cardData?.result"
+            :key="`${item.slug}_${index}`"
+            :card="item"
+            class="newsIndex__cardblock__card"
+          />
         </div>
         <Button
           class="newsIndex__nextPage"
@@ -203,13 +208,51 @@
       gap: 20px;
       flex-wrap: wrap;
       margin: 0 0 60px 0;
+
+      @media (max-width: 1200px) {
+        margin: 0 0 40px 0;
+        gap: 18px;
+      }
+
+      .newsIndex__cardblock__card {
+        height: auto;
+
+        @media (max-width: 1440px) {
+          flex: none;
+          flex-basis: 32%;
+        }
+
+        @media (max-width: 1200px) {
+          flex-basis: 49%;
+          max-width: 100%;
+        }
+
+        @media (max-width: 985px) {
+          flex-basis: 48%;
+        }
+
+        @media (max-width: 650px) {
+          flex-basis: 100%;
+        }
+      }
     }
 
     &__nextPage {
       width: 100%;
       margin: 0 0 1px 0;
       &__icon {
+        @media (max-width: 768px) {
+          width: 40px;
+        }
       }
+
+      @media (max-width: 768px) {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      margin: 0 0 100px 0;
     }
   }
 </style>

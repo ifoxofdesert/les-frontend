@@ -132,10 +132,24 @@
       border-bottom: solid 1px $black;
       margin: 0 0 43px 0;
       gap: 20px;
+
+      @media (max-width: 1024px) {
+        gap: 15px;
+      }
+
+      @media (max-width: 550px) {
+        gap: 10px;
+      }
+
       &__tagsBlock {
         display: flex;
         align-items: center;
         gap: 15px;
+
+        @media (max-width: 550px) {
+          gap: 10px;
+        }
+
         &__button {
           font-size: 25px;
           color: $gray;
@@ -147,6 +161,18 @@
           &.active {
             color: $black;
           }
+
+          @media (max-width: 1024px) {
+            font-size: 18px;
+          }
+
+          @media (max-width: 768px) {
+            font-size: 15px;
+          }
+
+          @media (max-width: 550px) {
+            font-size: 12px;
+          }
         }
       }
 
@@ -154,9 +180,25 @@
         margin: 0 0 0 auto;
         position: relative;
 
-        &__button {
+        .filterTagDate__container__dateBlock__button {
           background-color: $black;
           color: $whitesmoke;
+
+          @media (max-width: 1024px) {
+            font-size: 18px;
+
+            padding: 17px 40px 17px 40px;
+          }
+
+          @media (max-width: 768px) {
+            padding: 15px 20px 15px 20px;
+            font-size: 14px;
+          }
+
+          @media (max-width: 550px) {
+            font-size: 12px;
+            padding: 15px 18px 15px 18px;
+          }
         }
       }
     }
@@ -169,6 +211,7 @@
       &__dateBlock {
         &__datePicker {
           position: absolute;
+          right: 0;
         }
       }
     }
