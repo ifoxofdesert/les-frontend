@@ -84,5 +84,13 @@
 <style lang="scss" scoped>
   .vacancies {
     padding: 180px 0 0 0;
+
+    @media (max-width: 1024px) {
+      padding: 130px 0 0 0;
+    }
+
+    @media (max-width: 768px) {
+      padding: 120px 0 0 0;
+    }
   }
 </style>

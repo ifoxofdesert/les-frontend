@@ -100,6 +100,10 @@
           display: none;
         }
       }
+
+      @media (max-width: 1440px) {
+        max-width: 100%;
+      }
     }
 
     &__contentContainer {
