@@ -38,7 +38,6 @@
     box-sizing: border-box;
     background-color: $milk;
     text-decoration: none;
-    height: 100%;
     &__image {
       width: 100%;
       min-height: 300px;

@@ -17,10 +17,6 @@ export default function useApi() {
     headers: {
       Authorization: `Bearer ${env.API_TOKEN}`,
     },
-
-    async onResponseError({ response }) {
-      console.log(response);
-    },
   });
 
   async function getHome() {
@@ -29,7 +25,6 @@ export default function useApi() {
         method: 'GET',
       })
     );
-    console.log('home', data);
 
     return data?.value;
   }
@@ -47,7 +42,6 @@ export default function useApi() {
         },
       })
     );
-    console.log('previewsNews', data);
 
     return data?.value;
   }
@@ -58,7 +52,6 @@ export default function useApi() {
         method: 'GET',
       })
     );
-    console.log('general', data);
 
     return data?.value;
   }
@@ -69,7 +62,6 @@ export default function useApi() {
         method: 'GET',
       })
     );
-    console.log('newsTags', data);
 
     return data?.value;
   }
@@ -80,7 +72,6 @@ export default function useApi() {
         method: 'GET',
       })
     );
-    console.log('newsListingPage', data);
 
     return data?.value;
   }
@@ -98,7 +89,6 @@ export default function useApi() {
         },
       })
     );
-    console.log('searchNews', data);
 
     return data?.value;
   }
@@ -116,7 +106,6 @@ export default function useApi() {
         },
       })
     );
-    console.log('roomPage', data);
 
     return data?.value;
   }
@@ -134,7 +123,6 @@ export default function useApi() {
         },
       })
     );
-    console.log('listRoom', data);
 
     return data?.value;
   }
@@ -145,7 +133,6 @@ export default function useApi() {
         method: 'GET',
       })
     );
-    console.log('vacancyPage', data);
 
     return data?.value;
   }
@@ -156,7 +143,6 @@ export default function useApi() {
         method: 'GET',
       })
     );
-    console.log('contact', data);
 
     return data?.value;
   }
@@ -171,7 +157,6 @@ export default function useApi() {
         },
       })
     );
-    console.log('infoPage', data);
 
     return data?.value;
   }
@@ -182,7 +167,6 @@ export default function useApi() {
         method: 'GET',
       })
     );
-    console.log('settingInfoPage-getMenu', data);
 
     return data?.value;
   }
@@ -194,7 +178,6 @@ export default function useApi() {
         body: fields,
       })
     );
-    console.log('sendFeedbackRequests', data);
 
     return data?.value;
   }

@@ -20,5 +20,10 @@
     max-height: 800px;
     height: 100%;
     margin: 0 0 50px 0;
+
+    @media (max-width: 1300px) {
+      max-height: 550px;
+      margin: 0 0 40px 0;
+    }
   }
 </style>

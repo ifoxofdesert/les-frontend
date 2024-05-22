@@ -39,6 +39,24 @@
         font-weight: 300;
         line-height: 110%;
         color: $gray;
+
+        @media (max-width: 1300px) {
+          max-width: 755px;
+          width: 100%;
+          margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 18px;
+        }
+
+        @media (max-width: 550px) {
+          font-size: 14px;
+        }
+      }
+
+      @media (max-width: 1300px) {
+        position: static;
       }
     }
 
@@ -52,7 +70,20 @@
         font-weight: 400;
         line-height: 120%;
         color: $black;
+
+        @media (max-width: 768px) {
+          font-size: 24px;
+        }
+
+        @media (max-width: 550px) {
+          font-size: 22px;
+        }
       }
+    }
+
+    @media (max-width: 1300px) {
+      flex-direction: column;
+      gap: 10px;
     }
   }
 </style>

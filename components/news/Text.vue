@@ -44,6 +44,16 @@
         font-weight: 500;
         line-height: 120%;
         margin: 0 0 30px 0;
+
+        @media (max-width: 768px) {
+          font-size: 42px;
+          margin: 0 0 25px 0;
+        }
+
+        @media (max-width: 550px) {
+          font-size: 30px;
+          margin: 0 0 22px 0;
+        }
       }
 
       span,
@@ -56,6 +66,10 @@
         font-size: 22px;
         font-weight: 400;
         line-height: 120%;
+
+        @media (max-width: 550px) {
+          font-size: 16px;
+        }
       }
 
       ul {
@@ -87,6 +101,10 @@
 
       div {
         margin: 0 0 30px 0;
+
+        @media (max-width: 768px) {
+          margin: 0 0 20px 0;
+        }
       }
 
       img {
@@ -115,6 +133,15 @@
         h3 {
           font-size: 30px;
           margin: 0 0 25px 0;
+
+          @media (max-width: 768px) {
+            font-size: 26px;
+          }
+
+          @media (max-width: 550px) {
+            font-size: 22px;
+            margin: 0 0 22px 0;
+          }
         }
 
         span,
@@ -150,6 +177,9 @@
 
         div {
           margin: 0 0 50px 0;
+          @media (max-width: 768px) {
+            margin: 0 0 20px 0;
+          }
         }
 
         .gap-10 {

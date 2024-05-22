@@ -1,10 +1,6 @@
 <template>
   <div class="news">
-    <Container>
-      <ContainerBlock>
-        <NewsPageNews v-if="content" :data="content" />
-      </ContainerBlock>
-    </Container>
+    <NewsPageNews v-if="content" :data="content" />
   </div>
 </template>
 
@@ -47,5 +43,17 @@
     display: flex;
     flex-direction: column;
     padding: 200px 0 100px 0;
+
+    @media (max-width: 1200px) {
+      padding: 200px 0 0px 0;
+    }
+
+    @media (max-width: 768px) {
+      padding: 130px 0 0px 0;
+    }
+
+    @media (max-width: 550px) {
+      padding: 80px 0 0px 0;
+    }
   }
 </style>
