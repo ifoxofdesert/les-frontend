@@ -95,6 +95,10 @@
         gap: 15px;
         &__buttons {
         }
+
+        @media (max-width: 1440px) {
+          display: none;
+        }
       }
     }
 
@@ -103,6 +107,13 @@
       width: 100%;
       display: flex;
       flex-direction: column;
+    }
+
+    @media (max-width: 1440px) {
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 40px;
+      padding: 0;
     }
   }
 </style>

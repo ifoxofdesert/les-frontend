@@ -116,6 +116,18 @@
 
     &__menuBlock {
       margin: 0 0 70px 0;
+
+      @media (max-width: 768px) {
+        margin: 0 0 50px 0;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      margin: 130px 0 0 0;
+    }
+
+    @media (max-width: 768px) {
+      margin: 120px 0 0 0;
     }
   }
 </style>

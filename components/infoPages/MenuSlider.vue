@@ -15,6 +15,16 @@
 
   const options = {
     spaceBetween: '25',
+
+    breakpoints: {
+      0: {
+        spaceBetween: 15,
+      },
+
+      551: {
+        spaceBetween: 25,
+      },
+    },
   };
 
   const { buttons } = defineProps({
@@ -39,6 +49,14 @@
         &__button {
           font-size: 18px;
           padding: 14px 40px;
+
+          @media (max-width: 550px) {
+            font-size: 16px;
+          }
+        }
+
+        @media (max-width: 550px) {
+          margin: 0 15px 0 0;
         }
       }
     }
