@@ -170,8 +170,6 @@
   });
 
   function openPopupFeedbackRequests() {
-    console.log(123);
-
     useEvent('popupFeedbackRequests:open');
   }
 

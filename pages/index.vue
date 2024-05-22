@@ -13,7 +13,7 @@
       <VideoBlock :video="content?.video" />
     </div>
     <AfishaEventsBlock v-if="news?.result?.length" :data="content?.afishaEvents" :content="news?.result" />
-    <div class="reviewSlider">
+    <div class="homePage__reviewSlider">
       <Container>
         <ContainerBlock>
           <ReviewSlider
@@ -76,10 +76,10 @@
       }
     }
 
-    .reviewSlider {
+    &__reviewSlider {
       margin: 0 0 125px 0;
 
-      @media (max-width: 550px) {
+      @media (max-width: 768px) {
         margin: 0 0 80px 0;
       }
     }

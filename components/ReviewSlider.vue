@@ -7,6 +7,7 @@
       :numberSlides="slides.length"
       :fixNumberSlides="3"
       :spaceBetween="40"
+      :breakpoints="breakpoints"
       :slidesPerView="'auto'"
     >
       <SwiperSlide v-for="(item, index) in slides" :key="index" class="reviewSlider__slider__slide">
@@ -50,6 +51,16 @@
       default: [],
     },
   });
+
+  const breakpoints = {
+    0: {
+      spaceBetween: 13,
+    },
+
+    551: {
+      spaceBetween: 40,
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -65,6 +76,17 @@
         flex-direction: column;
         height: auto;
         margin: 0 40px 0 0;
+
+        @media (max-width: 550px) {
+          width: 300px !important;
+          margin: 0 13px 0 0;
+        }
+
+        @media (max-width: 330px) {
+          width: 265px !important;
+          margin: 0 13px 0 0;
+        }
+
         &__review {
           display: flex;
           flex-direction: column;
@@ -74,6 +96,14 @@
           height: 100%;
           box-sizing: border-box;
 
+          @media (max-width: 550px) {
+            padding: 0 0 0 15px;
+          }
+
+          @media (max-width: 330px) {
+            padding: 0 0 0 10px;
+          }
+
           &__text {
             font-family: Manrope;
             font-size: 22px;
@@ -81,6 +111,16 @@
             line-height: 120%;
             color: $black;
             margin: 0 0 30px 0;
+
+            @media (max-width: 768px) {
+              font-size: 18px;
+              line-height: 100%;
+              margin: 0 0 20px 0;
+            }
+
+            @media (max-width: 550px) {
+              font-size: 15px;
+            }
           }
 
           &__name {
@@ -90,6 +130,16 @@
             font-weight: 500;
             line-height: 110%;
             color: $black;
+
+            @media (max-width: 768px) {
+              font-size: 24px;
+              line-height: 100%;
+              margin: auto 0 10px 0;
+            }
+
+            @media (max-width: 550px) {
+              font-size: 22px;
+            }
           }
 
           &__ratingBlock {
@@ -106,6 +156,15 @@
               align-items: center;
               gap: 5px;
               &__icon {
+                @media (max-width: 768px) {
+                  width: 18px;
+                  height: 18px;
+                }
+
+                @media (max-width: 550px) {
+                  width: 15px;
+                  height: 15px;
+                }
               }
             }
           }

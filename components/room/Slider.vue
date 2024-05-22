@@ -21,6 +21,7 @@
         :spaceBetween="spaceBetween"
         :modules="[SwiperNavigation]"
         :navigation="{ prevEl: swiperPrev, nextEl: swiperNext, disabledClass: 'disable' }"
+        :breakpoints="breakpoints"
         @activeIndexChange="changeIndexSlide"
         @swiper="onSwiper"
       >
@@ -33,7 +34,7 @@
 <script lang="ts" setup>
   import type { Swiper } from 'swiper/types';
 
-  const { numberSlides, fixNumberSlides, spaceBetween, slidesPerView } = defineProps({
+  const { numberSlides, fixNumberSlides, spaceBetween, slidesPerView, breakpoints } = defineProps({
     numberSlides: {
       type: Number,
       default: 3,
@@ -54,9 +55,16 @@
       type: [String as () => 'auto', Number],
       default: 4,
     },
+
+    breakpoints: {
+      type: Object,
+      default: {},
+    },
   });
 
   const { formatingNumber } = useFormating();
+
+  const viewport = useViewport();
 
   const swiperNext = ref<HTMLElement | null>(null);
   const swiperPrev = ref<HTMLElement | null>(null);
@@ -72,7 +80,7 @@
   const allIndex = computed(() => Math.round(numberSlides - fixNumberSlides));
 
   function changeIndexSlide(data: Swiper) {
-    if (data.activeIndex + 1 == allIndex.value) {
+    if (data.activeIndex + 1 == allIndex.value && viewport.isGreaterOrEquals('is_1200')) {
       swiperRef.value?.slideNext();
     }
 
@@ -87,6 +95,15 @@
       display: flex;
       align-items: center;
       gap: 15px;
+
+      @media (max-width: 1550px) {
+        margin: 0 0 60px 0;
+      }
+
+      @media (max-width: 1200px) {
+        display: none;
+      }
+
       &__button {
         &__icon {
           &:deep() {

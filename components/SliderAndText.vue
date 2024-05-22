@@ -211,7 +211,7 @@
             &__numberBlock {
               display: flex;
               align-items: center;
-              font-family: Playfair Display;
+              font-family: 'Playfair Display';
               font-size: 45px;
               font-weight: 400;
               line-height: 110%;

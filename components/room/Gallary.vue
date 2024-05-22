@@ -8,6 +8,7 @@
         :fixNumberSlides="fixNumberSlides"
         :spaceBetween="spaceBetween"
         :slidesPerView="slidesPerView"
+        :breakpoints="breakpoints"
       >
         <slot />
       </RoomSlider>
@@ -16,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-  const { title, description, numberSlides, fixNumberSlides, spaceBetween, slidesPerView } = defineProps({
+  const { title, description, numberSlides, fixNumberSlides, spaceBetween, slidesPerView, breakpoints } = defineProps({
     title: {
       type: String,
       default: '',
@@ -46,6 +47,11 @@
       type: [String as () => 'auto', Number],
       default: 4,
     },
+
+    breakpoints: {
+      type: Object,
+      default: {},
+    },
   });
 </script>
 
@@ -60,6 +66,28 @@
       text-transform: uppercase;
       margin: 0 0 30px 0;
       text-align: center;
+
+      @media (max-width: 1550px) {
+        font-size: 80px;
+        margin: 0 0 20px 0;
+        float: left;
+        display: block;
+        text-align: left;
+        line-height: 120%;
+      }
+
+      @media (max-width: 1200px) {
+        font-size: 62px;
+        line-height: 100%;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 42px;
+      }
+
+      @media (max-width: 550px) {
+        font-size: 30px;
+      }
     }
     &__description {
       color: $gray;
@@ -73,9 +101,21 @@
       margin: 0 auto 10px auto;
       display: flex;
       flex-direction: column;
+
+      @media (max-width: 1550px) {
+        margin: 0;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 20px;
+      }
     }
     &__sliderBlock {
       width: 100%;
+
+      @media (max-width: 1200px) {
+        margin: 40px 0 0 0;
+      }
     }
 
     &:deep() {
