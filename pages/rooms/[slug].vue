@@ -38,7 +38,8 @@
             :title="content.gallaryTitle"
             :description="content.gallaryDescription"
             :numberSlides="content.gallary.length"
-            :fixNumberSlides="3"
+            :slidesPerView="'auto'"
+            :fixNumberSlides="2"
             :spaceBetween="20"
           >
             <SwiperSlide
@@ -64,11 +65,15 @@
         <div class="roomPage__welcomeBlock" v-if="content?.roomWelcome">
           <RoomWelcomeBlock :data="content.roomWelcome" />
         </div>
+      </ContainerBlock>
+    </Container>
 
-        <div class="roomPage__offersBlock" v-if="content?.offersSlider?.slids?.length">
-          <OffersSlider :data="content.offersSlider" />
-        </div>
+    <div class="roomPage__offersBlock" v-if="content?.offersSlider?.slids?.length">
+      <OffersSlider :data="content.offersSlider" />
+    </div>
 
+    <Container>
+      <ContainerBlock>
         <div class="roomPage__roomList" v-if="content?.roomListTitle">
           <RoomListRoomsBlock
             :title="content.roomListTitle"
@@ -145,6 +150,18 @@
 
     &__markBlock {
       margin: 0 0 170px 0;
+
+      @media (max-width: 1200px) {
+        margin: 0 0 100px 0;
+      }
+
+      @media (max-width: 1024px) {
+        margin: 0 0 80px 0;
+      }
+
+      @media (max-width: 550px) {
+        margin: 0 0 40px 0;
+      }
     }
 
     &__descriptionBlock {
@@ -158,10 +175,22 @@
 
     &__aboutRoomBlock {
       margin: 0 0 150px 0;
+
+      @media (max-width: 1440px) {
+        margin: 0 0 100px 0;
+      }
+
+      @media (max-width: 1024px) {
+        margin: 0 0 80px 0;
+      }
     }
 
     &__accordionBlock {
       margin: 0 0 150px 0;
+
+      @media (max-width: 1024px) {
+        margin: 0 0 80px 0;
+      }
     }
 
     &__gallaryBlock {
@@ -196,28 +225,77 @@
           width: 445px !important;
           height: 465px !important;
           margin: 0 155px 0 0 !important;
+
+          @media (max-width: 768px) {
+            margin: 0 15px 0 0 !important;
+            width: 280px !important;
+            height: 290px !important;
+          }
         }
         &_2 {
           width: 290px !important;
           height: 355px !important;
+
+          @media (max-width: 768px) {
+            width: 204px !important;
+            height: 249px !important;
+          }
         }
         &_3 {
           width: 445px !important;
           height: 477px !important;
+
+          @media (max-width: 768px) {
+            width: 312px !important;
+            height: 335px !important;
+          }
         }
         &_4 {
           width: 600px !important;
           height: 397px !important;
+
+          @media (max-width: 768px) {
+            width: 422px !important;
+            height: 279px !important;
+          }
         }
+      }
+
+      @media (max-width: 1200px) {
+        margin: 0 0 150px 0;
+      }
+
+      @media (max-width: 1024px) {
+        margin: 0 0 80px 0;
       }
     }
 
     &__welcomeBlock {
       margin: 0 0 225px 0;
+
+      @media (max-width: 1200px) {
+        margin: 0 0 150px 0;
+      }
+
+      @media (max-width: 1024px) {
+        margin: 0 0 80px 0;
+      }
     }
 
     &__offersBlock {
       margin: 0 0 150px 0;
+
+      @media (max-width: 1200px) {
+        margin: 0 0 100px 0;
+      }
+
+      @media (max-width: 1024px) {
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      padding: 130px 0 100px 0;
     }
   }
 </style>

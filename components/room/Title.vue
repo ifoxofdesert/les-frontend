@@ -15,5 +15,22 @@
     color: $black;
     text-align: center;
     width: 100%;
+
+    @media (max-width: 1440px) {
+      font-size: 150px;
+    }
+
+    @media (max-width: 1200px) {
+      font-size: 100px;
+      text-align: left;
+    }
+
+    @media (max-width: 1024px) {
+      font-size: 80px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 60px;
+    }
   }
 </style>

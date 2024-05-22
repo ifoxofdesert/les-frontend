@@ -1,7 +1,9 @@
 <template>
   <div class="accordion" :class="{ active: item.active }" v-for="(item, index) in content">
     <span class="accordion__title" @click="toogleAccordion(index)">
-      {{ formatingNumber(index + 1) }}
+      <div class="accordion__title__number">
+        {{ formatingNumber(index + 1) }}
+      </div>
       <span>{{ item.title }}</span>
       <IconComponent name="union" class="accordion__title__icon" />
     </span>
@@ -113,6 +115,11 @@
         transition: all ease 0.5s;
         transform: rotate(-90deg);
         margin: 0 0 0 auto;
+
+        @media (max-width: 550px) {
+          width: 18px;
+          height: 18px;
+        }
       }
 
       span {
@@ -123,6 +130,32 @@
         font-weight: 400;
         line-height: normal;
         margin: 0 0 0 597px;
+
+        @media (max-width: 1440px) {
+          margin: 0 0 0 126px;
+        }
+
+        @media (max-width: 1024px) {
+          font-size: 30px;
+        }
+
+        @media (max-width: 768px) {
+          margin: 0 0 0 0;
+        }
+
+        @media (max-width: 550px) {
+          font-size: 20px;
+        }
+      }
+
+      &__number {
+        @media (max-width: 768px) {
+          display: none;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        font-size: 18px;
       }
     }
 
@@ -139,10 +172,33 @@
         font-weight: 300;
         line-height: 37px;
 
-        ul {
-          display: flex;
-          flex-direction: column;
+        &:deep() {
+          ul {
+            display: flex;
+            flex-direction: column;
+
+            @media (max-width: 768px) {
+              padding: 0 0 0 22px;
+            }
+          }
         }
+
+        @media (max-width: 1024px) {
+          font-size: 20px;
+        }
+
+        @media (max-width: 550px) {
+          font-size: 16px;
+          line-height: 28px;
+        }
+      }
+
+      @media (max-width: 1440px) {
+        margin: 0 0 0 130px;
+      }
+
+      @media (max-width: 768px) {
+        margin: 0 0 0 0;
       }
     }
 
@@ -158,6 +214,10 @@
 
         span {
           color: $whitesmoke;
+        }
+
+        @media (max-width: 1024px) {
+          margin-bottom: 15px;
         }
       }
 

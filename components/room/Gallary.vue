@@ -81,6 +81,10 @@
         line-height: 100%;
       }
 
+      @media (max-width: 1024px) {
+        font-size: 45px;
+      }
+
       @media (max-width: 768px) {
         font-size: 42px;
       }

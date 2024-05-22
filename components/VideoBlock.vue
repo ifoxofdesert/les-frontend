@@ -113,6 +113,14 @@
       max-height: 900px;
       height: 100vh;
       object-fit: cover;
+
+      @media (max-width: 1024px) {
+        max-height: 600px;
+      }
+
+      @media (max-width: 768px) {
+        max-height: 400px;
+      }
     }
 
     &__popup {

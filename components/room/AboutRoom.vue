@@ -39,6 +39,19 @@
           color: $green;
         }
       }
+
+      @media (max-width: 1440px) {
+        text-align: start;
+      }
+
+      @media (max-width: 1024px) {
+        font-size: 45px;
+      }
+
+      @media (max-width: 550px) {
+        font-size: 30px;
+        margin: 0 0 15px 0;
+      }
     }
 
     &__textBlock {
@@ -56,6 +69,25 @@
         line-height: 110%;
         max-width: 445px;
         min-width: 445px;
+
+        @media (max-width: 1440px) {
+          text-align: start;
+          width: 100%;
+          max-width: 100%;
+          min-width: auto;
+        }
+
+        @media (max-width: 550px) {
+          font-size: 18px;
+        }
+      }
+
+      @media (max-width: 1440px) {
+        width: 100%;
+        max-width: 100%;
+
+        flex-direction: column;
+        align-self: normal;
       }
     }
   }

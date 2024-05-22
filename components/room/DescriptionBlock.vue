@@ -33,6 +33,14 @@
       line-height: 110%;
       max-width: 600px;
       width: 100%;
+
+      @media (max-width: 1200px) {
+        max-width: 100%;
+      }
+
+      @media (max-width: 550px) {
+        font-size: 19px;
+      }
     }
 
     &__button {
@@ -52,6 +60,15 @@
           }
         }
       }
+      @media (max-width: 1200px) {
+        margin: 0;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      flex-direction: column;
+      justify-content: center;
     }
   }
 </style>

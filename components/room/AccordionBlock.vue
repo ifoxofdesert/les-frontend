@@ -50,6 +50,24 @@
 
       span {
         margin: 0 0 0 201px;
+
+        @media (max-width: 1440px) {
+          margin: 0 0 0px 0;
+          display: contents;
+        }
+      }
+
+      @media (max-width: 1440px) {
+        margin: 0 0 30px 0;
+      }
+
+      @media (max-width: 1024px) {
+        font-size: 45px;
+      }
+
+      @media (max-width: 550px) {
+        font-size: 30px;
+        margin: 0 0 15px 0;
       }
     }
 
@@ -62,6 +80,15 @@
       line-height: 110%;
       margin: 0 0 60px 620px;
       max-width: 580px;
+
+      @media (max-width: 1440px) {
+        margin: 0 0 60px 0;
+      }
+
+      @media (max-width: 550px) {
+        font-size: 18px;
+        margin: 0 0 30px 0;
+      }
     }
   }
 </style>

@@ -87,9 +87,11 @@
         background-color: $green;
         border-color: $green;
 
-        svg {
-          path {
-            fill: $whitesmoke;
+        &:deep() {
+          svg {
+            path {
+              fill: $whitesmoke;
+            }
           }
         }
       }
@@ -98,6 +100,14 @@
         background-color: $green;
         color: $whitesmoke;
         border-color: $green;
+
+        &:deep() {
+          svg {
+            path {
+              fill: $whitesmoke;
+            }
+          }
+        }
       }
     }
 

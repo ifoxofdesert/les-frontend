@@ -37,49 +37,7 @@
             </NuxtLink>
           </div>
 
-          <div
-            class="roomsListBlock__container__roomsBlock roomsListBlock__container__roomsBlock_mobile"
-            v-if="viewport.isLessThan('is_1200')"
-          >
-            <div class="roomsListBlock__container__roomsBlock_mobile__item" v-for="item in rooms">
-              <img
-                v-if="item.img?.src"
-                :src="useImage(item.img.src)"
-                :alt="item.img?.alt || item.title"
-                class="roomsListBlock__container__roomsBlock_mobile__item__image"
-              />
-              <div class="roomsListBlock__container__roomsBlock_mobile__item__infoBlock">
-                <span class="roomsListBlock__container__roomsBlock__roomBlock__title">
-                  {{ item.title }}
-                </span>
-                <span class="roomsListBlock__container__roomsBlock_mobile__item__infoBlock__block">
-                  Площадь
-                  <span class="roomsListBlock__container__roomsBlock__roomBlock__text">
-                    {{ item.area }}
-                  </span>
-                </span>
-
-                <span class="roomsListBlock__container__roomsBlock_mobile__item__infoBlock__block second">
-                  Вместимость
-                  <span class="roomsListBlock__container__roomsBlock__roomBlock__text">
-                    {{ item.persons }}
-                  </span>
-                </span>
-              </div>
-              <Button
-                type="internal"
-                mod="white br"
-                :url="item.slug"
-                class="roomsListBlock__container__roomsBlock_mobile__item__button"
-              >
-                Подробнее о номере
-                <IconComponent
-                  name="arrow_right"
-                  class="roomsListBlock__container__roomsBlock_mobile__item__button__icon"
-                />
-              </Button>
-            </div>
-          </div>
+          <RoomCardMobile v-if="viewport.isLessThan('is_1200')" :rooms="rooms" />
         </div>
       </ContainerBlock>
     </Container>
@@ -397,56 +355,8 @@
           }
         }
 
-        &_mobile {
-          display: none;
-        }
-
         @media (max-width: 1200px) {
           display: none;
-
-          &_mobile {
-            display: flex;
-            border-top: 1px solid $black;
-
-            &__item {
-              display: flex;
-              flex-direction: column;
-              width: 100%;
-              padding: 15px 0 25px 0;
-              border-bottom: 1px solid $black;
-              gap: 15px;
-
-              &__image {
-                width: 100%;
-                height: 400px;
-                object-fit: cover;
-              }
-
-              &__infoBlock {
-                display: flex;
-                align-items: center;
-                width: 100%;
-
-                &__block {
-                  display: flex;
-                  flex-direction: column;
-                  color: $gray;
-                  font-family: Manrope;
-                  font-size: 16px;
-                  font-weight: 400;
-                  line-height: 27px;
-
-                  &.second {
-                    margin: 0 0 0 auto;
-                  }
-                }
-
-                @media (max-width: 650px) {
-                  flex-wrap: wrap;
-                }
-              }
-            }
-          }
         }
       }
     }

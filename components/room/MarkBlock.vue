@@ -40,10 +40,28 @@
       }
       &.second {
         margin: 0 0 0 528px;
+        @media (max-width: 1200px) {
+          margin: 0;
+        }
       }
       &.third {
         margin: 0 0 0 auto;
+        @media (max-width: 1200px) {
+          margin: 0;
+        }
       }
+
+      @media (max-width: 768px) {
+        font-size: 22px;
+      }
+
+      @media (max-width: 550px) {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      justify-content: space-between;
     }
   }
 </style>

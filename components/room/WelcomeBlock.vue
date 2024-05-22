@@ -48,6 +48,10 @@
             color: $green;
           }
         }
+
+        @media (max-width: 1200px) {
+          display: contents;
+        }
       }
 
       &__right {
@@ -59,6 +63,41 @@
             color: $green;
           }
         }
+
+        @media (max-width: 1200px) {
+          text-align: left;
+          display: contents;
+        }
+      }
+      &:deep() {
+        br {
+          @media (max-width: 1200px) {
+            display: none;
+          }
+        }
+      }
+
+      @media (max-width: 1440px) {
+        font-size: 120px;
+        margin: 0 0 90px 0;
+      }
+
+      @media (max-width: 1200px) {
+        font-size: 90px;
+      }
+
+      @media (max-width: 1024px) {
+        font-size: 60px;
+        margin: 0 0 45px 0;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 45px;
+      }
+
+      @media (max-width: 550px) {
+        font-size: 30px;
+        margin: 0 0 30px 0;
       }
     }
 
@@ -74,6 +113,14 @@
         font-weight: 400;
         line-height: 80%;
         color: $green;
+
+        @media (max-width: 768px) {
+          font-size: 62px;
+        }
+
+        @media (max-width: 550px) {
+          font-size: 42px;
+        }
       }
 
       &__text {
@@ -84,6 +131,15 @@
         margin: 0 0 30px 0;
         display: block;
         color: $black;
+
+        @media (max-width: 768px) {
+          font-size: 20px;
+        }
+
+        @media (max-width: 550px) {
+          font-size: 18px;
+          margin: 0 0 15px 0;
+        }
       }
 
       &__markTextBlock {
@@ -95,6 +151,10 @@
           font-weight: 300;
           line-height: 110%;
           color: $gray;
+
+          @media (max-width: 550px) {
+            font-size: 16px;
+          }
         }
 
         &__subText {
@@ -104,7 +164,24 @@
           font-weight: 400;
           line-height: 110%;
           color: $black;
+
+          @media (max-width: 768px) {
+            font-size: 22px;
+          }
         }
+      }
+
+      &:deep() {
+        br {
+          @media (max-width: 1200px) {
+            display: none;
+          }
+        }
+      }
+
+      @media (max-width: 1200px) {
+        margin: 0;
+        max-width: 100%;
       }
     }
   }

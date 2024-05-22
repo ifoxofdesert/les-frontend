@@ -11,6 +11,7 @@
 
       <div class="roomsListBlock__container__roomsBlock">
         <NuxtLink
+          v-if="viewport.isGreaterOrEquals('is_1200')"
           class="roomsListBlock__container__roomsBlock__roomBlock"
           v-for="(item, index) in rooms"
           :key="index"
@@ -44,6 +45,8 @@
 
           <IconComponent name="arrow_right" class="roomsListBlock__container__roomsBlock__roomBlock__icon" />
         </NuxtLink>
+
+        <RoomCardMobile :rooms="rooms" v-if="viewport.isLessThan('is_1200')" />
       </div>
     </div>
   </div>
@@ -52,6 +55,8 @@
 <script lang="ts" setup>
   import type { ItitleCustom } from '~/types/General';
   import type { IroomList } from '~/types/Room';
+
+  const viewport = useViewport();
 
   const { title, description, rooms } = defineProps({
     title: {
@@ -91,6 +96,23 @@
 
         span {
           margin: 0 0 0 310px;
+          @media (max-width: 1440px) {
+            margin: 0;
+            display: contents;
+          }
+        }
+
+        @media (max-width: 1440px) {
+          margin: 0 0 30px 0;
+        }
+
+        @media (max-width: 1024px) {
+          font-size: 45px;
+        }
+
+        @media (max-width: 550px) {
+          font-size: 30px;
+          margin: 0 0 15px 0;
         }
       }
       &__description {
@@ -103,6 +125,14 @@
         font-weight: 300;
         line-height: 110%;
         color: $gray;
+
+        @media (max-width: 1440px) {
+          margin: 0;
+        }
+
+        @media (max-width: 550px) {
+          font-size: 18px;
+        }
       }
 
       &__roomsBlock {
@@ -232,6 +262,10 @@
                 }
               }
             }
+          }
+
+          @media (max-width: 1200px) {
+            display: none;
           }
         }
       }
