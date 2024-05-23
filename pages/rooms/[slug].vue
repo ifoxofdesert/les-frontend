@@ -117,7 +117,7 @@
     if (index <= 4) {
       return index;
     } else if (index > 4) {
-      repeatIndex = index - 1;
+      repeatIndex = i;
       return i + 1 - repeatIndex;
     }
   }
