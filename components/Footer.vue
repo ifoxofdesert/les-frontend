@@ -103,10 +103,14 @@
                   {{ dataGeneral?.address }}
                 </span>
 
-                <NuxtLink to="/" class="footer__container__navigationBlock__column__mapButton">
+                <a
+                  href="https://yandex.ru/maps/-/CDb~VTyJ"
+                  class="footer__container__navigationBlock__column__mapButton"
+                  target="_blank"
+                >
                   <IconComponent name="point" class="footer__container__navigationBlock__column__mapButton__icon" />
                   <span class="footer__container__navigationBlock__column__mapButton__text"> Посмотреть на карте </span>
-                </NuxtLink>
+                </a>
               </div>
             </div>
 
