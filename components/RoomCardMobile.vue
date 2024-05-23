@@ -25,7 +25,7 @@
           </span>
         </span>
       </div>
-      <Button type="internal" mod="white br" :url="item.slug" class="roomCardMobile__item__button">
+      <Button type="internal" mod="white br" :url="`/rooms/${item.slug}`" class="roomCardMobile__item__button">
         Подробнее о номере
         <IconComponent name="arrow_right" class="roomCardMobile__item__button__icon" />
       </Button>
