@@ -19,8 +19,9 @@
                 v-if="dataGeneral?.header?.menu?.length"
                 class="burgerMenu__container__menuBlock__button"
                 v-for="(item, index) in dataGeneral.header.menu"
-                type="internal"
+                :type="item.isTravel ? 'external' : 'internal'"
                 @click="$emit('close')"
+                :[checkIsTravel(item.isTravel)]="item.isTravel"
                 mod="text link"
                 :url="item.url"
               >
@@ -88,6 +89,10 @@
     ) {
       emit('close');
     }
+  }
+
+  function checkIsTravel(check: boolean | undefined) {
+    return check ? 'data-tl-booking-open' : '';
   }
 
   onMounted(() => {
@@ -195,6 +200,7 @@
           }
 
           &:hover {
+            color: $green;
             &::before {
               opacity: 1;
               min-width: 15px;

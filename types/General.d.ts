@@ -51,6 +51,7 @@ export interface Iphone {
 export interface IlinkButton {
   text?: string;
   url?: string;
+  isTravel?: boolean;
 }
 
 export interface Icoordinate {

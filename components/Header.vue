@@ -51,7 +51,7 @@
       </Container>
     </div>
     <Transition name="left_fade">
-      <BurgerMenu @close="closeMenu()" v-if="openedMenu" />
+      <BurgerMenu @close="closeMenu()" v-show="openedMenu" />
     </Transition>
   </header>
 </template>
