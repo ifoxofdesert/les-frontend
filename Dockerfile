@@ -1,4 +1,4 @@
-FROM node:20.13.0-buster
+FROM node:20.13-buster
 
 ENV HOST='0.0.0.0'
 ENV PORT='3000'
