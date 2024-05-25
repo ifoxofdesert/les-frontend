@@ -9,7 +9,7 @@ COPY package.json /usr/src/nuxt-app
 COPY . /usr/src/nuxt-app/
 
 
-RUN yarn 
+RUN yarn --network=127.0.0.53
 RUN yarn build
 
 EXPOSE 3000 
