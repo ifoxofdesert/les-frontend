@@ -192,7 +192,7 @@
   }
 
   watch(
-    () => route.query,
+    () => route.query.date,
     async () => {
       await loadNews();
     }
