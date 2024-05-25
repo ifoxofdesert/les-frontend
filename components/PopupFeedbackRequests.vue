@@ -46,6 +46,7 @@
             :url="policyUrl"
             type="internal"
             class="formPopup__container__formBlock__policyText__button"
+            target="_blank"
           >
             политикой конфиденциальности
           </Button>

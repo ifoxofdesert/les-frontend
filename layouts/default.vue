@@ -21,14 +21,6 @@
 
   const dataGeneral = useState<Igeneral>('dataGeneral');
 
-  useListen('popupFeedbackRequests:open', () => openFeedbackRequests());
-
-  useListen('popup:close', () => {
-    if (isOpenedFeedbackRequests.value) {
-      closeFeedbackRequests();
-    }
-  });
-
   const isOpenedFeedbackRequests = ref(false);
 
   function closeFeedbackRequests() {
@@ -39,9 +31,16 @@
   }
 
   function openFeedbackRequests() {
-    isOpenedFeedbackRequests.value = true;
-
     useEvent('popup:open');
     useEvent('scroll:no');
+    isOpenedFeedbackRequests.value = true;
   }
+
+  useListen('popupFeedbackRequests:open', () => openFeedbackRequests());
+
+  useListen('popup:close', () => {
+    if (isOpenedFeedbackRequests.value) {
+      closeFeedbackRequests();
+    }
+  });
 </script>

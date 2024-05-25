@@ -1,5 +1,5 @@
 <template>
-  <div class="burgerMenu">
+  <div class="burgerMenu" @click="checkClickDropDown">
     <div class="burgerMenu__block">
       <Container>
         <ContainerBlock>
@@ -81,12 +81,7 @@
   function checkClickDropDown(e: Event) {
     const target = e.target as HTMLButtonElement;
 
-    if (
-      !target.closest('.burgerMenu') &&
-      !target.closest('.header__container__menu') &&
-      !target.closest('.header') &&
-      !target.closest('.header__container__menuMobile')
-    ) {
+    if (!target.closest('.burgerMenu__block') && !target.closest('.burgerMenu__backgroun')) {
       emit('close');
     }
   }
@@ -94,14 +89,6 @@
   function checkIsTravel(check: boolean | undefined) {
     return check ? 'data-tl-booking-open' : '';
   }
-
-  onMounted(() => {
-    document.addEventListener('click', checkClickDropDown);
-  });
-
-  onUnmounted(() => {
-    document.removeEventListener('click', checkClickDropDown);
-  });
 </script>
 
 <style lang="scss" scoped>

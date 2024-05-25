@@ -138,6 +138,7 @@
                 :to="dataGeneral.policyUrl"
                 class="footer__container__bottomBlock__policyButton"
                 v-if="dataGeneral?.policyUrl"
+                target="_blank"
               >
                 Политика конфиденциальности
               </NuxtLink>
