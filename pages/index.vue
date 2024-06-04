@@ -37,7 +37,7 @@
     await getPreviewsNews({
       populate: 'deep',
       pageSize: 4,
-      sort: ['order', 'createdAt'],
+      sort: ['order', 'createdAt:desc'],
     })
   );
 
