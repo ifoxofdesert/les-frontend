@@ -122,6 +122,7 @@
       pageSize: 4,
       page: Number(route?.query?.page) || 1,
       filters: filterQuery.value,
+      sort: ['order', 'createdAt'],
     });
   }
 
