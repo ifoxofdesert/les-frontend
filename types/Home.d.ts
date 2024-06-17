@@ -20,12 +20,19 @@ export interface IafishaEvents {
   description?: string;
 }
 
+export interface IgallaryBlock {
+  gallaryTitle?: string;
+  gallaryDescription?: string;
+  gallary?: Iimage[];
+}
+
 export interface Ihome {
   pagetitle?: string;
   pageDescription?: string;
   mainBlock?: ImainBlock;
   offersSlider?: IoffersSlider;
   video?: Ivideo;
+  gallaryBlock?: IgallaryBlock;
   questions?: IquestionsBlock;
   roomsListBlock?: IroomsListBlock;
   reviewSlider?: IreviewSlider;

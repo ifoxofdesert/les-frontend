@@ -34,32 +34,12 @@
         </div>
 
         <div class="roomPage__gallaryBlock" v-if="content?.gallary?.length">
-          <RoomGallary
+          <RoomGallaryBlock
             :title="content.gallaryTitle"
             :description="content.gallaryDescription"
             :numberSlides="content.gallary.length"
-            :slidesPerView="'auto'"
-            :fixNumberSlides="2"
-            :spaceBetween="20"
-          >
-            <SwiperSlide
-              v-for="(item, index) in content.gallary"
-              :key="index"
-              class="roomPage__gallaryBlock__slide"
-              :class="`roomPage__gallaryBlock__slide_${getSchemaIndex(index)}`"
-              :id="index"
-            >
-              <div class="roomPage__gallaryBlock__slide__imageBlock">
-                <span class="roomPage__gallaryBlock__slide__imageBlock__number">{{ formatingNumber(index + 1) }}</span>
-
-                <img
-                  :src="useImage(item.src)"
-                  :alt="item.src"
-                  class="roomPage__gallaryBlock__slide__imageBlock__image"
-                />
-              </div>
-            </SwiperSlide>
-          </RoomGallary>
+            :gallary="content.gallary"
+          />
         </div>
 
         <div class="roomPage__welcomeBlock" v-if="content?.roomWelcome">
@@ -102,24 +82,6 @@
 
   if (!content?.value?.slug) {
     showError({ statusCode: 404, fatal: true });
-  }
-
-  const { formatingNumber } = useFormating();
-
-  let repeatIndex = 0;
-
-  function getSchemaIndex(i: number) {
-    if (i == 0) {
-      repeatIndex = 0;
-    }
-    let index = i + 1 - repeatIndex;
-
-    if (index <= 4) {
-      return index;
-    } else if (index > 4) {
-      repeatIndex = i;
-      return i + 1 - repeatIndex;
-    }
   }
 
   useHead({
@@ -195,71 +157,6 @@
 
     &__gallaryBlock {
       margin: 0 0 225px 0;
-
-      &__slide {
-        margin: 0 20px 0 0;
-        display: flex;
-        flex-direction: column;
-
-        &__imageBlock {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-
-          &__number {
-            font-family: Manrope;
-            font-size: 20px;
-            font-weight: 300;
-            line-height: 110%;
-            color: $gray;
-            margin: 0 auto 0 0;
-          }
-
-          &__image {
-            object-fit: cover;
-            height: 100%;
-          }
-        }
-
-        &_1 {
-          width: 445px !important;
-          height: 465px !important;
-          margin: 0 155px 0 0 !important;
-
-          @media (max-width: 768px) {
-            margin: 0 15px 0 0 !important;
-            width: 280px !important;
-            height: 290px !important;
-          }
-        }
-        &_2 {
-          width: 290px !important;
-          height: 355px !important;
-
-          @media (max-width: 768px) {
-            width: 204px !important;
-            height: 249px !important;
-          }
-        }
-        &_3 {
-          width: 445px !important;
-          height: 477px !important;
-
-          @media (max-width: 768px) {
-            width: 312px !important;
-            height: 335px !important;
-          }
-        }
-        &_4 {
-          width: 600px !important;
-          height: 397px !important;
-
-          @media (max-width: 768px) {
-            width: 422px !important;
-            height: 279px !important;
-          }
-        }
-      }
 
       @media (max-width: 1200px) {
         margin: 0 0 150px 0;

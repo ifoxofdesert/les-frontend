@@ -12,6 +12,19 @@
     <div class="videoBlock">
       <VideoBlock :video="content?.video" />
     </div>
+
+    <div class="homePage__gallaryBlock" v-if="content?.gallaryBlock?.gallary?.length">
+      <Container>
+        <ContainerBlock>
+          <RoomGallaryBlock
+            :title="content.gallaryBlock?.gallaryTitle"
+            :description="content.gallaryBlock?.gallaryDescription"
+            :gallary="content.gallaryBlock?.gallary"
+          />
+        </ContainerBlock>
+      </Container>
+    </div>
+
     <AfishaEventsBlock v-if="news?.result?.length" :data="content?.afishaEvents" :content="news?.result" />
     <div class="homePage__reviewSlider">
       <Container>
@@ -67,6 +80,18 @@
   .homePage {
     .videoBlock {
       margin: -290px 0 100px 0;
+
+      @media (max-width: 768px) {
+        margin: 0px 0 100px 0;
+      }
+
+      @media (max-width: 550px) {
+        margin: 0 0 50px 0;
+      }
+    }
+
+    &__gallaryBlock {
+      margin: 0 0 100px 0;
 
       @media (max-width: 768px) {
         margin: 0px 0 100px 0;
