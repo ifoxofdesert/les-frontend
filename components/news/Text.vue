@@ -110,6 +110,7 @@
       img {
         margin: 0 0 20px 0;
         object-fit: cover;
+        height: auto;
       }
     }
 
